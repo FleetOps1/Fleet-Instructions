@@ -1,0 +1,766 @@
+// Seed Database for Offline / Standalone Fallback
+const INITIAL_DATABASE = {
+    "categories":  [
+                       {
+                           "id":  "truck_anatomy",
+                           "name":  "Truck Anatomy",
+                           "icon":  "truck",
+                           "color":  "cyan",
+                           "description":  "Truck parts nomenclature, Freightliner Cascadia diagrams, schematics \u0026 component photos"
+                       },
+                       {
+                           "id":  "fleet_instructions",
+                           "name":  "Fleet Instructions",
+                           "icon":  "clipboard",
+                           "color":  "amber",
+                           "description":  "Unit swap protocols, PTI walkaround SOP, Samsara ELD setup, DVIR \u0026 winter operations"
+                       },
+                       {
+                           "id":  "accidents",
+                           "name":  "Accidents",
+                           "icon":  "alertTriangle",
+                           "color":  "red",
+                           "description":  "Collision protocol, 911 police/EMS, 360В° photo checklist, DOT drug \u0026 alcohol testing and towing"
+                       },
+                       {
+                           "id":  "engine",
+                           "name":  "Engine \u0026 Mechanical",
+                           "icon":  "engine",
+                           "color":  "orange",
+                           "description":  "Cooling, belts, turbo, oil \u0026 fuel leaks, water pump, thermostat"
+                       },
+                       {
+                           "id":  "tires",
+                           "name":  "Tires \u0026 Wheels",
+                           "icon":  "tire",
+                           "color":  "blue",
+                           "description":  "Nails in tire, blowouts, PSI drops, hub seals, tread wear \u0026 steer issues"
+                       },
+                       {
+                           "id":  "safety_cab",
+                           "name":  "Cab, Glass \u0026 Safety Sensors",
+                           "icon":  "truck",
+                           "color":  "cyan",
+                           "description":  "Windshield DOT specs, lane departure camera, radar sensors, fifth wheel"
+                       },
+                       {
+                           "id":  "emissions",
+                           "name":  "Emissions \u0026 DEF / DPF",
+                           "icon":  "exhaust",
+                           "color":  "purple",
+                           "description":  "Parked regen, DEF quality, doser crystallization, 5 MPH derate timer"
+                       },
+                       {
+                           "id":  "brakes",
+                           "name":  "Brakes \u0026 Air System",
+                           "icon":  "brake",
+                           "color":  "red",
+                           "description":  "Air leaks, air dryer purge, gladhands, frozen lines, low air warning"
+                       },
+                       {
+                           "id":  "electrical",
+                           "name":  "Electrical \u0026 Batteries",
+                           "icon":  "battery",
+                           "color":  "yellow",
+                           "description":  "Alternator charging, sleeper inverter, starter click, trailer lights, fuses"
+                       },
+                       {
+                           "id":  "transmission",
+                           "name":  "Transmission \u0026 Drivetrain",
+                           "icon":  "transmission",
+                           "color":  "indigo",
+                           "description":  "DT12 automated manual, clutch calibration, driveline vibration, diff locks"
+                       },
+                       {
+                           "id":  "hvac",
+                           "name":  "HVAC \u0026 Cab Comfort",
+                           "icon":  "snowflake",
+                           "color":  "teal",
+                           "description":  "Bunk heaters (Espar/Webasto), A/C compressor, cabin air filters"
+                       },
+                       {
+                           "id":  "sops",
+                           "name":  "Fleet SOPs \u0026 Procedures",
+                           "icon":  "clipboard",
+                           "color":  "emerald",
+                           "description":  "Roadside breakdown rules, towing safety protocols, emergency dispatch"
+                       }
+                   ],
+    "issues":  [
+                   {
+                       "id":  "parts-anatomy-guide",
+                       "categoryId":  "truck_anatomy",
+                       "title":  "Freightliner Cascadia Truck Parts \u0026 Component Anatomy",
+                       "dashCodes":  "Reference Guide | Standard Fleet Parts Nomenclature",
+                       "symptoms":  [
+                                        "Driver cannot identify or name broken component when reporting to dispatch or mobile mechanic",
+                                        "New driver onboarding and training on standard Class 8 tractor nomenclature and chassis layout",
+                                        "Documenting physical body and chassis damage for insurance and maintenance repair logs"
+                                    ],
+                       "driverSteps":  [
+                                           "1. FRONT HOOD \u0026 BUMPER: Aerodynamic hood latch assembly, front bumper with integrated collision radar, chrome grille, LED headlight pods, pre-trip bug screen, and hood safety cables.",
+                                           "2. STEER AXLE \u0026 WHEELS: Steer rims (22.5 inch), 295/75R22.5 steer tires (minimum 4/32 inch tread), clear oil hub sight glass (inspect oil level), tie rod, drag link, steering gear box, leaf springs, and shock absorbers.",
+                                           "3. UNDER HOOD / ENGINE: Detroit DD15 / Cummins X15 block, plastic coolant surge tank (fill to MAX cold), charge air cooler (CAC) hoses, serpentine belt \u0026 automatic tensioner, alternator, A/C compressor, primary/secondary fuel filters, oil dipstick, and washer fluid neck.",
+                                           "4. DRIVER SIDE \u0026 CABIN: Aerodynamic cab side fairings, battery box (4 AGM 12V batteries \u0026 master shutoff switch), driver-side aluminum fuel tank \u0026 rubber-cushioned mounting straps, DEF tank (blue cap, 23 gallon capacity), and cab entry grab handles.",
+                                           "5. BEHIND CAB \u0026 COUPLING: Headache rack / sleeper cab extenders, metal catwalk, Red emergency air line, Blue service air line, Green 7-way electrical cable (pigtail), gladhands with rubber grommets, and Bendix air dryer.",
+                                           "6. CHASSIS \u0026 FIFTH WHEEL: Fifth wheel top skid plate (must be lubricated with grease), release handle arm, locking jaws (closed tight around kingpin), sliding fifth wheel locking pins, driveshaft, and U-joints.",
+                                           "7. DRIVE TANDEM AXLES: Forward-drive and rear-drive differential axles, Type 30/30 brake chambers, manual/automatic slack adjusters, S-cam shafts, air suspension rubber bags, torque rods, and drive tires (minimum 2/32 inch tread).",
+                                           "8. REAR \u0026 CAB INTERIOR: Rear anti-spray mud flaps (DOT max 8 inches off ground), rear LED tail/brake lights, upper windshield Detroit Assurance lane-departure camera, digital dashboard display, yellow tractor park brake valve, and red trailer air supply valve."
+                                       ],
+                       "images":  [
+                                      "assets/freightliner_anatomy_diagram.svg"
+                                  ],
+                       "updatedAt":  "2026-11-08T06:20:00Z",
+                       "shopUrgency":  "routine_sop"
+                   },
+                   {
+                       "id":  "sop-pre-trip-inspection",
+                       "categoryId":  "fleet_instructions",
+                       "title":  "Pre-Trip Inspection (PTI) Step-by-Step DOT Walkaround SOP",
+                       "dashCodes":  "DOT 49 CFR § 396.13 | Pre-Trip Standard Operating Procedure",
+                       "symptoms":  [
+                                        "Mandatory daily driver pre-trip inspection before operating commercial vehicle on public roads",
+                                        "Preventing DOT Level 1 inspection violations, CVSA citations, and Out of Service (OOS) orders",
+                                        "Catching air leaks, loose lug nuts, low fluids, and worn tires before dispatch departure"
+                                    ],
+                       "driverSteps":  [
+                                           "1. STEP 1 - ENGINE BAY FLUIDS \u0026 BELTS: Unlatch hood safely. Inspect coolant level in plastic surge tank (between MIN and MAX cold). Check engine oil dipstick. Inspect serpentine belt for cracks/frays (deflection under 1/2 inch). Inspect all coolant and CAC hoses for bulging or leaks. Look under engine for active drips.",
+                                           "2. STEP 2 - STEER AXLE \u0026 SUSPENSION: Verify steer tires have at least 4/32 inch tread depth, no recaps or bulges. Check 10 lug nuts (no rust streaks indicating looseness). Inspect hub oil level through sight glass. Inspect leaf springs (no cracks or missing leaves), U-bolts tight, shock absorber not leaking.",
+                                           "3. STEP 3 - SIDES, TANKS \u0026 BATTERY: Inspect fuel tanks (straps tight, rubber intact, cap gasket sealed). Inspect DEF tank (cap tight, no white crystal crust on neck). Confirm battery box lid is latched securely. Inspect cab steps and mirrors.",
+                                           "4. STEP 4 - COUPLING \u0026 AIR LINES: Verify Red and Blue air lines and 7-way electric cord are suspended 6+ inches above catwalk. Gladhands connected firmly with zero leaks. Verify fifth wheel plate is flat against trailer apron (NO gap). Confirm locking jaws are 100% closed around trailer kingpin.",
+                                           "5. STEP 5 - DRIVE TANDEMS \u0026 BRAKES: Verify drive tires have minimum 2/32 inch tread and 100-110 PSI cold. Check dual spacing (no rocks or debris). Inspect brake pads (minimum 1/4 inch thickness). Verify brake drums have no heat cracks or oil contamination. Slack adjuster pushrod travel under 2 inches.",
+                                           "6. STEP 6 - MANDATORY IN-CAB AIR BRAKE TEST (L-A-B): Build air to 120-130 PSI governor cutout. Turn engine OFF, switch key back ON. Push in Yellow and Red parking brake valves. Press and hold foot brake firmly: combination must not lose over 4 PSI in 1 minute (Leak test). Pump foot brake until buzzer sounds at or above 60 PSI (Alarm test). Continue pumping until Yellow and Red valves pop out between 20-45 PSI (Buttons test).",
+                                           "7. STEP 7 - TUG TEST \u0026 BRAKE STOP: Start engine, rebuild air to 120 PSI. Gently pull forward against trailer brake to test kingpin lock. Gently pull against tractor yellow brake. Pull forward at 5 MPH and step on brake pedal to confirm truck stops straight without pulling."
+                                       ],
+                       "images":  [
+                                      "assets/pti_walkaround_inspection.svg"
+                                  ],
+                       "updatedAt":  "2026-11-08T06:20:00Z",
+                       "shopUrgency":  "routine_sop"
+                   },
+                   {
+                       "id":  "sop-ryder-swap",
+                       "categoryId":  "fleet_instructions",
+                       "title":  "Ryder \u0026 Penske Rental Unit Swap Procedure",
+                       "dashCodes":  "Rental Unit Exchange Protocol | Fleet SOP",
+                       "symptoms":  [
+                                        "Assigned fleet tractor broke down or requires long-term dealership repair",
+                                        "Scheduled PM (Preventative Maintenance) swap at Ryder / Penske leasing facility",
+                                        "Transferring payload, trailer, and driver equipment into a replacement unit"
+                                    ],
+                       "driverSteps":  [
+                                           "1. STEP 1 - DISPATCH \u0026 PURCHASE ORDER: Do not arrive at rental yard without an approved PO and reservation number from breakdown dispatch. Verify branch hours and vehicle readiness.",
+                                           "2. STEP 2 - DOCUMENT RETURNING TRACTOR: Record final odometer mileage, engine hours, diesel fuel level, and DEF level on your ELD. Take 360-degree photos of all 4 corners, windshield, mirrors, and tires before handing over keys.",
+                                           "3. STEP 3 - UNCOUPLE TRAILER SAFELY: Park trailer on level pavement. Lower landing gear fully until pads contact ground, then turn high gear crank 2-3 extra turns. Disconnect gladhands and 7-way cord, stow neatly. Pull fifth wheel pin, slowly drive tractor out.",
+                                           "4. STEP 4 - JOINT INSPECTION WITH RENTAL AGENT: Walk around the replacement truck with the Ryder/Penske agent. Note EVERY preexisting scratch, cracked lens, chipped windshield, or tire damage directly on the outbound condition sheet before signing.",
+                                           "5. STEP 5 - TRANSFER CAB DOCUMENTS \u0026 PERMITS: Transfer your IRP Cab Card, IFTA decal paperwork, ELD instruction card, safety permit book, and company insurance binder to the new truck. Take all personal belongings, toll transponders, and CB radio.",
+                                           "6. STEP 6 - TRANSFER SAMSARA ELD GATEWAY: Unplug Samsara gateway from old truck RP1226 port and plug into replacement truck diagnostic port. Verify green LED light. Change active truck number in your Samsara Driver Mobile App immediately.",
+                                           "7. STEP 7 - COUPLE TRAILER \u0026 PERFORM FULL PTI: Back rental tractor under trailer, listen for locking jaws latching. Perform forward tug test. Inspect fifth wheel jaws with flashlight. Hook up lines and complete a full 15-minute Pre-Trip Inspection.",
+                                           "8. STEP 8 - NOTIFY DISPATCH: Send photos of the signed rental agreement, new unit number, license plate, VIN, starting mileage, and fuel level to dispatch and safety."
+                                       ],
+                       "images":  [
+                                      "assets/ryder_penske_swap_protocol.svg"
+                                  ],
+                       "updatedAt":  "2026-11-08T06:20:00Z",
+                       "shopUrgency":  "routine_sop"
+                   },
+                   {
+                       "id":  "samsara-device-installation",
+                       "categoryId":  "fleet_instructions",
+                       "title":  "How to Install Samsara Vehicle Gateway (ELD) \u0026 Dash Cam",
+                       "dashCodes":  "Telematics Hardware SOP | Samsara VG54 / VG55 \u0026 CM31 / CM32",
+                       "symptoms":  [
+                                        "Equipping a new fleet tractor or transferring Samsara hardware to a rental swap tractor",
+                                        "Samsara Gateway blinking orange (searching for LTE/GPS) or red (power fault)",
+                                        "ELD not recording engine odometer, speed, or RPM data automatically"
+                                    ],
+                       "driverSteps":  [
+                                           "1. STEP 1 - LOCATE RP1226 DIAGNOSTIC CONNECTOR: On 2017+ Freightliner Cascadia, remove the lower passenger-side dash kick panel or access the diagnostic port behind the center lower dash console. Older trucks use the round 9-pin black connector under the driver steering column.",
+                                           "2. STEP 2 - CONNECT SAMSARA HARNESS: Plug the Samsara CBL-VG-BRP1226 diagnostic cable firmly into the truck mating receptacle. Turn the twist-lock locking ring clockwise until fully locked.",
+                                           "3. STEP 3 - MOUNT SAMSARA GATEWAY (VG54): Mount the black gateway box high inside the dash panel using heavy-duty zip ties. Ensure the side labeled \u0027THIS SIDE FACES THE SKY\u0027 points upward through the windshield glass for optimal GPS satellite and 4G LTE reception.",
+                                           "4. STEP 4 - MOUNT DUAL-FACING DASH CAM (CM31/CM32): Clean the windshield glass with 70% isopropyl alcohol wipe. Mount camera in the upper center of windshield, within the sweep path of the windshield wipers (DOT compliant zone, outside driver line of sight). Press 3M adhesive firmly for 30 seconds.",
+                                           "5. STEP 5 - ROUTE AND TIE CABLING: Route the USB camera cable into the upper windshield rubber molding, down behind the passenger A-pillar trim, and plug directly into the Samsara Gateway USB port. Secure loose slack with wire ties.",
+                                           "6. STEP 6 - VERIFY LED DIAGNOSTICS: Turn truck ignition ON (engine running). Check Gateway indicator lights: SOLID GREEN = GPS, Cellular, and Engine ECM communication locked and active (Normal). FLASHING ORANGE = Booting and searching for cellular/satellite signal (allow 2-4 minutes outdoors). SOLID RED = Power or diagnostic bus failure (reseat connector).",
+                                           "7. STEP 7 - CONFIGURE IN SAMSARA DRIVER APP: Open Samsara Driver App on phone or tablet. Log in and select the tractor number. Verify that odometer and engine hours reflect the truck dashboard reading. Perform a 1-minute test drive to verify automatic driving status."
+                                       ],
+                       "images":  [
+                                      "assets/samsara_installation_diagram.svg"
+                                  ],
+                       "updatedAt":  "2026-11-08T06:20:00Z",
+                       "shopUrgency":  "driver_fix"
+                   },
+                   {
+                       "id":  "sop-post-trip-dvir",
+                       "categoryId":  "fleet_instructions",
+                       "title":  "Post-Trip Inspection (DVIR) \u0026 Defect Reporting SOP",
+                       "dashCodes":  "DOT 49 CFR § 396.11 | Driver Vehicle Inspection Report",
+                       "symptoms":  [
+                                        "End of daily driving shift or completion of freight delivery",
+                                        "Identifying safety defects developed during the trip before they cause a breakdown",
+                                        "Legal obligation to submit electronic Driver Vehicle Inspection Report"
+                                    ],
+                       "driverSteps":  [
+                                           "1. STEP 1 - END-OF-SHIFT WALKAROUND: Upon parking, do a complete walkaround with flashlight. Check tire heat, inspect for embedded nails, check hub oil levels, inspect trailer door latches, seals, and lights.",
+                                           "2. STEP 2 - DRAIN AIR TANKS: Pull all 3 wet/dry air tank drain lanyards under the driver steps until air blows completely dry with zero moisture or oil mist.",
+                                           "3. STEP 3 - CLASSIFY SAFETY DEFECTS: Out of Service (OOS) defects (audible air leak, worn brake pad under 1/4 inch, cut steer tire, burned out headlight, cracked windshield in wiper path) must be grounded immediately. Minor defects (fender chip, marker lamp, bunk fan) may be scheduled for next terminal PM.",
+                                           "4. STEP 4 - SUBMIT SAMSARA ELECTRONIC DVIR: Open Samsara Driver App -\u003e DVIR -\u003e Select Vehicle -\u003e Click \u0027Add Defect\u0027 or \u0027No Defects Found\u0027. Take clear photos of any damaged component directly in the app. Sign digitally.",
+                                           "5. STEP 5 - SHOP CERTIFICATION: When shop completes repairs, mechanic must certify repairs on DVIR. Driver starting next shift must review and counter-sign before departure."
+                                       ],
+                       "images":  [
+                                      "assets/dvir_post_trip_inspection.svg"
+                                  ],
+                       "updatedAt":  "2026-11-08T06:20:00Z",
+                       "shopUrgency":  "routine_sop"
+                   },
+                   {
+                       "id":  "sop-winter-anti-gel",
+                       "categoryId":  "fleet_instructions",
+                       "title":  "Winter Fleet Operations \u0026 Fuel / DEF Anti-Gel Protocol",
+                       "dashCodes":  "Cold Weather Standards | Freeze \u0026 Gel Protection",
+                       "symptoms":  [
+                                        "Ambient temperatures dropping below 15°F (-10°C)",
+                                        "Fuel filter waxing, sudden loss of engine power, stumbling under load, or no-start",
+                                        "DEF tank warning light or heater doser line freeze in sub-zero climates"
+                                    ],
+                       "driverSteps":  [
+                                           "1. STEP 1 - PREVENTATIVE FUEL TREATMENT: When temperatures drop below 20°F (-6°C), add preventative anti-gel fuel conditioner (Power Service Diesel Kleen or Howes Lubricator) at every fill-up BEFORE pumping fuel so it mixes thoroughly. Use 32 oz bottle per 100 gallons.",
+                                           "2. STEP 2 - EMERGENCY GELLED FUEL RECOVERY: If engine stalls due to gelled fuel: DO NOT keep cranking and burn the starter. Add Power Service Diesel 911 (red bottle) directly into fuel filter housings and tanks. Allow 15 minutes to dissolve wax crystals.",
+                                           "3. STEP 3 - DEF BEST PRACTICES IN FREEZING WEATHER: DEF (32.5% urea solution) freezes at 12°F (-11°C). Freightliner Cascadia has an automated coolant-heated DEF tank coil and heated doser lines. DO NOT fill DEF tank completely full in extreme cold; leave 10% room for expansion. NEVER add anti-freeze, fuel, or fuel additives into the blue DEF tank (causes $15,000+ emissions replacement).",
+                                           "4. STEP 4 - PREVENT FROZEN AIR LINES: Drain all air tanks daily. In sub-zero temperatures, if air lines or brake valves freeze up, add 2-3 ounces of 99% pure methyl alcohol air brake conditioner into the red emergency line and charge system. Never use standard rubbing alcohol (contains water).",
+                                           "5. STEP 5 - COLD STARTING \u0026 IDLE: If truck is not equipped with an APU and temperature is below 15°F, leave engine idling on high-idle (900-1000 RPM) using cruise control buttons to prevent engine slobber and maintain cylinder heat."
+                                       ],
+                       "images":  [
+                                      "assets/winter_anti_gel_protocol.svg"
+                                  ],
+                       "updatedAt":  "2026-11-08T06:20:00Z",
+                       "shopUrgency":  "driver_fix"
+                   },
+                   {
+                       "id":  "sop-accident-emergency-protocol",
+                       "categoryId":  "accidents",
+                       "title":  "Commercial Vehicle Accident \u0026 Crash Emergency Response SOP",
+                       "dashCodes":  "DOT 49 CFR В§ 382.303 | DOT В§ 390.15 | FMCSA Post-Accident Testing Protocol",
+                       "symptoms":  [
+                                        "Commercial motor vehicle collision, jackknife, rollover, or backing impact at customer facility",
+                                        "Physical damage to tractor front end, steer axle, fuel tanks, trailer body, or third-party vehicle",
+                                        "Law enforcement on scene conducting commercial vehicle crash investigation and issuing police report",
+                                        "Mandatory determination for DOT FMCSA post-accident drug and alcohol screening within statutory time limits",
+                                        "Disabled tractor or trailer on interstate shoulder requiring heavy-duty rotator or wrecker towing"
+                                    ],
+                       "driverSteps":  [
+                                           "1. STEP 1 - SECURE SCENE \u0026 ENSURE LIFE SAFETY: Put transmission in Neutral/Park, set all tractor and trailer spring parking brakes, shut off ignition. Immediately switch ON emergency 4-way hazard flashers. Put on high-visibility reflective safety vest before exiting tractor cab.",
+                                           "2. STEP 2 - PLACE DOT WARNING TRIANGLES WITHIN 10 MINUTES: Under DOT 49 CFR В§ 392.22, deploy 3 reflective orange triangles: 10 feet behind trailer on traffic side, 100 feet behind truck in center of lane/shoulder, and 200 feet behind truck toward oncoming traffic.",
+                                           "3. STEP 3 - CHECK FOR INJURIES \u0026 DIAL 911: Assess yourself and all other involved parties for injuries. If anyone is injured or trapped, call 911 immediately. Request police and EMS emergency medical services. Always insist on an official police crash report even for low-speed parking lot fender benders.",
+                                           "4. STEP 4 - NEVER ADMIT FAULT OR SPECULATE ON BLAME: Be courteous and cooperative with law enforcement and other drivers, but NEVER admit fault, say \u0027I\u0027m sorry\u0027, or speculate on vehicle speeds or causes (\u0027I didn\u0027t see him\u0027, etc.). Do not sign any document except the police citation or accident report.",
+                                           "5. STEP 5 - NOTIFY FLEET SAFETY \u0026 DISPATCH IMMEDIATELY: Call company Safety Department and your dispatcher 24/7 hotline right away. Report your exact location (highway, mile marker, or cross streets), vehicle drivability, and whether injuries or fluid spills exist.",
+                                           "6. STEP 6 - TAKE 360В° SCENE \u0026 DAMAGE PHOTOS BEFORE VEHICLES MOVE: From safe roadside positions, capture wide-angle 4-corner photos of both vehicles, lane positions, skid marks, road conditions, and traffic signs. Take clear close-ups of all impact points, license plates, VIN tags, and insurance cards.",
+                                           "7. STEP 7 - EXCHANGE INFORMATION \u0026 GATHER WITNESSES: Collect other driver\u0027s full name, phone number, driver\u0027s license number, insurance company name, policy number, and vehicle plate. Politely ask any independent witnesses for their business cards or phone numbers.",
+                                           "8. STEP 8 - MANDATORY DOT POST-ACCIDENT DRUG \u0026 ALCOHOL TESTING: Under 49 CFR В§ 382.303, you MUST complete a DOT alcohol test within 2-8 hours and urine drug screen within 32 hours if: (A) any human fatality occurred, OR (B) you received a moving citation AND someone received immediate medical treatment away from scene, OR (C) you received a moving citation AND any vehicle required tow-away. Safety will route you to the nearest approved testing clinic.",
+                                           "9. STEP 9 - HEAVY-DUTY TOWING \u0026 AXLE SHAFT DISCONNECT: If tractor requires towing, ensure the wrecker driver removes BOTH rear drive axle half-shafts before towing with drive tires on the ground to prevent catastrophic Detroit DT12 automated transmission destruction."
+                                       ],
+                       "images":  [
+                                      "assets/accident_response_protocol.svg"
+                                  ],
+                       "notes":  "FMCSA POST-ACCIDENT RECORDKEEPING \u0026 TESTING RULES (49 CFR В§ 382.303 \u0026 В§ 390.15):\nвЂў DOT Recordable Criteria: Any crash on a public road resulting in (1) a fatality, (2) bodily injury requiring immediate medical treatment away from scene, or (3) disabling damage requiring one or more motor vehicles to be towed from scene.\nвЂў Testing Deadlines: Alcohol testing must occur within 2 hours (documented reason required up to 8 hours max; testing ceases after 8 hours). Urine drug screen must be collected within 32 hours.\nвЂў Company Cab Card: Hand other driver/officer the official fleet insurance cab card located in the driver\u0027s door document pouch.\nвЂў Samsara Dashcam \u0026 Gateway: Video clips are automatically uploaded to the safety portal upon impact detection. Do not disconnect gateway wiring or remove camera SD card.",
+                       "updatedAt":  "2026-11-08T07:00:00Z",
+                       "shopUrgency":  "towing_accident"
+                   },
+                   {
+                       "id":  "glass-cracked-windshield",
+                       "categoryId":  "safety_cab",
+                       "title":  "Cracked Windshield \u0026 Stone Chips (DOT 393.60 Compliance)",
+                       "dashCodes":  "Visual Pre-Trip Inspection | DOT Scale Out-of-Service Risk",
+                       "symptoms":  [
+                                        "Stone chip, bullseye, or star crack caused by road debris",
+                                        "Horizontal or vertical crack expanding across driver\u0027s field of view",
+                                        "Wiper blades snagging, chattering, or tearing over glass fracture"
+                                    ],
+                       "driverSteps":  [
+                                           "1. Check crack location and size immediately with a tape measure or coin.",
+                                           "2. DOT 393.60 CRITICAL SWEEP ZONE: Cracks or chips of ANY size are strictly prohibited in the driver critical viewing area (8.5 inches wide by 11 inches high centered directly above the steering wheel rim). Any damage here is an automatic DOT citation or Out of Service.",
+                                           "3. ALLOWABLE DAMAGE (OUTSIDE CRITICAL AREA): An isolated stone chip under 3/4 inch diameter (penny size), or a single crack that does NOT intersect with another crack is legally permitted outside the driver sweep area, provided it is at least 3 inches away from any other fracture.",
+                                           "4. INTERSECTING CRACK BAN: If two cracks touch or cross each other (spider-web pattern), it is an automatic Out-of-Service violation regardless of where it is on the glass.",
+                                           "5. TEMP REPAIR: Apply a strip of clear packing tape over the chip immediately to block road dirt, salt, and washer fluid from contaminating the resin cavity.",
+                                           "6. If chip is under 1 inch and non-branching: Dispatch can route driver to a Love\u0027s, Pilot, or Safelite bay for a $65 resin injection repair before temperature changes cause it to run across the entire windshield.",
+                                           "7. If crack exceeds 6 inches: Full glass replacement is required. Send clear photos holding a tape measure against the crack to dispatch."
+                                       ],
+                       "images":  [
+                                      "assets/windshield_dot_spec.svg"
+                                  ],
+                       "updatedAt":  "2026-11-08T06:10:00Z",
+                       "shopUrgency":  "urgent_shop"
+                   },
+                   {
+                       "id":  "sensor-lane-departure",
+                       "categoryId":  "safety_cab",
+                       "title":  "Lane Departure Warning / Detroit Assurance Camera Unavailable",
+                       "dashCodes":  "Camera Icon Amber | \u0027Lane Departure Unavailable\u0027 | \u0027Clean Windshield\u0027",
+                       "symptoms":  [
+                                        "Amber camera warning icon illuminated on instrument cluster",
+                                        "Lane departure warning rumble beeps disabled",
+                                        "Digital dash display reads \u0027Camera View Obstructed\u0027 or \u0027Active Brake Assist Limited\u0027"
+                                    ],
+                       "driverSteps":  [
+                                           "1. Safely pull over at the next rest area or truck stop fuel island.",
+                                           "2. Step outside and inspect the upper center of the windshield where the forward optical camera pod is mounted behind the rearview mirror.",
+                                           "3. Clean exterior glass directly in front of camera lens using glass cleaner and squeegee. Remove squashed bugs, frost, ice glaze, road salt crust, and oily diesel film.",
+                                           "4. Inspect windshield wiper blades: If the upper wiper blade is split, skipping, or streaking directly across the camera viewing window, replace the wiper blade ($15).",
+                                           "5. Turn cab HVAC defroster on HIGH heat to clear any interior windshield fogging or condensation trapped inside the camera plastic bracket.",
+                                           "6. Clear dashboard top: Ensure clipboards, hats, dashboard covers, or toll transponders are not reflecting glare into the bottom of the camera lens pod.",
+                                           "7. Turn ignition OFF for 2 full minutes to let the Detroit Assurance camera module power cycle, then start engine and roll above 15 MPH to verify fault clears."
+                                       ],
+                       "images":  [
+
+                                  ],
+                       "updatedAt":  "2026-11-08T06:10:00Z",
+                       "shopUrgency":  "scheduled_shop"
+                   },
+                   {
+                       "id":  "sensor-radar-obstructed",
+                       "categoryId":  "safety_cab",
+                       "title":  "Forward Radar Sensor Obstructed / Active Brake Assist Disabled",
+                       "dashCodes":  "ABA Warning Triangle | \u0027Radar Obstructed\u0027 | Adaptive Cruise Disabled",
+                       "symptoms":  [
+                                        "Adaptive Cruise Control (ACC) cannot be engaged or disengages suddenly",
+                                        "Active Brake Assist (ABA) disabled warning chime",
+                                        "Forward vehicle distance indicator disappears from cluster"
+                                    ],
+                       "driverSteps":  [
+                                           "1. Pull into a safe parking spot or rest area.",
+                                           "2. Walk to the front center bumper where the Detroit Assurance radar sensor box is located.",
+                                           "3. Check for heavy packed snow, slush, road grime, or dried mud caked over the smooth black plastic radar cover.",
+                                           "4. Gently wipe the radar surface clean using washer fluid and a soft microfiber towel. DO NOT use metal tools or rigid ice scrapers, which scratch the radar lens and degrade radio frequency signals.",
+                                           "5. Check bumper alignment: If the bumper was bumped against a snow bank or dock seal, even a 5-degree bend changes radar pitch and disables the system until mechanical recalibration.",
+                                           "6. Check the electrical wiring harness behind the bumper bracket to confirm plug is seated firmly and not damaged by road debris.",
+                                           "7. Restart engine and drive above 25 MPH on clear road for 1-2 miles. The radar automatically recalibrates and fault clears."
+                                       ],
+                       "images":  [
+
+                                  ],
+                       "updatedAt":  "2026-11-08T06:10:00Z",
+                       "shopUrgency":  "driver_fix"
+                   },
+                   {
+                       "id":  "mech-fifth-wheel-jaws",
+                       "categoryId":  "safety_cab",
+                       "title":  "Fifth Wheel Jaws Won\u0027t Lock / Release Handle Stuck Open",
+                       "dashCodes":  "Trailer Coupling Defect | Pre-Trip Tug Test Failure",
+                       "symptoms":  [
+                                        "Tractor backs under trailer, but secondary safety latch does not drop into place",
+                                        "Fifth wheel release handle stays pulled out",
+                                        "Vertical gap visible between trailer upper coupler plate and fifth wheel top"
+                                    ],
+                       "driverSteps":  [
+                                           "1. STOP immediately. Never pull a trailer without 100% visual kingpin jaw verification!",
+                                           "2. Lower landing gear or use tractor rear air suspension dump switch so trailer apron plate rests flush on fifth wheel with ZERO vertical gap.",
+                                           "3. Inspect jaws with flashlight: If jaws are in the closed/tripped position without kingpin inside, use a long screwdriver or pry bar to trip the release lever inside the throat so jaws spring open.",
+                                           "4. In winter cold: Old grease solidifies like hardened wax. Spray locking mechanism generously with penetrating oil (PB Blaster, WD-40, or brake cleaner) to dissolve hardened grease.",
+                                           "5. Back under trailer with positive momentum (firm 2-3 MPH contact) until jaws snap closed with a loud metallic clunk.",
+                                           "6. FLASHLIGHT INSPECTION (MANDATORY): Step between tractor drive tires with flashlight. Look into the throat: verify locking jaws or slide bar wrap completely 360 degrees around the narrow shank of the trailer kingpin.",
+                                           "7. Perform positive tug test in 1st gear against trailer spring brakes before raising landing gear."
+                                       ],
+                       "images":  [
+
+                                  ],
+                       "updatedAt":  "2026-11-08T06:10:00Z",
+                       "shopUrgency":  "urgent_shop"
+                   },
+                   {
+                       "id":  "mech-steering-play",
+                       "categoryId":  "safety_cab",
+                       "title":  "Steering Wheel Free Play \u0026 Front-End Wander (DOT 393.209 Limit)",
+                       "dashCodes":  "DOT Scale Inspection Out-of-Service Risk",
+                       "symptoms":  [
+                                        "Steering wheel has more than 2 inches of loose play before front steer tires turn",
+                                        "Truck wanders in highway lanes requiring constant driver steering correction",
+                                        "Clunking or popping noise when turning steering wheel at low speeds"
+                                    ],
+                       "driverSteps":  [
+                                           "1. Park on flat pavement with wheels pointed straight ahead. Engine running.",
+                                           "2. DOT 393.209 REGULATION: For standard 20-inch Freightliner steering wheel, free play CANNOT exceed 2.25 inches (5.7 cm). Any free play over 2.5 inches is an automatic OUT OF SERVICE violation at weigh stations.",
+                                           "3. Measure free play: Turn steering wheel lightly until steer tires begin to move; measure distance traveled along the rim of the wheel.",
+                                           "4. Inspect intermediate steering shaft under hood: Check upper and lower U-joints and slip joint splines for loose wiggle.",
+                                           "5. Check drag link and tie rod ends: Have driver wiggle steering wheel while checking ball sockets for vertical slop.",
+                                           "6. Inspect power steering fluid reservoir: Verify fluid is between MIN and MAX hot marks (Dexron III / ATF)."
+                                       ],
+                       "images":  [
+
+                                  ],
+                       "updatedAt":  "2026-11-08T06:10:00Z",
+                       "shopUrgency":  "urgent_shop"
+                   },
+                   {
+                       "id":  "mech-mud-flap-torn",
+                       "categoryId":  "safety_cab",
+                       "title":  "Mud Flap Torn / Missing on Tractor or Trailer (DOT 393.86)",
+                       "dashCodes":  "Visual Pre-Trip Defect | Weigh Station Level 2 Violation",
+                       "symptoms":  [
+                                        "Mud flap torn off by curb, tire tread debris, or trailer backing into dock",
+                                        "Mud flap sailing high in the wind or dragging on pavement"
+                                    ],
+                       "driverSteps":  [
+                                           "1. DO NOT cross state weigh stations with a missing or raggedly torn mud flap. DOT scale officers issue instant citations for spray suppressant violations.",
+                                           "2. DOT LAW: Mud flap must be no more than 8 inches from the road surface and wide enough to cover the full tread width of rear dual tires.",
+                                           "3. If flap is loose: Re-tighten the 4 mounting carriage bolts and spring hanger bracket.",
+                                           "4. If flap is ripped in half on the road: Buy a standard replacement mud flap (24x30 or 24x36) inside the truck stop store ($18-$25).",
+                                           "5. EMERGENCY TEMP REPAIR: If bolt holes ripped through rubber: Punch 4 new holes 2 inches lower in the remaining rubber using a pocketknife or screwdriver and remount flap.",
+                                           "6. Ensure anti-sail metal bracket or weight is attached so flap does not sail above legal height at highway speeds."
+                                       ],
+                       "images":  [
+
+                                  ],
+                       "updatedAt":  "2026-11-08T06:10:00Z",
+                       "shopUrgency":  "scheduled_shop"
+                   },
+                   {
+                       "id":  "brake-air-dryer-purge",
+                       "categoryId":  "brakes",
+                       "title":  "Air Dryer Purge Valve Stuck Open / Continuous Air Hiss",
+                       "dashCodes":  "Air Needles Drop Rapidly | Low Air Warning Buzzer \u003c 60 PSI",
+                       "symptoms":  [
+                                        "Continuous loud air rushing sound under cab behind front axle",
+                                        "Air compressor runs continuously but primary/secondary needles cannot reach 120 PSI",
+                                        "Air dryer purges every 5-10 seconds instead of once every few minutes"
+                                    ],
+                       "driverSteps":  [
+                                           "1. Park truck safely, set yellow tractor brake.",
+                                           "2. Step out and locate the Bendix AD-9 or AD-IS air dryer mounted on frame rail behind front driver steer tire.",
+                                           "3. Listen at the bottom purge exhaust port. If air is steadily blasting out without stopping, the internal purge valve cartridge is stuck open with carbon/dirt or moisture ice.",
+                                           "4. QUICK UNSTICK TRICK: Take a 1/2 inch wrench or small hammer and gently tap the aluminum body of the air dryer near the governor and purge valve 3-4 times. This often jars the spring-loaded shuttle valve back into its seat.",
+                                           "5. Drain manual air tank pull-lanyards on primary and wet air tanks under battery box to dump excess oil/water sludge.",
+                                           "6. In sub-freezing weather: Pour 2 ounces of Air Brake Antifreeze into compressor intake or thaw bottom purge valve heater (check 15A fuse labeled \u0027Air Dryer Heater\u0027).",
+                                           "7. If air continues blasting uncontrollably: Purge valve cartridge seat is blown and needs a quick-change replacement kit ($45 part at any Loves/Pilot)."
+                                       ],
+                       "images":  [
+
+                                  ],
+                       "updatedAt":  "2026-11-08T06:10:00Z",
+                       "shopUrgency":  "urgent_shop"
+                   },
+                   {
+                       "id":  "eng-coolant-leak",
+                       "categoryId":  "engine",
+                       "title":  "Coolant Leak / Low Coolant Level",
+                       "dashCodes":  "SPN 111 FMI 1 | Red or Amber Engine Lamp | Low Coolant Light",
+                       "symptoms":  [
+                                        "Low Coolant warning light and chime on dashboard",
+                                        "Sweet chemical smell from engine bay or AC vents",
+                                        "Temperature gauge climbing above 215°F",
+                                        "Pink/Red fluid dripping under front axle or bumper"
+                                    ],
+                       "driverSteps":  [
+                                           "1. Safely pull over at the nearest truck stop or safe shoulder. Put on high-visibility vest and hazard lights.",
+                                           "2. DO NOT immediately open the surge tank cap while engine is hot! Risk of severe burns from boiling coolant under pressure.",
+                                           "3. Wait 15-20 minutes for engine to cool down. Use a thick towel/rag to slowly twist the cap 1/4 turn to relieve pressure.",
+                                           "4. Inspect coolant level in the translucent plastic surge tank against the MIN / MAX COLD line.",
+                                           "5. Visually inspect upper/lower radiator hoses, water pump weep hole, and EGR cooler lines with a flashlight for pink wet crust.",
+                                           "6. If level is low without an active pouring leak: Top up with 50/50 Red Extended Life Coolant (Rotella ELC or Peak Final Charge).",
+                                           "7. Ensure cap is tightened until it clicks firmly. Restart engine and verify the dash light clears."
+                                       ],
+                       "images":  [
+                                      "assets/coolant_surge_tank.svg"
+                                  ],
+                       "updatedAt":  "2026-11-08T05:30:00Z",
+                       "shopUrgency":  "urgent_shop"
+                   },
+                   {
+                       "id":  "eng-oil-pressure-low",
+                       "categoryId":  "engine",
+                       "title":  "Low Engine Oil Pressure / Red Stop Engine",
+                       "dashCodes":  "SPN 100 FMI 1 | RED STOP ENGINE | Oil Can Symbol",
+                       "symptoms":  [
+                                        "Oil pressure gauge drops below 15 PSI at idle or below 25 PSI under load",
+                                        "Red STOP ENGINE lamp illuminated with continuous alarm buzzer",
+                                        "Engine knock, ticking, or mechanical clatter"
+                                    ],
+                       "driverSteps":  [
+                                           "1. PULL OVER AND SHUT OFF ENGINE RIGHT AWAY. Running without oil pressure will destroy engine bearings in 60 seconds.",
+                                           "2. Park on flat level ground. Set parking brakes, deploy emergency triangles 100 ft behind truck.",
+                                           "3. Wait 10 minutes for oil to drain completely into the oil pan.",
+                                           "4. Pull oil dipstick, wipe clean with rag, re-insert fully, and pull again to read oil level.",
+                                           "5. Inspect underneath for blown oil filter seal, punctured oil pan, or loose drain plug.",
+                                           "6. If dipstick is dry: Add 1-2 gallons of 15W-40 or 10W-30 CK-4 heavy duty engine oil before any restart attempt.",
+                                           "7. If oil level is full on dipstick but dash reads 0 PSI: Oil pressure sensor or internal oil pump failure. DO NOT DRIVE."
+                                       ],
+                       "images":  [
+
+                                  ],
+                       "updatedAt":  "2026-11-08T05:30:00Z",
+                       "shopUrgency":  "urgent_shop"
+                   },
+                   {
+                       "id":  "tire-nail-slow-leak",
+                       "categoryId":  "tires",
+                       "title":  "Nail / Screw in Drive or Trailer Tire (Slow Leak)",
+                       "dashCodes":  "TPMS Warning Light | Audible hiss or visible puncture",
+                       "symptoms":  [
+                                        "Driver spots nail/screw during walk-around pre-trip or post-trip",
+                                        "Tire gauge reads 75-85 PSI instead of normal 100 PSI",
+                                        "Slow hiss or soapy bubbles around screw head"
+                                    ],
+                       "driverSteps":  [
+                                           "1. DO NOT REMOVE THE NAIL OR SCREW! Leaving it in place acts as a plug and slows down air loss.",
+                                           "2. Use tire pressure gauge to check current PSI (standard cold PSI is 100-105).",
+                                           "3. If PSI is above 75 PSI: Hook up the emergency air hose to the red gladhand or cab chuck, and pump tire up to 105 PSI.",
+                                           "4. Search closest truck stop (Love\u0027s, Pilot, TA, Petro) on route within 30-45 minutes.",
+                                           "5. Drive at moderate speed (55-60 MPH) directly to the truck stop tire shop bay. A tire plug/patch in the shop is only $40-$65 vs $500+ roadside fee.",
+                                           "6. If nail is in STEER tire: Steer tires CANNOT be plugged by DOT law. Steer must be inspected and replaced.",
+                                           "7. If nail is in sidewall or shoulder: Cannot be patched legally. Tire must be replaced."
+                                       ],
+                       "images":  [
+                                      "assets/tire_repair_zone.svg"
+                                  ],
+                       "updatedAt":  "2026-11-08T05:30:00Z",
+                       "shopUrgency":  "urgent_shop"
+                   },
+                   {
+                       "id":  "tire-steer-worn-tread",
+                       "categoryId":  "tires",
+                       "title":  "Steer Tire Tread Depth \u0026 Wear Pattern",
+                       "dashCodes":  "DOT Inspection Failure Risk",
+                       "symptoms":  [
+                                        "Cupping, river wear, or shoulder wear on steer tires",
+                                        "Steering wheel wobble or pull to one side",
+                                        "Tread depth approaching DOT legal minimum"
+                                    ],
+                       "driverSteps":  [
+                                           "1. Check tread depth with tread gauge or coin in 2 adjacent major grooves.",
+                                           "2. DOT LAW: Steer tires MUST have at least 4/32 inch (3.2 mm) tread depth. Drive and trailer tires must have at least 2/32 inch (1.6 mm).",
+                                           "3. Check for exposed steel belts or deep cuts down to fabric (automatic Out of Service at weigh station).",
+                                           "4. If steer tire is 3/32\" or lower, dispatch must schedule replacement at next terminal or Loves fleet account before crossing state line scale.",
+                                           "5. Check steer air pressure - unequal pressure (e.g. 95 vs 115 PSI) causes rapid shoulder wear."
+                                       ],
+                       "images":  [
+
+                                  ],
+                       "updatedAt":  "2026-11-08T05:30:00Z",
+                       "shopUrgency":  "urgent_shop"
+                   },
+                   {
+                       "id":  "emis-parked-regen",
+                       "categoryId":  "emissions",
+                       "title":  "DPF Soot Level High / Parked Regen Procedure",
+                       "dashCodes":  "DPF Lamp Solid / Flashing | HEST Lamp | High Soot Code",
+                       "symptoms":  [
+                                        "DPF icon illuminated on Freightliner dash cluster",
+                                        "Message \u0027Parked Regen Required\u0027 in digital center display",
+                                        "Engine power slightly reduced"
+                                    ],
+                       "driverSteps":  [
+                                           "1. Safely park the truck in an open outdoor paved area. DO NOT park over dry grass or trash (exhaust gets up to 1100°F!).",
+                                           "2. Shift transmission into NEUTRAL (N).",
+                                           "3. Set tractor and trailer PARKING BRAKES (Yellow and Red valves pulled OUT).",
+                                           "4. Release foot off brake and accelerator pedals completely. Disengage cruise control switch.",
+                                           "5. Engine coolant temperature must be at least 150°F (warm engine).",
+                                           "6. Locate the DPF REGEN dash toggle switch. Push and HOLD the switch for 5-7 seconds until you hear engine RPM increase to 1100-1400 RPM.",
+                                           "7. DO NOT touch the pedals or shift lever during the cycle! The cycle takes 30-45 minutes.",
+                                           "8. When finished, engine idle will return to 600 RPM and DPF light will turn OFF."
+                                       ],
+                       "images":  [
+                                      "assets/freightliner_dash_dpf.svg"
+                                  ],
+                       "updatedAt":  "2026-11-08T05:30:00Z",
+                       "shopUrgency":  "driver_fix"
+                   },
+                   {
+                       "id":  "emis-def-derate-timer",
+                       "categoryId":  "emissions",
+                       "title":  "DEF Low / 5 MPH Speed Derate Warning",
+                       "dashCodes":  "SPN 5246 FMI 0 | DEF Lamp Flashing | 5 MPH Derate in XX Miles",
+                       "symptoms":  [
+                                        "DEF gauge empty or red warning light blinking",
+                                        "Message \u0027Engine Derate in XX miles\u0027 or \u0027Speed Limited to 55 MPH / 5 MPH\u0027",
+                                        "Check Engine lamp lit"
+                                    ],
+                       "driverSteps":  [
+                                           "1. Check physical DEF level in DEF tank on driver side skirt.",
+                                           "2. If DEF tank is under 1/4 full: Buy 2-3 jugs of BlueDEF or fill up at the truck stop DEF fuel island pump immediately.",
+                                           "3. After adding DEF: Turn key to ON position for 60 seconds without starting to allow DEF level sensor to calibrate.",
+                                           "4. Start engine and let idle for 5 minutes. The derate timer should clear.",
+                                           "5. If DEF tank is already FULL but dash says empty: DEF header quality sensor failure. Do a hard master battery disconnect reset for 15 minutes."
+                                       ],
+                       "images":  [
+                                      "assets/freightliner_dash_dpf.svg"
+                                  ],
+                       "updatedAt":  "2026-11-08T05:30:00Z",
+                       "shopUrgency":  "urgent_shop"
+                   },
+                   {
+                       "id":  "brake-air-gladhand-leak",
+                       "categoryId":  "brakes",
+                       "title":  "Air Leak at Gladhands / Trailer Air Supply Loss",
+                       "dashCodes":  "Low Air Buzzer \u003c 60 PSI | Air Needle Won\u0027t Build to 120 PSI",
+                       "symptoms":  [
+                                        "Loud hissing air sound between back of tractor cab and trailer nose",
+                                        "Primary or Secondary air pressure drops rapidly when red button is pushed",
+                                        "Trailer spring brakes drag or smoke from lack of release pressure"
+                                    ],
+                       "driverSteps":  [
+                                           "1. Put tractor parking brake on (yellow knob OUT). Leave trailer charged (red knob IN) to locate leak.",
+                                           "2. Step between cab and trailer. Listen for hiss at Red (Emergency/Supply) and Blue (Service) gladhands.",
+                                           "3. Disconnect the gladhands by twisting upward 90 degrees.",
+                                           "4. Inspect the black rubber grommet/seal inside both tractor and trailer gladhands.",
+                                           "5. QUICK FIX: If seal is damaged and no spare: Pop the rubber seal out with a pocket knife or flat screwdriver, flip it around 180 degrees, and reinstall backwards (the other side is fresh and will seal tight!).",
+                                           "6. Re-couple gladhands firmly until locking tabs seat.",
+                                           "7. Check air dryer purge valve underneath truck behind front steer axle - if purging continuously, tap air dryer governor lightly with wrench handle to unstick shuttle valve."
+                                       ],
+                       "images":  [
+
+                                  ],
+                       "updatedAt":  "2026-11-08T05:30:00Z",
+                       "shopUrgency":  "driver_fix"
+                   },
+                   {
+                       "id":  "brake-frozen-lines-winter",
+                       "categoryId":  "brakes",
+                       "title":  "Frozen Air Lines \u0026 Trailer Brakes Locked in Winter",
+                       "dashCodes":  "Trailer Won\u0027t Move | Wheels Dragging in Snow | Air Won\u0027t Reach Trailer",
+                       "symptoms":  [
+                                        "Temperatures below 20°F (-7°C)",
+                                        "Red trailer air supply button pushed in, but trailer wheels stay locked and drag",
+                                        "Air pressure gauges in tractor show full 120 PSI, but zero air reaches trailer"
+                                    ],
+                       "driverSteps":  [
+                                           "1. DO NOT try to drag trailer across the parking lot - you will flat-spot and ruin all 8 trailer tires ($3,000 damage)!",
+                                           "2. Buy 1 bottle of Air Brake Antifreeze (Methanol / Air Brake Conditioner) at truck stop.",
+                                           "3. Disconnect RED trailer supply gladhand from tractor.",
+                                           "4. Pour 3-4 ounces (half a cup) of Air Brake Antifreeze directly down the red trailer hose / gladhand opening.",
+                                           "5. Also pour 2 ounces into the tractor red emergency line.",
+                                           "6. Reconnect red gladhand firmly.",
+                                           "7. In cab, push RED knob IN and pull OUT 4-5 times to pump alcohol vapor through the valves and melt the ice blockage.",
+                                           "8. Tap trailer brake drums gently with a hammer if brake shoes are frozen to the iron drum with slush."
+                                       ],
+                       "images":  [
+
+                                  ],
+                       "updatedAt":  "2026-11-08T05:30:00Z",
+                       "shopUrgency":  "driver_fix"
+                   },
+                   {
+                       "id":  "elec-inverter-tripped",
+                       "categoryId":  "electrical",
+                       "title":  "Sleeper Inverter Tripped / Continuous Beep / No AC Power",
+                       "dashCodes":  "Inverter Red Fault LED | Continuous BEEP | Outlets Dead",
+                       "symptoms":  [
+                                        "Microwave, fridge, or TV in sleeper turns off suddenly",
+                                        "High-pitched screeching or continuous beeping from under the bunk mattress",
+                                        "Outlets do not supply 110V power"
+                                    ],
+                       "driverSteps":  [
+                                           "1. Turn off or unplug high-wattage appliances (microwave, kettle, space heater).",
+                                           "2. Lift the lower bunk mattress to access the inverter unit.",
+                                           "3. Check battery voltage on truck dash. If voltage dropped below 12.0V, the inverter shuts off automatically for low-voltage battery protection.",
+                                           "4. If voltage is low: Start the truck engine to let alternator charge batteries above 13.5V.",
+                                           "5. On the inverter body: Locate the POWER switch (turn OFF, wait 10 seconds, turn back ON).",
+                                           "6. Check for a round black or red popped breaker button (GFCI reset or pop-out circuit breaker) on the front or side of the inverter. Push it firmly back IN until it clicks.",
+                                           "7. Ensure cooling fan vents on the inverter are not blocked by luggage or blankets."
+                                       ],
+                       "images":  [
+
+                                  ],
+                       "updatedAt":  "2026-11-08T05:30:00Z",
+                       "shopUrgency":  "driver_fix"
+                   },
+                   {
+                       "id":  "elec-alternator-low-voltage",
+                       "categoryId":  "electrical",
+                       "title":  "Alternator Not Charging / Battery Voltage Dropping",
+                       "dashCodes":  "Battery Symbol | Voltage Gauge \u003c 12.0V while Running",
+                       "symptoms":  [
+                                        "Voltmeter on dash reads 11.5V-12.2V with engine running (normal is 13.8V-14.4V)",
+                                        "Battery light illuminated",
+                                        "Headlights or dash lights dimming gradually"
+                                    ],
+                       "driverSteps":  [
+                                           "1. While engine is still running: Roll to nearest truck stop or safe exit immediately. Once batteries drop below 10.5V, the ECM will shut down the engine in the middle of traffic!",
+                                           "2. Park safely. Pop hood and visually check the serpentine belt on the front of the alternator. Is the belt snapped, slipped off pulley, or spinning loose?",
+                                           "3. Check the thick positive cable nut on the back of alternator - is it loose or burned?",
+                                           "4. Inspect battery box under cab steps: check for loose battery terminal clamps, heavy green corrosion, or loose ground cables.",
+                                           "5. If belt is missing: Needs immediate belt replacement ($45 part).",
+                                           "6. Do NOT shut off the engine until you are parked in a safe spot, because it will not restart on dead batteries."
+                                       ],
+                       "images":  [
+
+                                  ],
+                       "updatedAt":  "2026-11-08T05:30:00Z",
+                       "shopUrgency":  "urgent_shop"
+                   },
+                   {
+                       "id":  "trans-dt12-clutch-stuck",
+                       "categoryId":  "transmission",
+                       "title":  "Freightliner DT12 Transmission Fault / Won\u0027t Engage Gear",
+                       "dashCodes":  "TRANS FAULT | Flashing \u0027N\u0027 | Transmission Malfunction",
+                       "symptoms":  [
+                                        "Transmission stays in \u0027N\u0027 and will not shift into Drive (D) or Reverse (R)",
+                                        "Clutch actuator chatter or air hiss during shift attempt",
+                                        "\u0027Transmission Service Required\u0027 message"
+                                    ],
+                       "driverSteps":  [
+                                           "1. Check air system pressure! Detroit DT12 uses compressed air to shift gears. If primary air pressure is under 90 PSI, transmission CANNOT shift into gear. Build air to 120 PSI first.",
+                                           "2. Step firmly on foot brake pedal and try shifting again.",
+                                           "3. If air is 120 PSI and pedal is pressed but still stuck in N: Perform a hard ECM/TCM Power Cycle Reset.",
+                                           "4. Turn ignition key completely OFF. Remove key.",
+                                           "5. Exit cab, close door, lock cab.",
+                                           "6. Turn off the Main Battery Disconnect switch (usually located on base of driver seat or near battery box).",
+                                           "7. Wait a FULL 10 MINUTES. This allows all transmission control capacitors to drain to zero.",
+                                           "8. Turn Battery Disconnect back ON. Insert key, turn to ON (do not start yet), wait 30 seconds for self-check clicks under floorboard.",
+                                           "9. Start engine, hold foot brake firmly, shift to D. 80% of transient electronic glitches clear after this reset."
+                                       ],
+                       "images":  [
+
+                                  ],
+                       "updatedAt":  "2026-11-08T05:30:00Z",
+                       "shopUrgency":  "urgent_shop"
+                   },
+                   {
+                       "id":  "hvac-bunk-heater-webasto",
+                       "categoryId":  "hvac",
+                       "title":  "Bunk Auxiliary Heater (Webasto / Espar) Won\u0027t Start",
+                       "dashCodes":  "Bunk Controller Error Code (F01, F02, E01) | Fan Blows Cold Air",
+                       "symptoms":  [
+                                        "Controller clicks, fan runs 30 seconds blowing cold air, then shuts off",
+                                        "Error code on thermostat dial (e.g., F01 = No start, F02 = Flame out)",
+                                        "Driver cold in sleeper at night"
+                                    ],
+                       "driverSteps":  [
+                                           "1. CHECK FUEL LEVEL IN DIESEL TANKS! Auxiliary bunk heater fuel pickup straw inside the diesel tank stops at 1/4 tank! This is a safety feature so the heater never drains the tank below 25%, allowing the engine to start in the morning. If fuel is under 1/4 tank, heater will starve for fuel.",
+                                           "2. Step outside truck, look underneath cab behind driver door where the small bunk heater exhaust pipe sticks out. Is the exhaust pipe packed with ice, slush, or road mud? Clear pipe with a screwdriver.",
+                                           "3. PERFORM HEATER FUSE RESET:",
+                                           "4. Turn thermostat dial switch to ON.",
+                                           "5. Go to fuse panel (in glove box or under passenger kick panel) and pull the 20A yellow fuse labeled \u0027Aux Heater / Sleeper HVAC\u0027.",
+                                           "6. Wait 10 seconds with fuse out.",
+                                           "7. Turn thermostat switch OFF in sleeper.",
+                                           "8. Reinsert the 20A fuse into fuse panel.",
+                                           "9. Turn thermostat ON again. The unit will attempt a fresh ignition cycle."
+                                       ],
+                       "images":  [
+
+                                  ],
+                       "updatedAt":  "2026-11-08T05:30:00Z",
+                       "shopUrgency":  "scheduled_shop"
+                   },
+                   {
+                       "id":  "sop-roadside-towing",
+                       "categoryId":  "accidents",
+                       "title":  "Roadside Breakdown \u0026 Towing Safety Protocol",
+                       "dashCodes":  "Emergency SOP Protocol",
+                       "symptoms":  [
+                                        "Truck disabled on highway shoulder or interstate median",
+                                        "Engine seized, collision, or unrepairable catastrophic failure"
+                                    ],
+                       "driverSteps":  [
+                                           "1. DRIVER LIFE SAFETY FIRST: Steer truck as far right onto shoulder as possible. Turn ON 4-way hazard flashers.",
+                                           "2. Put on high-visibility reflective vest BEFORE exiting the tractor cab.",
+                                           "3. Place 3 reflective orange triangles within 10 minutes (DOT 392.22): 10 feet behind truck on traffic side, 100 feet behind truck on shoulder, and 200 feet behind truck toward traffic.",
+                                           "4. DO NOT stand between truck and trailer or near the highway fog line. Wait inside cab with seatbelt on or behind guardrail.",
+                                           "5. Send Dispatch: Exact Highway #, Direction, Nearest Mile Marker, Nearest Exit #, GPS coordinates.",
+                                           "6. TOWING PREPARATION: Ensure wrecker driver REMOVES the rear axle drive shafts (half-shafts) or disconnects main driveshaft before towing! Towing with driveshaft connected will destroy transmission ($15,000 damage). Ensure wrecker connects auxiliary air to release trailer spring brakes."
+                                       ],
+                       "images":  [
+                                      "assets/roadside_towing_safety.svg"
+                                  ],
+                       "updatedAt":  "2026-11-08T05:30:00Z",
+                       "shopUrgency":  "towing_accident"
+                   }
+               ]
+};

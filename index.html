@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Freightliner FleetOps • Troubleshooting & Driver SOP Library</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css?v=8.9">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ea580c'><rect x='1' y='3' width='15' height='13' rx='2'/><path d='M16 8h4l3 3v5h-7V8z'/><circle cx='5.5' cy='18.5' r='2.5'/><circle cx='18.5' cy='18.5' r='2.5'/></svg>">
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand-section">
+        <div class="brand-logo-icon">
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M1 3h15v13H1z"/>
+            <path d="M16 8h4l3 3v5h-7V8z"/>
+            <circle cx="5.5" cy="18.5" r="2.5"/>
+            <circle cx="18.5" cy="18.5" r="2.5"/>
+          </svg>
+        </div>
+        <div class="brand-title-wrap">
+          <h1>
+            <span>Freightliner FleetOps</span>
+            <span class="created-by-text">created by Dylan</span>
+          </h1>
+          <p>Fleet Troubleshooting, Driver Procedures & SOP Library</p>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <div id="connectionStatus" class="connection-status">
+          <span class="status-dot"></span>
+          <span>Connecting...</span>
+        </div>
+
+        <button class="btn btn-secondary btn-sm" onclick="openBackupModal()" title="Database Backup and Export">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+          Backup / Export
+        </button>
+
+        <button class="btn btn-secondary btn-sm" onclick="openAddCategoryModal()">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          + New Category
+        </button>
+
+        <button class="btn btn-primary" onclick="openAddModal()">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          + Add Issue
+        </button>
+
+        <!-- Theme Toggle Button -->
+        <button id="themeToggleBtn" class="btn btn-secondary btn-theme-toggle" onclick="toggleTheme()" title="Toggle Light / Dark Theme" aria-label="Toggle theme">
+          <span id="themeToggleIcon"></span>
+        </button>
+
+        <!-- Trash / Recycle Bin (To the right of Theme button) -->
+        <button id="trashBtn" class="btn-trash-header" onclick="openTrashModal()" title="Recycle Bin (Recently Deleted Issues)" aria-label="Recycle Bin">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="3 6 5 6 21 6"></polyline>
+            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+            <line x1="10" y1="11" x2="10" y2="17"></line>
+            <line x1="14" y1="11" x2="14" y2="17"></line>
+          </svg>
+          <span id="trashCountBadge" class="trash-count-badge">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main class="main-wrapper">
+
+    <!-- Search Hero -->
+    <section class="hero-search-box">
+      <div class="search-input-wrap">
+        <div class="search-icon">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+        <input 
+          type="text" 
+          id="searchInput" 
+          class="search-input" 
+          placeholder="Search by fault name, code (SPN 111, DEF, DPF), component, or symptom..." 
+          autocomplete="off"
+        />
+        <button id="searchClearBtn" class="search-clear-btn" title="Clear search" aria-label="Clear search">
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories-section">
+      <div class="section-header">
+        <h2 class="section-title">
+          <span>Truck Systems & Components</span>
+          <span class="section-badge">Click a category card to filter</span>
+        </h2>
+      </div>
+
+      <div id="categoryGrid" class="category-grid">
+        <!-- Rendered by JS -->
+      </div>
+    </section>
+
+    <!-- Issues & Solutions Section -->
+    <section class="issues-section">
+      <div class="section-header" id="issuesSectionHeader">
+        <h2 class="section-title">
+          <span id="currentFilterTitle">All Issues & SOPs</span>
+          <span id="issuesCountBadge" class="section-badge">Loading...</span>
+        </h2>
+        <button class="btn btn-secondary btn-sm" onclick="resetFilters()">Show All Categories</button>
+      </div>
+
+      <!-- Quick Urgency / Shop Action Filter Pills -->
+      <div class="urgency-filter-bar" id="urgencyFilterBar">
+        <!-- Rendered dynamically by JS -->
+      </div>
+
+      <div id="issuesGrid" class="issues-grid">
+        <!-- Rendered by JS -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- App Footer -->
+  <footer class="app-footer">
+    <div class="footer-container">
+      <div class="footer-text">
+        <span>Freightliner FleetOps Knowledge Base</span>
+        <span class="footer-dot">•</span>
+        <span class="footer-creator">created by Dylan</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal: View Issue Detail & Driver Instructions -->
+  <div id="detailModal" class="modal-backdrop">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h2>Issue Troubleshooting & Driver Guide</h2>
+        <button class="close-btn" onclick="closeModal('detailModal')">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body" id="detailModalContent">
+        <!-- Rendered by JS -->
+      </div>
+      <div class="modal-footer" id="detailModalFooter">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Add / Edit Issue -->
+  <div id="editModal" class="modal-backdrop">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h2 id="editModalTitle">Add New Issue</h2>
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <button type="button" class="btn btn-secondary btn-sm" id="btnCustomizeFields" onclick="toggleCustomizeMode()" title="Customize which fields are shown">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            <span>Customize Fields</span>
+          </button>
+          <button class="close-btn" onclick="closeModal('editModal')">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+      </div>
+      <form id="editIssueForm" onsubmit="handleSaveIssue(event)">
+        <input type="hidden" id="editIssueId" />
+        <div class="modal-body">
+
+          <!-- Customize Mode Notice (shown only when Customize Fields is active) -->
+          <div class="customize-mode-banner" id="customizeModeBanner">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span>✏️</span>
+              <span><strong>Field Customization Mode</strong>: Click <em>Remove</em> on any unwanted input to remove it, or use <em>+ Add Field</em> below to restore sections.</span>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Category / Truck Section *</label>
+            <select id="editCategorySelect" class="form-select" required>
+              <!-- Filled dynamically -->
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Issue Title *</label>
+            <input type="text" id="editTitle" class="form-input" placeholder="e.g., Coolant Leak / Low Coolant Level" required />
+          </div>
+
+          <!-- Removable: Shop Urgency / Action Level -->
+          <div class="form-group field-wrapper" id="fieldWrapper_shopUrgency">
+            <div class="form-field-header">
+              <label class="form-label" for="editShopUrgency">Shop Urgency & Action Level:</label>
+              <button type="button" class="btn-remove-field" onclick="removeFormField('shopUrgency')" title="Remove urgency tag from issue">
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                <span>Remove</span>
+              </button>
+            </div>
+            <select id="editShopUrgency" class="form-select">
+              <option value="urgent_shop">🚨 Urgent: Go to Shop Immediately (Stop Commercial Vehicle)</option>
+              <option value="towing_accident">🚨 Towing / Accident (Vehicle Disabled)</option>
+              <option value="scheduled_shop">⚠️ Schedule Shop Visit (At Next Terminal / PM)</option>
+              <option value="driver_fix">🔧 Driver Roadside Fix (Self-Resolvable)</option>
+              <option value="routine_sop">📋 Fleet Standard SOP / Inspection Protocol</option>
+            </select>
+          </div>
+
+          <!-- Removable: Dashboard Fault Code -->
+          <div class="form-group field-wrapper" id="fieldWrapper_dashCodes">
+            <div class="form-field-header">
+              <label class="form-label" for="editDashCodes">Dashboard Fault Code</label>
+              <button type="button" class="btn-remove-field" onclick="removeFormField('dashCodes')" title="Remove this field from issue">
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                <span>Remove</span>
+              </button>
+            </div>
+            <input type="text" id="editDashCodes" class="form-input" placeholder="e.g., SPN 111 FMI 1 | Red or Amber Engine Lamp | Low Coolant Light" />
+          </div>
+
+          <!-- Removable: Driver Instructions -->
+          <div class="form-group field-wrapper" id="fieldWrapper_driverSteps">
+            <div class="form-field-header">
+              <label class="form-label" for="editDriverSteps">Driver Instructions:</label>
+              <button type="button" class="btn-remove-field" onclick="removeFormField('driverSteps')" title="Remove this field from issue">
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                <span>Remove</span>
+              </button>
+            </div>
+            <textarea id="editDriverSteps" class="form-textarea" rows="14" placeholder="Enter driver instructions, procedures, or checklists..."></textarea>
+          </div>
+
+          <!-- Removable: Observed Symptoms -->
+          <div class="form-group field-wrapper" id="fieldWrapper_symptoms">
+            <div class="form-field-header">
+              <label class="form-label" for="editSymptoms">Observed Symptoms (1 per line):</label>
+              <button type="button" class="btn-remove-field" onclick="removeFormField('symptoms')" title="Remove this field from issue">
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                <span>Remove</span>
+              </button>
+            </div>
+            <textarea id="editSymptoms" class="form-textarea" rows="3" placeholder="Sweet coolant smell&#10;Drops under front bumper&#10;Audible chime on dashboard"></textarea>
+          </div>
+
+          <!-- Removable: Additional Notes & Specs -->
+          <div class="form-group field-wrapper is-hidden" id="fieldWrapper_notes">
+            <div class="form-field-header">
+              <label class="form-label" for="editNotes">Additional Notes & Specifications:</label>
+              <button type="button" class="btn-remove-field" onclick="removeFormField('notes')" title="Remove this field from issue">
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                <span>Remove</span>
+              </button>
+            </div>
+            <textarea id="editNotes" class="form-textarea" rows="3" placeholder="e.g., Torque specifications, OEM part numbers, wire color codes, fluid capacities..."></textarea>
+          </div>
+
+          <!-- Removable: Photos & Files -->
+          <div class="form-group field-wrapper" id="fieldWrapper_images">
+            <div class="form-field-header">
+              <label class="form-label">Photos & Files (Drop files or press Ctrl+V to paste):</label>
+              <button type="button" class="btn-remove-field" onclick="removeFormField('images')" title="Remove this field from issue">
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                <span>Remove</span>
+              </button>
+            </div>
+            <div id="imageDropzone" class="image-dropzone">
+              <div style="color: #38bdf8; margin-bottom: 6px;">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              </div>
+              <div style="font-weight: 600; font-size: 0.9rem;">Drag & drop photos or files here or click to browse</div>
+              <div style="color: #64748b; font-size: 0.75rem; margin-top: 4px;">Supports PDF, Word, Excel, CSV, Text, ZIP, JPG, PNG, WEBP, SVG and instant paste (Ctrl+V)</div>
+              <input type="file" id="imageFileInput" accept="*/*" multiple style="display: none;" />
+            </div>
+            <div id="editImagePreviewGrid" class="image-preview-grid">
+              <!-- Rendered by JS -->
+            </div>
+          </div>
+
+          <!-- Add Field Bar -->
+          <div class="form-add-field-bar" id="formAddFieldBar">
+            <div class="dropdown-wrapper">
+              <button type="button" class="btn btn-outline-secondary btn-sm" id="btnAddFieldDropdown" onclick="toggleAddFieldDropdown(event)">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                <span>+ Add Field</span>
+              </button>
+              <div id="addFieldDropdownMenu" class="field-customizer-dropdown add-field-menu" style="display: none;">
+                <!-- Populated dynamically with removed/available fields -->
+              </div>
+            </div>
+            <span class="field-hint-text">Add or remove inputs to customize this entry</span>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('editModal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save to Library</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Add New Category -->
+  <div id="categoryModal" class="modal-backdrop">
+    <div class="modal-container" style="max-width: 520px;">
+      <div class="modal-header">
+        <h2>Add New Category</h2>
+        <button class="close-btn" onclick="closeModal('categoryModal')">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <form onsubmit="handleSaveCategory(event)">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">Category Name *</label>
+            <input type="text" id="newCatName" class="form-input" placeholder="e.g., Fuel System" required />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Icon</label>
+              <select id="newCatIcon" class="form-select">
+                <option value="lightbulb">💡 Tips / Anatomy</option>
+                <option value="engine">🔧 Engine</option>
+                <option value="tire">🛞 Tires & Wheels</option>
+                <option value="exhaust">💨 Emissions / DEF</option>
+                <option value="brake">🛑 Brakes & Air</option>
+                <option value="battery">⚡ Electrical</option>
+                <option value="transmission">⚙️ Transmission</option>
+                <option value="snowflake">❄️ HVAC / Heater</option>
+                <option value="clipboard">📋 SOP / Checklist</option>
+                <option value="truck">🚛 Truck General</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Accent Color</label>
+              <select id="newCatColor" class="form-select">
+                <option value="blue">Blue</option>
+                <option value="amber">Amber</option>
+                <option value="red">Red</option>
+                <option value="purple">Purple</option>
+                <option value="yellow">Yellow</option>
+                <option value="teal">Teal</option>
+                <option value="emerald">Emerald</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Description (what parts belong here)</label>
+            <input type="text" id="newCatDesc" class="form-input" placeholder="e.g., Fuel filters, Davco separator, priming pump, air ingress" />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('categoryModal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Create Category</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Backup & Restore -->
+  <div id="backupModal" class="modal-backdrop">
+    <div class="modal-container" style="max-width: 600px;">
+      <div class="modal-header">
+        <h2>Database Backup & Restore</h2>
+        <button class="close-btn" onclick="closeModal('backupModal')">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="backup-panel" style="margin-bottom: 16px;">
+          <h4 style="font-size: 0.95rem; margin-bottom: 6px; color: #38bdf8;">📥 Export Database (Download JSON):</h4>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px;">Save a complete local backup of all issues, categories, diagrams, and driver texts into a single JSON file on your computer.</p>
+          <button class="btn btn-primary btn-sm" onclick="exportDatabaseJSON()">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download Backup JSON
+          </button>
+        </div>
+
+        <div class="backup-panel" style="margin-bottom: 16px;">
+          <h4 style="font-size: 0.95rem; margin-bottom: 6px; color: #10b981;">📁 Portable Zip / Folder Storage:</h4>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px;">All pasted pictures and attachments are saved directly into the project's <code>uploads/</code> and <code>assets/</code> folders. Run <code>open_app.bat</code> to ensure all photos are synced to disk before zipping the folder for another PC.</p>
+          <button class="btn btn-secondary btn-sm" onclick="syncBase64ImagesToDisk()">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+            Sync All Photos to Folder Now
+          </button>
+        </div>
+
+        <div class="backup-panel">
+          <h4 style="font-size: 0.95rem; margin-bottom: 6px; color: #f59e0b;">📤 Import Database from File:</h4>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px;">Restore the library from a previously exported JSON backup file or transfer between workstations.</p>
+          <input type="file" id="backupFileInput" accept=".json" style="display: none;" />
+          <button class="btn btn-secondary btn-sm" onclick="document.getElementById('backupFileInput').click()">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            Select JSON File to Restore
+          </button>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary btn-sm" onclick="closeModal('backupModal')">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Trash / Recycle Bin -->
+  <div id="trashModal" class="modal-backdrop">
+    <div class="modal-container" style="max-width: 680px;">
+      <div class="modal-header">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div style="color: #ef4444; font-size: 1.25rem;">🗑️</div>
+          <h2>Recycle Bin (Recently Deleted Issues)</h2>
+        </div>
+        <button class="close-btn" onclick="closeModal('trashModal')">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 14px;">
+          Accidentally deleted an issue? You can restore it to the fleet library anytime with one click.
+        </p>
+
+        <!-- Empty State -->
+        <div id="trashEmptyState" style="display: none; text-align: center; padding: 48px 20px; background: rgba(255,255,255,0.02); border: 1px dashed var(--border-color); border-radius: var(--radius-md);">
+          <div style="font-size: 2.4rem; margin-bottom: 10px; opacity: 0.7;">🗑️</div>
+          <h4 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 6px; color: var(--text-main);">Trash is Empty</h4>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0;">No recently deleted issues found.</p>
+        </div>
+
+        <!-- Items List -->
+        <div id="trashItemsList" class="trash-items-container"></div>
+      </div>
+      <div class="modal-footer" style="display: flex; justify-content: space-between; align-items: center;">
+        <button type="button" id="btnEmptyTrash" class="btn btn-outline-danger btn-sm" onclick="emptyTrash()" style="display: none;">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+          Empty Trash
+        </button>
+        <button type="button" class="btn btn-secondary btn-sm" onclick="closeModal('trashModal')" style="margin-left: auto;">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Media & Document Viewer -->
+  <div id="lightboxModal" class="lightbox-modal" style="display: none;" onclick="closeLightbox(event)">
+    <div class="lightbox-header" onclick="event.stopPropagation()">
+      <span id="lightboxCounter" class="lightbox-counter">1 / 1</span>
+      <div class="lightbox-header-actions">
+        <button type="button" id="lightboxNewTabBtn" class="lightbox-tool-btn" onclick="openLightboxCurrentInNewTab()" title="Open in new browser tab" aria-label="Open in new tab" style="display: none;">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          <span>New Tab ↗</span>
+        </button>
+        <button type="button" id="lightboxDownloadBtn" class="lightbox-tool-btn" onclick="downloadLightboxCurrent()" title="Download file" aria-label="Download file" style="display: none;">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span>Download ⬇</span>
+        </button>
+        <button type="button" class="lightbox-close-btn" onclick="closeLightbox(event)" title="Close (Esc)" aria-label="Close">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Prev Arrow Button -->
+    <button type="button" id="lightboxPrevBtn" class="lightbox-nav-btn lightbox-prev-btn" onclick="prevLightboxImage(event)" title="Previous (Left Arrow)" aria-label="Previous">
+      <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+
+    <!-- Main Content Container -->
+    <div class="lightbox-content" onclick="event.stopPropagation()">
+      <img id="lightboxImg" src="" alt="Enlarged view" />
+      <iframe id="lightboxPdfFrame" class="lightbox-pdf-frame" style="display: none;" src="about:blank"></iframe>
+      <div id="lightboxCaption" class="lightbox-caption" style="display: none;"></div>
+    </div>
+
+    <!-- Next Arrow Button -->
+    <button type="button" id="lightboxNextBtn" class="lightbox-nav-btn lightbox-next-btn" onclick="nextLightboxImage(event)" title="Next (Right Arrow)" aria-label="Next">
+      <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+  </div>
+
+  <!-- Floating Scroll-to-Top Button -->
+  <button id="scrollToTopBtn" class="scroll-to-top-btn" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
+    <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
+  <!-- Toast Notification Container -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="js/icons.js?v=8.3"></script>
+  <script src="js/seed_data.js?v=8.3"></script>
+  <script src="js/app.js?v=8.8"></script>
+</body>
+</html>

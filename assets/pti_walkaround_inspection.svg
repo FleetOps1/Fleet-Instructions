@@ -1,0 +1,217 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 520" width="100%" height="100%">
+  <defs>
+    <linearGradient id="ptiBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a101f"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#131c31"/>
+      <stop offset="100%" stop-color="#0e1726"/>
+    </linearGradient>
+    <linearGradient id="accentCyan" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#0284c7"/>
+    </linearGradient>
+    <linearGradient id="accentAmber" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="960" height="520" fill="url(#ptiBg)" rx="12"/>
+  <rect width="958" height="518" x="1" y="1" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1" rx="12"/>
+
+  <!-- Top Header Banner -->
+  <g transform="translate(32, 24)">
+    <rect x="0" y="0" width="40" height="32" rx="6" fill="rgba(56,189,248,0.15)" stroke="#38bdf8" stroke-width="1.5"/>
+    <text x="20" y="22" fill="#38bdf8" font-family="system-ui, sans-serif" font-size="16" font-weight="900" text-anchor="middle">📋</text>
+    <text x="52" y="18" fill="#f8fafc" font-family="system-ui, sans-serif" font-size="17" font-weight="800" letter-spacing="-0.01em">DOT 49 CFR § 396.13 • PRE-TRIP INSPECTION (PTI) WALKAROUND</text>
+    <text x="52" y="34" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="11.5">Mandatory Daily Commercial Vehicle Inspection Flow • Clockwise Walkaround &amp; In-Cab Air Test</text>
+  </g>
+
+  <!-- Upper Walkaround Diagram Map -->
+  <g transform="translate(32, 70)">
+    <rect width="896" height="150" rx="10" fill="#0d1527" stroke="#1e293b" stroke-width="1.5"/>
+    
+    <!-- Title of Map -->
+    <text x="20" y="24" fill="#38bdf8" font-family="system-ui" font-size="11" font-weight="700" letter-spacing="0.05em">CLOCKWISE INSPECTION PATH (15-MINUTE MINIMUM)</text>
+
+    <!-- Truck & Trailer Simplified Overhead Outline -->
+    <!-- Tractor Cab -->
+    <rect x="130" y="45" width="130" height="76" rx="12" fill="#1e293b" stroke="#475569" stroke-width="1.5"/>
+    <rect x="105" y="53" width="25" height="60" rx="4" fill="#334155"/> <!-- Hood -->
+    <path d="M 130,55 L 155,55 L 150,111 L 130,111 Z" fill="#0284c7" fill-opacity="0.35"/> <!-- Windshield -->
+    <circle cx="120" cy="46" r="6" fill="#0284c7"/> <!-- Steer Left Wheel -->
+    <circle cx="120" cy="120" r="6" fill="#0284c7"/> <!-- Steer Right Wheel -->
+    <rect x="220" y="42" width="28" height="10" rx="2" fill="#475569"/> <!-- Drive 1 Left -->
+    <rect x="220" y="114" width="28" height="10" rx="2" fill="#475569"/> <!-- Drive 1 Right -->
+    <rect x="252" y="42" width="28" height="10" rx="2" fill="#475569"/> <!-- Drive 2 Left -->
+    <rect x="252" y="114" width="28" height="10" rx="2" fill="#475569"/> <!-- Drive 2 Right -->
+
+    <!-- Catwalk & 5th Wheel -->
+    <rect x="210" y="65" width="70" height="36" fill="#0f172a" stroke="#334155" stroke-dasharray="2,2"/>
+    <circle cx="245" cy="83" r="10" fill="#475569"/>
+
+    <!-- Trailer -->
+    <rect x="285" y="48" width="450" height="70" rx="4" fill="#182234" stroke="#475569" stroke-width="1.5"/>
+    <text x="510" y="88" fill="#64748b" font-family="system-ui" font-size="12" font-weight="700" letter-spacing="0.1em" text-anchor="middle">53' DRY VAN / REEFER TRAILER</text>
+
+    <!-- Trailer Tandems -->
+    <rect x="660" y="42" width="26" height="10" rx="2" fill="#475569"/>
+    <rect x="660" y="114" width="26" height="10" rx="2" fill="#475569"/>
+    <rect x="690" y="42" width="26" height="10" rx="2" fill="#475569"/>
+    <rect x="690" y="114" width="26" height="10" rx="2" fill="#475569"/>
+
+    <!-- Walk Path Line with Arrows -->
+    <path d="M 90,38 L 840,38 L 840,128 L 90,128 Z" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="5,4" opacity="0.7"/>
+
+    <!-- Inspection Station Markers -->
+    <!-- Station 1: Engine -->
+    <circle cx="85" cy="83" r="14" fill="#0284c7" stroke="#ffffff" stroke-width="1.5"/>
+    <text x="85" y="88" fill="#ffffff" font-family="system-ui" font-size="12" font-weight="900" text-anchor="middle">1</text>
+    <text x="85" y="110" fill="#38bdf8" font-family="system-ui" font-size="9" font-weight="700" text-anchor="middle">ENGINE</text>
+
+    <!-- Station 2: Steer Axle -->
+    <circle cx="155" cy="28" r="12" fill="#0284c7" stroke="#ffffff" stroke-width="1.5"/>
+    <text x="155" y="32" fill="#ffffff" font-family="system-ui" font-size="11" font-weight="900" text-anchor="middle">2</text>
+    <text x="155" y="16" fill="#cbd5e1" font-family="system-ui" font-size="8.5" font-weight="700" text-anchor="middle">STEER AXLE</text>
+
+    <!-- Station 3: Side & Tanks -->
+    <circle cx="180" cy="138" r="12" fill="#0284c7" stroke="#ffffff" stroke-width="1.5"/>
+    <text x="180" y="142" fill="#ffffff" font-family="system-ui" font-size="11" font-weight="900" text-anchor="middle">3</text>
+    <text x="180" y="148" fill="#cbd5e1" font-family="system-ui" font-size="8.5" font-weight="700" text-anchor="middle" dy="8">CAB &amp; TANKS</text>
+
+    <!-- Station 4: Coupling -->
+    <circle cx="270" cy="28" r="12" fill="#0284c7" stroke="#ffffff" stroke-width="1.5"/>
+    <text x="270" y="32" fill="#ffffff" font-family="system-ui" font-size="11" font-weight="900" text-anchor="middle">4</text>
+    <text x="270" y="16" fill="#cbd5e1" font-family="system-ui" font-size="8.5" font-weight="700" text-anchor="middle">COUPLING</text>
+
+    <!-- Station 5: Drive Tandems -->
+    <circle cx="260" cy="138" r="12" fill="#0284c7" stroke="#ffffff" stroke-width="1.5"/>
+    <text x="260" y="142" fill="#ffffff" font-family="system-ui" font-size="11" font-weight="900" text-anchor="middle">5</text>
+    <text x="260" y="148" fill="#cbd5e1" font-family="system-ui" font-size="8.5" font-weight="700" text-anchor="middle" dy="8">DRIVE BRAKES</text>
+
+    <!-- Station 6: Trailer & Tandems -->
+    <circle cx="685" cy="138" r="12" fill="#0284c7" stroke="#ffffff" stroke-width="1.5"/>
+    <text x="685" y="142" fill="#ffffff" font-family="system-ui" font-size="11" font-weight="900" text-anchor="middle">6</text>
+    <text x="685" y="148" fill="#cbd5e1" font-family="system-ui" font-size="8.5" font-weight="700" text-anchor="middle" dy="8">TRAILER AXLES</text>
+
+    <!-- Station 7: In-Cab L-A-B -->
+    <circle cx="850" cy="83" r="14" fill="#d97706" stroke="#ffffff" stroke-width="1.5"/>
+    <text x="850" y="88" fill="#ffffff" font-family="system-ui" font-size="12" font-weight="900" text-anchor="middle">7</text>
+    <text x="850" y="110" fill="#fbbf24" font-family="system-ui" font-size="9" font-weight="700" text-anchor="middle">CAB AIR TEST</text>
+  </g>
+
+  <!-- 4 Step Detailed Panels -->
+
+  <!-- Panel 1: Engine Bay & Steer Axle -->
+  <g transform="translate(32, 232)">
+    <rect width="212" height="268" rx="8" fill="url(#cardGrad)" stroke="#1e293b" stroke-width="1.5"/>
+    <rect width="212" height="28" rx="8" fill="#1e293b"/>
+    <text x="12" y="19" fill="#38bdf8" font-family="system-ui" font-size="10.5" font-weight="800">1 &amp; 2. ENGINE &amp; STEER</text>
+
+    <g transform="translate(12, 38)" font-family="system-ui" font-size="9.5" fill="#cbd5e1">
+      <text x="0" y="12" font-weight="700" fill="#f8fafc">Engine Bay Fluids:</text>
+      <text x="0" y="27">• Coolant: MIN/MAX on cold tank</text>
+      <text x="0" y="42">• Oil: Dipstick in crosshatch</text>
+      <text x="0" y="57">• Belts: Play &lt; 1/2", no fraying</text>
+      <text x="0" y="72">• Hoses: Firm, no CAC bulges</text>
+
+      <line x1="0" y1="84" x2="188" y2="84" stroke="#1e293b"/>
+
+      <text x="0" y="100" font-weight="700" fill="#f8fafc">Steer Axle &amp; Suspension:</text>
+      <text x="0" y="115">• Tread: ≥ 4/32" (NO recaps!)</text>
+      <text x="0" y="130">• 10 Lugs: Tight, no rust streaks</text>
+      <text x="0" y="145">• Hub Oil: Level visible in glass</text>
+      <text x="0" y="160">• Springs: No cracks/shifts</text>
+      <text x="0" y="175">• Shocks: No active oil leaks</text>
+      <text x="0" y="190">• Steer box: Tight, no play</text>
+    </g>
+  </g>
+
+  <!-- Panel 2: Cab, Tanks & Coupling -->
+  <g transform="translate(260, 232)">
+    <rect width="212" height="268" rx="8" fill="url(#cardGrad)" stroke="#1e293b" stroke-width="1.5"/>
+    <rect width="212" height="28" rx="8" fill="#1e293b"/>
+    <text x="12" y="19" fill="#38bdf8" font-family="system-ui" font-size="10.5" font-weight="800">3 &amp; 4. SIDES &amp; COUPLING</text>
+
+    <g transform="translate(12, 38)" font-family="system-ui" font-size="9.5" fill="#cbd5e1">
+      <text x="0" y="12" font-weight="700" fill="#f8fafc">Tanks &amp; Cab Exterior:</text>
+      <text x="0" y="27">• Fuel Tanks: Straps &amp; seals tight</text>
+      <text x="0" y="42">• DEF Tank: Cap secure, clean</text>
+      <text x="0" y="57">• Battery Box: Cover latched</text>
+      <text x="0" y="72">• Cab Steps &amp; Mirrors: Secure</text>
+
+      <line x1="0" y1="84" x2="188" y2="84" stroke="#1e293b"/>
+
+      <text x="0" y="100" font-weight="700" fill="#f8fafc">Coupling &amp; Air Lines:</text>
+      <text x="0" y="115">• Airlines: Suspended 6"+ clear</text>
+      <text x="0" y="130">• Gladhands: Seals fresh, no hiss</text>
+      <text x="0" y="145">• Apron: 0 gap with 5th wheel</text>
+      <text x="0" y="160">• Jaws: 100% locked on kingpin</text>
+      <text x="0" y="175">• Release arm: Fully engaged</text>
+      <text x="0" y="190">• 5th Wheel slide: Pins locked</text>
+    </g>
+  </g>
+
+  <!-- Panel 3: Drive Tandems & Trailer -->
+  <g transform="translate(488, 232)">
+    <rect width="212" height="268" rx="8" fill="url(#cardGrad)" stroke="#1e293b" stroke-width="1.5"/>
+    <rect width="212" height="28" rx="8" fill="#1e293b"/>
+    <text x="12" y="19" fill="#38bdf8" font-family="system-ui" font-size="10.5" font-weight="800">5 &amp; 6. TANDEMS &amp; BRAKES</text>
+
+    <g transform="translate(12, 38)" font-family="system-ui" font-size="9.5" fill="#cbd5e1">
+      <text x="0" y="12" font-weight="700" fill="#f8fafc">Drive &amp; Trailer Wheels:</text>
+      <text x="0" y="27">• Tread: ≥ 2/32" depth</text>
+      <text x="0" y="42">• Air: 100-110 PSI cold gauge</text>
+      <text x="0" y="57">• Duals: Spacing clear of rocks</text>
+      <text x="0" y="72">• Mudflaps: Attached, 8" ground</text>
+
+      <line x1="0" y1="84" x2="188" y2="84" stroke="#1e293b"/>
+
+      <text x="0" y="100" font-weight="700" fill="#f8fafc">Foundation Brakes:</text>
+      <text x="0" y="115">• Pads: ≥ 1/4" friction material</text>
+      <text x="0" y="130">• Drums: No cracks or grease</text>
+      <text x="0" y="145">• Pushrod: Travel under 2 inches</text>
+      <text x="0" y="160">• Slack adjusters: Angle 90°</text>
+      <text x="0" y="175">• Chambers: Mounts secure</text>
+      <text x="0" y="190">• Air tanks: Drain moisture</text>
+    </g>
+  </g>
+
+  <!-- Panel 4: In-Cab L-A-B Air Test & Tug -->
+  <g transform="translate(716, 232)">
+    <rect width="212" height="268" rx="8" fill="url(#cardGrad)" stroke="rgba(245,158,11,0.4)" stroke-width="1.5"/>
+    <rect width="212" height="28" rx="8" fill="#2d1c08"/>
+    <rect width="212" height="2" y="27" fill="#f59e0b"/>
+    <text x="12" y="19" fill="#fbbf24" font-family="system-ui" font-size="10.5" font-weight="800">7. IN-CAB AIR TEST (L-A-B)</text>
+
+    <g transform="translate(12, 38)" font-family="system-ui" font-size="9.5" fill="#cbd5e1">
+      <text x="0" y="12" font-weight="800" fill="#f59e0b">L — LEAKS (1 MINUTE):</text>
+      <text x="0" y="26">Key ON, engine OFF. Push in</text>
+      <text x="0" y="39">both valves. Hold foot brake.</text>
+      <text x="0" y="52" fill="#ef4444" font-weight="700">Max loss: 4 PSI / 1 min</text>
+
+      <line x1="0" y1="62" x2="188" y2="62" stroke="#33200b"/>
+
+      <text x="0" y="77" font-weight="800" fill="#f59e0b">A — ALARM (LOW AIR):</text>
+      <text x="0" y="91">Fan brake pedal repeatedly.</text>
+      <text x="0" y="104" fill="#38bdf8" font-weight="700">Buzzer/Lamp must activate</text>
+      <text x="0" y="117" fill="#38bdf8" font-weight="700">at or above 60 PSI.</text>
+
+      <line x1="0" y1="127" x2="188" y2="127" stroke="#33200b"/>
+
+      <text x="0" y="142" font-weight="800" fill="#f59e0b">B — BUTTONS (POP-OUT):</text>
+      <text x="0" y="156">Keep fanning foot brake.</text>
+      <text x="0" y="169" fill="#10b981" font-weight="700">Red &amp; Yellow parking valves</text>
+      <text x="0" y="182" fill="#10b981" font-weight="700">must pop out at 20-45 PSI.</text>
+
+      <line x1="0" y1="192" x2="188" y2="192" stroke="#33200b"/>
+
+      <text x="0" y="206" font-weight="800" fill="#f8fafc">FORWARD TUG TEST:</text>
+      <text x="0" y="219">Rebuild 120 PSI. Tug trailer,</text>
+      <text x="0" y="232">then tractor. 5 MPH service stop.</text>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,173 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 480" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b1324"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="truckBody" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="50%" stop-color="#334155"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="accentOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f97316"/>
+      <stop offset="100%" stop-color="#ea580c"/>
+    </linearGradient>
+    <linearGradient id="accentBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#0284c7"/>
+    </linearGradient>
+    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="480" fill="url(#bgGrad)" rx="12"/>
+  <rect width="900" height="480" fill="url(#grid)" rx="12"/>
+  <rect width="898" height="478" x="1" y="1" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1" rx="12"/>
+
+  <!-- Title & Header -->
+  <text x="30" y="38" fill="#f8fafc" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="700" letter-spacing="-0.01em">FREIGHTLINER CASCADIA - CHASSIS &amp; CAB COMPONENT ANATOMY</text>
+  <text x="30" y="58" fill="#94a3b8" font-family="system-ui, -apple-system, sans-serif" font-size="12">Standard Fleet Nomenclature &amp; Key Inspection Zones</text>
+
+  <!-- Ground Line -->
+  <line x1="40" y1="380" x2="860" y2="380" stroke="#334155" stroke-width="2" stroke-dasharray="4,4"/>
+
+  <!-- Semi-Tractor Silhouette -->
+  <!-- Cab Outline -->
+  <path d="M 740,320 L 740,240 L 580,240 L 520,130 L 360,130 L 360,170 L 220,195 L 200,240 L 160,250 L 160,340 L 190,340" fill="url(#truckBody)" stroke="#475569" stroke-width="2"/>
+  <!-- Aerodynamic Roof Cap -->
+  <path d="M 520,130 L 580,240 L 520,240 Z" fill="#293548"/>
+  <path d="M 360,130 Q 420,105 520,130" fill="none" stroke="#64748b" stroke-width="2"/>
+  <!-- Windshield -->
+  <path d="M 355,145 L 340,195 L 290,195 L 310,145 Z" fill="#0284c7" fill-opacity="0.35" stroke="#38bdf8" stroke-width="1.5"/>
+  <!-- Side Window -->
+  <path d="M 360,145 L 430,145 L 430,195 L 350,195 Z" fill="#0284c7" fill-opacity="0.25" stroke="#38bdf8" stroke-width="1"/>
+  <!-- Front Bumper -->
+  <path d="M 155,270 L 175,270 L 175,345 L 155,345 Z" fill="#0f172a" stroke="#64748b" stroke-width="1.5"/>
+  <!-- Side Fairing & Steps -->
+  <rect x="290" y="270" width="230" height="65" fill="#1e293b" stroke="#475569" stroke-width="1.5" rx="3"/>
+  <!-- Fuel Tank Behind Fairing Outline -->
+  <rect x="305" y="280" width="120" height="45" fill="#0f172a" stroke="#3b82f6" stroke-width="1" stroke-dasharray="3,3" rx="8"/>
+  <!-- DEF Tank -->
+  <rect x="435" y="282" width="45" height="40" fill="#0f172a" stroke="#06b6d4" stroke-width="1" stroke-dasharray="3,3" rx="4"/>
+  <!-- Fifth Wheel Plate -->
+  <rect x="620" y="248" width="65" height="12" fill="#0f172a" stroke="#f59e0b" stroke-width="2" rx="2"/>
+  <polygon points="615,260 690,260 680,275 625,275" fill="#1e293b" stroke="#d97706" stroke-width="1.5"/>
+
+  <!-- Steer Wheel Front -->
+  <g transform="translate(235, 345)">
+    <circle r="36" fill="#090d16" stroke="#475569" stroke-width="3"/>
+    <circle r="22" fill="#334155" stroke="#94a3b8" stroke-width="2"/>
+    <circle r="8" fill="#0284c7" stroke="#38bdf8" stroke-width="1.5"/>
+    <!-- Lug nuts -->
+    <circle cx="0" cy="-15" r="2" fill="#cbd5e1"/>
+    <circle cx="11" cy="-11" r="2" fill="#cbd5e1"/>
+    <circle cx="15" cy="0" r="2" fill="#cbd5e1"/>
+    <circle cx="11" cy="11" r="2" fill="#cbd5e1"/>
+    <circle cx="0" cy="15" r="2" fill="#cbd5e1"/>
+    <circle cx="-11" cy="11" r="2" fill="#cbd5e1"/>
+    <circle cx="-15" cy="0" r="2" fill="#cbd5e1"/>
+    <circle cx="-11" cy="-11" r="2" fill="#cbd5e1"/>
+  </g>
+
+  <!-- Drive Tandem Wheels Rear (Forward Drive) -->
+  <g transform="translate(585, 345)">
+    <circle r="36" fill="#090d16" stroke="#475569" stroke-width="3"/>
+    <circle r="22" fill="#334155" stroke="#94a3b8" stroke-width="2"/>
+    <circle r="7" fill="#1e293b" stroke="#cbd5e1" stroke-width="1.5"/>
+  </g>
+  <!-- Drive Tandem Wheels Rear (Rear Drive) -->
+  <g transform="translate(685, 345)">
+    <circle r="36" fill="#090d16" stroke="#475569" stroke-width="3"/>
+    <circle r="22" fill="#334155" stroke="#94a3b8" stroke-width="2"/>
+    <circle r="7" fill="#1e293b" stroke="#cbd5e1" stroke-width="1.5"/>
+  </g>
+
+  <!-- Rear Mud Flaps -->
+  <rect x="735" y="315" width="8" height="55" fill="#020617" stroke="#475569" stroke-width="1"/>
+
+  <!-- ================= CALLOUT LABELS ================= -->
+  <!-- Callout 1: Front Radar & Bumper -->
+  <g>
+    <circle cx="155" cy="305" r="4" fill="#ef4444"/>
+    <line x1="155" y1="305" x2="110" y2="250" stroke="#ef4444" stroke-width="1.5"/>
+    <rect x="15" y="222" width="130" height="34" rx="6" fill="#1e293b" stroke="#ef4444" stroke-width="1"/>
+    <text x="80" y="237" fill="#f8fafc" font-size="11" font-weight="700" text-anchor="middle" font-family="system-ui">FRONT BUMPER</text>
+    <text x="80" y="250" fill="#94a3b8" font-size="9" text-anchor="middle" font-family="system-ui">Collision Radar / Fog Light</text>
+  </g>
+
+  <!-- Callout 2: Under Hood Engine / Coolant -->
+  <g>
+    <circle cx="210" cy="225" r="4" fill="#f59e0b"/>
+    <line x1="210" y1="225" x2="160" y2="120" stroke="#f59e0b" stroke-width="1.5"/>
+    <rect x="70" y="92" width="140" height="34" rx="6" fill="#1e293b" stroke="#f59e0b" stroke-width="1"/>
+    <text x="140" y="107" fill="#f8fafc" font-size="11" font-weight="700" text-anchor="middle" font-family="system-ui">HOOD &amp; ENGINE BAY</text>
+    <text x="140" y="120" fill="#94a3b8" font-size="9" text-anchor="middle" font-family="system-ui">DD15, Coolant Tank, Belts</text>
+  </g>
+
+  <!-- Callout 3: Windshield Camera -->
+  <g>
+    <circle cx="330" cy="155" r="4" fill="#06b6d4"/>
+    <line x1="330" y1="155" x2="310" y2="85" stroke="#06b6d4" stroke-width="1.5"/>
+    <rect x="230" y="58" width="150" height="34" rx="6" fill="#1e293b" stroke="#06b6d4" stroke-width="1"/>
+    <text x="305" y="73" fill="#f8fafc" font-size="11" font-weight="700" text-anchor="middle" font-family="system-ui">SAFETY CAMERA &amp; ELD</text>
+    <text x="305" y="86" fill="#94a3b8" font-size="9" text-anchor="middle" font-family="system-ui">Detroit Assurance &amp; Samsara</text>
+  </g>
+
+  <!-- Callout 4: Steer Tire & Hub -->
+  <g>
+    <circle cx="235" cy="345" r="4" fill="#38bdf8"/>
+    <line x1="235" y1="345" x2="210" y2="430" stroke="#38bdf8" stroke-width="1.5"/>
+    <rect x="135" y="420" width="140" height="34" rx="6" fill="#1e293b" stroke="#38bdf8" stroke-width="1"/>
+    <text x="205" y="435" fill="#f8fafc" font-size="11" font-weight="700" text-anchor="middle" font-family="system-ui">STEER AXLE &amp; TIRES</text>
+    <text x="205" y="448" fill="#94a3b8" font-size="9" text-anchor="middle" font-family="system-ui">Oil Hub Sight Glass, 4/32" Tread</text>
+  </g>
+
+  <!-- Callout 5: Fuel & DEF Tanks / Fairings -->
+  <g>
+    <circle cx="410" cy="310" r="4" fill="#10b981"/>
+    <line x1="410" y1="310" x2="430" y2="430" stroke="#10b981" stroke-width="1.5"/>
+    <rect x="360" y="420" width="145" height="34" rx="6" fill="#1e293b" stroke="#10b981" stroke-width="1"/>
+    <text x="432" y="435" fill="#f8fafc" font-size="11" font-weight="700" text-anchor="middle" font-family="system-ui">FUEL TANK &amp; DEF TANK</text>
+    <text x="432" y="448" fill="#94a3b8" font-size="9" text-anchor="middle" font-family="system-ui">Side Fairings, Battery Box, Steps</text>
+  </g>
+
+  <!-- Callout 6: Pigtail & Catwalk -->
+  <g>
+    <circle cx="530" cy="220" r="4" fill="#8b5cf6"/>
+    <line x1="530" y1="220" x2="520" y2="90" stroke="#8b5cf6" stroke-width="1.5"/>
+    <rect x="450" y="62" width="145" height="34" rx="6" fill="#1e293b" stroke="#8b5cf6" stroke-width="1"/>
+    <text x="522" y="77" fill="#f8fafc" font-size="11" font-weight="700" text-anchor="middle" font-family="system-ui">CATWALK &amp; AIR LINES</text>
+    <text x="522" y="90" fill="#94a3b8" font-size="9" text-anchor="middle" font-family="system-ui">Red/Blue Gladhands, 7-Way Cord</text>
+  </g>
+
+  <!-- Callout 7: 5th Wheel Plate -->
+  <g>
+    <circle cx="650" cy="254" r="4" fill="#f59e0b"/>
+    <line x1="650" y1="254" x2="680" y2="155" stroke="#f59e0b" stroke-width="1.5"/>
+    <rect x="620" y="125" width="135" height="34" rx="6" fill="#1e293b" stroke="#f59e0b" stroke-width="1"/>
+    <text x="687" y="140" fill="#f8fafc" font-size="11" font-weight="700" text-anchor="middle" font-family="system-ui">FIFTH WHEEL PLATE</text>
+    <text x="687" y="153" fill="#94a3b8" font-size="9" text-anchor="middle" font-family="system-ui">Locking Jaws &amp; Release Arm</text>
+  </g>
+
+  <!-- Callout 8: Drive Tandem Axles -->
+  <g>
+    <circle cx="640" cy="345" r="4" fill="#ec4899"/>
+    <line x1="640" y1="345" x2="660" y2="430" stroke="#ec4899" stroke-width="1.5"/>
+    <rect x="590" y="420" width="150" height="34" rx="6" fill="#1e293b" stroke="#ec4899" stroke-width="1"/>
+    <text x="665" y="435" fill="#f8fafc" font-size="11" font-weight="700" text-anchor="middle" font-family="system-ui">DRIVE TANDEM AXLES</text>
+    <text x="665" y="448" fill="#94a3b8" font-size="9" text-anchor="middle" font-family="system-ui">Brake Chambers, Air Bags, 2/32"</text>
+  </g>
+
+  <!-- Callout 9: Rear Mud Flaps & Bar -->
+  <g>
+    <circle cx="740" cy="345" r="4" fill="#94a3b8"/>
+    <line x1="740" y1="345" x2="790" y2="345" stroke="#94a3b8" stroke-width="1.5"/>
+    <rect x="770" y="325" width="115" height="34" rx="6" fill="#1e293b" stroke="#94a3b8" stroke-width="1"/>
+    <text x="827" y="340" fill="#f8fafc" font-size="11" font-weight="700" text-anchor="middle" font-family="system-ui">MUD FLAPS</text>
+    <text x="827" y="353" fill="#94a3b8" font-size="9" text-anchor="middle" font-family="system-ui">DOT Max 8" Off Ground</text>
+  </g>
+
+</svg>

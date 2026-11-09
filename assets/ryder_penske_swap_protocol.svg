@@ -1,0 +1,209 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 520" width="100%" height="100%">
+  <defs>
+    <linearGradient id="swapBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090e1a"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#131c31"/>
+      <stop offset="100%" stop-color="#0d1527"/>
+    </linearGradient>
+    <linearGradient id="ryderRed" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="100%" stop-color="#b91c1c"/>
+    </linearGradient>
+    <linearGradient id="penskeYellow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#eab308"/>
+      <stop offset="100%" stop-color="#ca8a04"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="960" height="520" fill="url(#swapBg)" rx="12"/>
+  <rect width="958" height="518" x="1" y="1" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1" rx="12"/>
+
+  <!-- Top Title Banner -->
+  <g transform="translate(32, 24)">
+    <rect x="0" y="0" width="40" height="32" rx="6" fill="rgba(239,68,68,0.15)" stroke="#ef4444" stroke-width="1.5"/>
+    <text x="20" y="22" fill="#ef4444" font-family="system-ui, sans-serif" font-size="16" font-weight="900" text-anchor="middle">🔄</text>
+    <text x="52" y="18" fill="#f8fafc" font-family="system-ui, sans-serif" font-size="17" font-weight="800" letter-spacing="-0.01em">RYDER &amp; PENSKE RENTAL UNIT SWAP PROCEDURE</text>
+    <text x="52" y="34" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="11.5">Fleet Breakdown Exchange, 360° Photo Inspection, Samsara ELD Transfer &amp; Check-In Protocol</text>
+
+    <!-- Badges -->
+    <g transform="translate(730, 4)">
+      <rect width="70" height="24" rx="4" fill="url(#ryderRed)"/>
+      <text x="35" y="16" fill="#ffffff" font-family="system-ui" font-size="10.5" font-weight="800" text-anchor="middle">RYDER</text>
+      <rect x="76" y="0" width="80" height="24" rx="4" fill="url(#penskeYellow)"/>
+      <text x="116" y="16" fill="#0f172a" font-family="system-ui" font-size="10.5" font-weight="800" text-anchor="middle">PENSKE</text>
+    </g>
+  </g>
+
+  <!-- Upper Visual Overview Flow (Horizontal Steps) -->
+  <g transform="translate(32, 70)">
+    <rect width="896" height="110" rx="10" fill="#0d1527" stroke="#1e293b" stroke-width="1.5"/>
+
+    <!-- Process Step Flow -->
+    <g transform="translate(24, 20)">
+      <!-- Step 1 Bubble -->
+      <circle cx="20" cy="20" r="16" fill="#0284c7"/>
+      <text x="20" y="25" fill="#ffffff" font-family="system-ui" font-weight="800" font-size="12" text-anchor="middle">1</text>
+      <text x="46" y="16" fill="#f8fafc" font-family="system-ui" font-weight="700" font-size="11">PO &amp; RES #</text>
+      <text x="46" y="30" fill="#94a3b8" font-family="system-ui" font-size="9.5">Approved PO from Dispatch</text>
+
+      <path d="M 175,20 L 195,20" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+
+      <!-- Step 2 Bubble -->
+      <circle cx="225" cy="20" r="16" fill="#0284c7"/>
+      <text x="225" y="25" fill="#ffffff" font-family="system-ui" font-weight="800" font-size="12" text-anchor="middle">2</text>
+      <text x="251" y="16" fill="#f8fafc" font-family="system-ui" font-weight="700" font-size="11">360° PHOTOS</text>
+      <text x="251" y="30" fill="#94a3b8" font-family="system-ui" font-size="9.5">Both old &amp; new tractors</text>
+
+      <path d="M 375,20 L 395,20" stroke="#334155" stroke-width="2"/>
+
+      <!-- Step 3 Bubble -->
+      <circle cx="425" cy="20" r="16" fill="#0284c7"/>
+      <text x="425" y="25" fill="#ffffff" font-family="system-ui" font-weight="800" font-size="12" text-anchor="middle">3</text>
+      <text x="451" y="16" fill="#f8fafc" font-family="system-ui" font-weight="700" font-size="11">SAMSARA SWAP</text>
+      <text x="451" y="30" fill="#94a3b8" font-family="system-ui" font-size="9.5">RP1226 + Driver App ID</text>
+
+      <path d="M 580,20 L 600,20" stroke="#334155" stroke-width="2"/>
+
+      <!-- Step 4 Bubble -->
+      <circle cx="630" cy="20" r="16" fill="#10b981"/>
+      <text x="630" y="25" fill="#ffffff" font-family="system-ui" font-weight="800" font-size="12" text-anchor="middle">4</text>
+      <text x="656" y="16" fill="#f8fafc" font-family="system-ui" font-weight="700" font-size="11">FULL PTI &amp; DISPATCH</text>
+      <text x="656" y="30" fill="#94a3b8" font-family="system-ui" font-size="9.5">Hook trailer, sign out, depart</text>
+    </g>
+
+    <!-- Subtext disclaimer -->
+    <rect x="24" y="68" width="848" height="26" rx="4" fill="#131e33"/>
+    <text x="36" y="85" fill="#38bdf8" font-family="system-ui" font-size="10" font-weight="700">⚠️ CRITICAL FLEET RULE:</text>
+    <text x="175" y="85" fill="#cbd5e1" font-family="system-ui" font-size="9.5">Never leave the rental yard without agent countersignature on damage sheet and photo copy of signed rental agreement!</text>
+  </g>
+
+  <!-- 4 Step Detailed Panels -->
+
+  <!-- Panel 1: Returning Unit Checkout -->
+  <g transform="translate(32, 196)">
+    <rect width="212" height="304" rx="8" fill="url(#cardGrad)" stroke="#1e293b" stroke-width="1.5"/>
+    <rect width="212" height="30" rx="8" fill="#1e293b"/>
+    <text x="12" y="20" fill="#38bdf8" font-family="system-ui" font-size="10.5" font-weight="800">1. RETURNING TRACTOR</text>
+
+    <g transform="translate(12, 42)" font-family="system-ui" font-size="9.5" fill="#cbd5e1">
+      <text x="0" y="12" font-weight="700" fill="#f8fafc">Log Dash &amp; Meters:</text>
+      <text x="0" y="27">• Final Odometer reading</text>
+      <text x="0" y="42">• Engine operating hours</text>
+      <text x="0" y="57">• Diesel fuel gauge level</text>
+      <text x="0" y="72">• DEF fluid gauge level</text>
+
+      <line x1="0" y1="84" x2="188" y2="84" stroke="#1e293b"/>
+
+      <text x="0" y="100" font-weight="700" fill="#f8fafc">360° Outbound Photos:</text>
+      <text x="0" y="115">• Front bumper &amp; grille</text>
+      <text x="0" y="130">• Left &amp; Right cab sides</text>
+      <text x="0" y="145">• Rear cab &amp; catwalk</text>
+      <text x="0" y="160">• Windshield (all chips)</text>
+      <text x="0" y="175">• Steer &amp; drive tire treads</text>
+
+      <line x1="0" y1="187" x2="188" y2="187" stroke="#1e293b"/>
+
+      <text x="0" y="203" font-weight="700" fill="#f8fafc">Key Turnover:</text>
+      <text x="0" y="218">• Report exact issue to shop</text>
+      <text x="0" y="233">• Return fuel cards &amp; keys</text>
+      <text x="0" y="248">• Note check-in timestamp</text>
+    </g>
+  </g>
+
+  <!-- Panel 2: Trailer Drop & Hook Safety -->
+  <g transform="translate(260, 196)">
+    <rect width="212" height="304" rx="8" fill="url(#cardGrad)" stroke="#1e293b" stroke-width="1.5"/>
+    <rect width="212" height="30" rx="8" fill="#1e293b"/>
+    <text x="12" y="20" fill="#38bdf8" font-family="system-ui" font-size="10.5" font-weight="800">2. TRAILER DROP &amp; HOOK</text>
+
+    <g transform="translate(12, 42)" font-family="system-ui" font-size="9.5" fill="#cbd5e1">
+      <text x="0" y="12" font-weight="700" fill="#f8fafc">Uncoupling Old Unit:</text>
+      <text x="0" y="27">• Park trailer on level concrete</text>
+      <text x="0" y="42">• Lower landing gear to ground</text>
+      <text x="0" y="57">• High gear: 2-3 extra turns</text>
+      <text x="0" y="72">• Disconnect Red/Blue air lines</text>
+      <text x="0" y="87">• Disconnect 7-way electric plug</text>
+      <text x="0" y="102">• Pull 5th wheel release lever</text>
+      <text x="0" y="117">• Pull tractor forward slowly</text>
+
+      <line x1="0" y1="129" x2="188" y2="129" stroke="#1e293b"/>
+
+      <text x="0" y="145" font-weight="700" fill="#f8fafc">Coupling Replacement:</text>
+      <text x="0" y="160">• Back up until 5th wheel touches</text>
+      <text x="0" y="175">• Verify 0 gap with trailer apron</text>
+      <text x="0" y="190">• Firm reverse lock onto kingpin</text>
+      <text x="0" y="205">• Perform forward TUG TEST</text>
+      <text x="0" y="220">• Flashlight check of locked jaws</text>
+      <text x="0" y="235">• Connect air lines &amp; 7-way</text>
+      <text x="0" y="250">• Raise landing gear to full UP</text>
+    </g>
+  </g>
+
+  <!-- Panel 3: Hardware & Document Transfer -->
+  <g transform="translate(488, 196)">
+    <rect width="212" height="304" rx="8" fill="url(#cardGrad)" stroke="#1e293b" stroke-width="1.5"/>
+    <rect width="212" height="30" rx="8" fill="#1e293b"/>
+    <text x="12" y="20" fill="#38bdf8" font-family="system-ui" font-size="10.5" font-weight="800">3. SAMSARA &amp; PERMITS</text>
+
+    <g transform="translate(12, 42)" font-family="system-ui" font-size="9.5" fill="#cbd5e1">
+      <text x="0" y="12" font-weight="700" fill="#10b981">Samsara ELD Transfer:</text>
+      <text x="0" y="27">• Unplug VG54 from RP1226</text>
+      <text x="0" y="42">• Plug into rental diagnostic port</text>
+      <text x="0" y="57">• Check for SOLID GREEN LED</text>
+      <text x="0" y="72">• Open Samsara Driver App</text>
+      <text x="0" y="87">• Switch assigned tractor ID</text>
+      <text x="0" y="102">• Confirm odometer auto-sync</text>
+
+      <line x1="0" y1="114" x2="188" y2="114" stroke="#1e293b"/>
+
+      <text x="0" y="130" font-weight="700" fill="#f8fafc">Cab Documents Transfer:</text>
+      <text x="0" y="145">• IRP Cab Card registration</text>
+      <text x="0" y="160">• IFTA tax decal paperwork</text>
+      <text x="0" y="175">• ELD Driver instruction card</text>
+      <text x="0" y="190">• Safety binder &amp; insurance</text>
+      <text x="0" y="205">• Annual DOT inspection decal</text>
+
+      <line x1="0" y1="217" x2="188" y2="217" stroke="#1e293b"/>
+
+      <text x="0" y="233" font-weight="700" fill="#f8fafc">Personal Gear:</text>
+      <text x="0" y="248">• Toll transponders (PrePass/EZ)</text>
+    </g>
+  </g>
+
+  <!-- Panel 4: Outbound Acceptance & Dispatch -->
+  <g transform="translate(716, 196)">
+    <rect width="212" height="304" rx="8" fill="url(#cardGrad)" stroke="rgba(16,185,129,0.4)" stroke-width="1.5"/>
+    <rect width="212" height="30" rx="8" fill="#09251d"/>
+    <rect width="212" height="2" y="29" fill="#10b981"/>
+    <text x="12" y="20" fill="#34d399" font-family="system-ui" font-size="10.5" font-weight="800">4. ACCEPTANCE &amp; DEPART</text>
+
+    <g transform="translate(12, 42)" font-family="system-ui" font-size="9.5" fill="#cbd5e1">
+      <text x="0" y="12" font-weight="700" fill="#34d399">Joint Yard Walkaround:</text>
+      <text x="0" y="27">• Walk replacement with agent</text>
+      <text x="0" y="42">• Note EVERY scratch &amp; dent</text>
+      <text x="0" y="57">• Check windshield for stone chips</text>
+      <text x="0" y="72">• Check all 10 tire tread depths</text>
+      <text x="0" y="87">• Agent MUST sign damage sheet</text>
+
+      <line x1="0" y1="99" x2="188" y2="99" stroke="#133829"/>
+
+      <text x="0" y="115" font-weight="700" fill="#34d399">Full Pre-Trip (15 Min):</text>
+      <text x="0" y="130">• Test all lights, turn signals, 4-ways</text>
+      <text x="0" y="145">• Verify air brake L-A-B test</text>
+      <text x="0" y="160">• Verify defroster, wipers, horn</text>
+
+      <line x1="0" y1="172" x2="188" y2="172" stroke="#133829"/>
+
+      <text x="0" y="188" font-weight="700" fill="#34d399">Dispatch Notification:</text>
+      <text x="0" y="203">• Text/Email Fleet Dispatch:</text>
+      <text x="0" y="218" fill="#38bdf8">1) Rental Unit # &amp; Plate</text>
+      <text x="0" y="233" fill="#38bdf8">2) Full VIN &amp; Start Mileage</text>
+      <text x="0" y="248" fill="#38bdf8">3) Diesel &amp; DEF tank levels</text>
+      <text x="0" y="263" fill="#38bdf8">4) Photo of signed rental contract</text>
+    </g>
+  </g>
+</svg>

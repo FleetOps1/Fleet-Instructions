@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 520" width="100%" height="100%">
+  <defs>
+    <linearGradient id="winBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#071326"/>
+      <stop offset="100%" stop-color="#0b1e38"/>
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f2342"/>
+      <stop offset="100%" stop-color="#0a1930"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="960" height="520" fill="url(#winBg)" rx="12"/>
+  <rect width="958" height="518" x="1" y="1" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1" rx="12"/>
+
+  <!-- Top Title Banner -->
+  <g transform="translate(32, 24)">
+    <rect x="0" y="0" width="40" height="32" rx="6" fill="rgba(56,189,248,0.2)" stroke="#38bdf8" stroke-width="1.5"/>
+    <text x="20" y="22" fill="#38bdf8" font-family="system-ui, sans-serif" font-size="16" font-weight="900" text-anchor="middle">❄️</text>
+    <text x="52" y="18" fill="#f8fafc" font-family="system-ui, sans-serif" font-size="17" font-weight="800" letter-spacing="-0.01em">WINTER FLEET OPERATIONS &amp; DIESEL / DEF ANTI-GEL PROTOCOL</text>
+    <text x="52" y="34" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="11.5">Fuel Gelling Prevention, Diesel 911 Recovery, DEF Expansion, and Air Line Freeze Protection</text>
+  </g>
+
+  <!-- 4 Step Detailed Panels -->
+
+  <!-- Panel 1: Preventative Treatment -->
+  <g transform="translate(32, 78)">
+    <rect width="212" height="412" rx="8" fill="url(#cardGrad)" stroke="#1e3a5f" stroke-width="1.5"/>
+    <rect width="212" height="30" rx="8" fill="#132c4f"/>
+    <text x="12" y="20" fill="#38bdf8" font-family="system-ui" font-size="10.5" font-weight="800">1. PREVENTATIVE ANTI-GEL</text>
+
+    <g transform="translate(12, 42)" font-family="system-ui" font-size="9.5" fill="#cbd5e1">
+      <text x="0" y="12" font-weight="700" fill="#38bdf8">Temperature Threshold:</text>
+      <text x="0" y="27">• Below 20°F (-6°C): MANDATORY</text>
+      <text x="0" y="42">• Power Service (White Bottle)</text>
+      <text x="0" y="57">  or Howes Lubricator</text>
+
+      <line x1="0" y1="70" x2="188" y2="70" stroke="#1e3a5f"/>
+
+      <text x="0" y="86" font-weight="700" fill="#f8fafc">Dosage &amp; Mixing Rule:</text>
+      <text x="0" y="101">• 32 oz bottle per 100 gallons</text>
+      <text x="0" y="118" fill="#fbbf24" font-weight="700">CRITICAL:</text>
+      <text x="0" y="133">• Pour treatment BEFORE pumping</text>
+      <text x="0" y="148">  fuel so turbulence mixes it!</text>
+      <text x="0" y="163">• Pouring after fuel leaves unmixed</text>
+      <text x="0" y="178">  cold fuel sitting at tank bottom.</text>
+
+      <line x1="0" y1="190" x2="188" y2="190" stroke="#1e3a5f"/>
+
+      <text x="0" y="206" font-weight="700" fill="#f8fafc">Cold Idle Setting:</text>
+      <text x="0" y="221">• If &lt; 15°F and no APU, set high-idle</text>
+      <text x="0" y="236">  (900-1000 RPM) via cruise.</text>
+    </g>
+  </g>
+
+  <!-- Panel 2: Emergency Gelled Fuel Recovery -->
+  <g transform="translate(260, 78)">
+    <rect width="212" height="412" rx="8" fill="url(#cardGrad)" stroke="#1e3a5f" stroke-width="1.5"/>
+    <rect width="212" height="30" rx="8" fill="#132c4f"/>
+    <text x="12" y="20" fill="#f87171" font-family="system-ui" font-size="10.5" font-weight="800">2. GELLED FUEL (DIESEL 911)</text>
+
+    <g transform="translate(12, 42)" font-family="system-ui" font-size="9.5" fill="#cbd5e1">
+      <text x="0" y="12" font-weight="700" fill="#ef4444">Symptoms of Wax Gelling:</text>
+      <text x="0" y="27">• Engine sputters, loses power,</text>
+      <text x="0" y="40">  or stalls on highway ramp.</text>
+      <text x="0" y="55" fill="#fbbf24">• DO NOT burn starter cranking!</text>
+
+      <line x1="0" y1="67" x2="188" y2="67" stroke="#1e3a5f"/>
+
+      <text x="0" y="83" font-weight="700" fill="#fca5a5">Emergency Recovery Steps:</text>
+      <text x="0" y="98">1. Get Power Service Diesel 911</text>
+      <text x="0" y="111">   (RED BOTTLE ONLY).</text>
+      <text x="0" y="126">2. Unscrew Davco fuel filter cap.</text>
+      <text x="0" y="141">3. Fill filter bowl 50% with 911,</text>
+      <text x="0" y="154">   install fresh filter cartridge.</text>
+      <text x="0" y="169">4. Pour rest of 911 into fuel tanks.</text>
+      <text x="0" y="184">5. Wait 15 minutes to dissolve wax.</text>
+      <text x="0" y="199">6. Prime hand pump 50-80 strokes.</text>
+      <text x="0" y="214">7. Start engine; idle until warm.</text>
+    </g>
+  </g>
+
+  <!-- Panel 3: DEF Freezing & Heated Tank -->
+  <g transform="translate(488, 78)">
+    <rect width="212" height="412" rx="8" fill="url(#cardGrad)" stroke="#1e3a5f" stroke-width="1.5"/>
+    <rect width="212" height="30" rx="8" fill="#132c4f"/>
+    <text x="12" y="20" fill="#38bdf8" font-family="system-ui" font-size="10.5" font-weight="800">3. DEF TANK (12°F FREEZE)</text>
+
+    <g transform="translate(12, 42)" font-family="system-ui" font-size="9.5" fill="#cbd5e1">
+      <text x="0" y="12" font-weight="700" fill="#38bdf8">DEF Freezing Characteristics:</text>
+      <text x="0" y="27">• Freezes solid at 12°F (-11°C).</text>
+      <text x="0" y="42">• Cascadia has built-in engine</text>
+      <text x="0" y="55">  coolant loop to thaw DEF tank.</text>
+      <text x="0" y="70">• Heated doser line prevents plugs.</text>
+
+      <line x1="0" y1="82" x2="188" y2="82" stroke="#1e3a5f"/>
+
+      <text x="0" y="98" font-weight="700" fill="#ef4444">STRICT FLEET RULES:</text>
+      <text x="0" y="113" fill="#fca5a5">• DO NOT top off 100% full in</text>
+      <text x="0" y="126" fill="#fca5a5">  winter: DEF expands ~7% as ice,</text>
+      <text x="0" y="139" fill="#fca5a5">  cracking expensive tank &amp; pump!</text>
+      <text x="0" y="154" fill="#fbbf24">• NEVER put fuel, additives, or</text>
+      <text x="0" y="167" fill="#fbbf24">  antifreeze into DEF blue cap!</text>
+      <text x="0" y="180">• Contamination = $18,000 DPF/SCR</text>
+      <text x="0" y="195">  complete exhaust replacement.</text>
+    </g>
+  </g>
+
+  <!-- Panel 4: Air Line Freeze Protection -->
+  <g transform="translate(716, 78)">
+    <rect width="212" height="412" rx="8" fill="url(#cardGrad)" stroke="#1e3a5f" stroke-width="1.5"/>
+    <rect width="212" height="30" rx="8" fill="#132c4f"/>
+    <text x="12" y="20" fill="#38bdf8" font-family="system-ui" font-size="10.5" font-weight="800">4. AIR LINE FREEZE</text>
+
+    <g transform="translate(12, 42)" font-family="system-ui" font-size="9.5" fill="#cbd5e1">
+      <text x="0" y="12" font-weight="700" fill="#38bdf8">Frozen Air Line Recovery:</text>
+      <text x="0" y="27">• Moisture condenses in valves and</text>
+      <text x="0" y="40">  locks up trailer spring brakes.</text>
+
+      <line x1="0" y1="52" x2="188" y2="52" stroke="#1e3a5f"/>
+
+      <text x="0" y="68" font-weight="700" fill="#f8fafc">Treatment Method:</text>
+      <text x="0" y="83">1. Use 99% Pure Methyl Alcohol</text>
+      <text x="0" y="96">   (Air Brake Antifreeze conditioner).</text>
+      <text x="0" y="111">2. Disconnect Red emergency line.</text>
+      <text x="0" y="126">3. Pour 2-3 oz into trailer gladhand.</text>
+      <text x="0" y="141">4. Reconnect and charge trailer.</text>
+      <text x="0" y="156">5. Pump brakes to work alcohol</text>
+      <text x="0" y="169">   through frozen relay valves.</text>
+
+      <line x1="0" y1="181" x2="188" y2="181" stroke="#1e3a5f"/>
+
+      <text x="0" y="197" font-weight="700" fill="#ef4444">⚠️ WARNING:</text>
+      <text x="0" y="212">• NEVER use standard Isopropyl</text>
+      <text x="0" y="225">  rubbing alcohol (contains 30%</text>
+      <text x="0" y="238">  water which worsens freezing!).</text>
+    </g>
+  </g>
+</svg>
