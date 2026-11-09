@@ -235,7 +235,7 @@ async function checkServerAndLoadData() {
       const data = await res.json();
       if (data.mode === 'local_server') {
         AppState.serverMode = true;
-        updateConnectionStatus('server', 'Local Server Active (Auto-saving photos to folder)');
+        updateConnectionStatus('server', 'Local Server Active (Auto-saving all issues, categories & files to folder)');
         await loadFromServer();
         return;
       }
@@ -246,7 +246,7 @@ async function checkServerAndLoadData() {
 
   // Fallback to IndexedDB / localStorage
   AppState.serverMode = false;
-  updateConnectionStatus('offline', 'Standalone Mode (Launch open_app.bat to auto-sync photos to folder)');
+  updateConnectionStatus('offline', 'Standalone Mode (Launch open_app.bat to auto-sync all changes to folder)');
   await loadFromLocal();
 }
 
@@ -2150,7 +2150,7 @@ async function triggerWebGitPush() {
     if (res.ok) {
       const data = await res.json();
       if (data.success) {
-        showToast('✓ Successfully pushed all updates and photos to GitHub!', 'success');
+        showToast('✓ Successfully pushed all issues, categories & files to GitHub!', 'success');
       } else {
         showToast('Git push: ' + (data.message || 'Check terminal / token'), 'warning');
       }
