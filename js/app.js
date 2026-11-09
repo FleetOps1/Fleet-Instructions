@@ -227,7 +227,7 @@ function updateThemeToggleIcon() {
 
 // Check if running via local server or standalone
 async function checkServerAndLoadData() {
-  updateConnectionStatus('checking', 'Connecting...');
+  updateConnectionStatus('checking', 'Connecting...', 'Checking connection to local server...');
   
   try {
     const res = await fetch('/api/status', { cache: 'no-store' });
@@ -235,7 +235,7 @@ async function checkServerAndLoadData() {
       const data = await res.json();
       if (data.mode === 'local_server') {
         AppState.serverMode = true;
-        updateConnectionStatus('server', 'Local Server Active (Auto-saving all issues, categories & files to folder)');
+        updateConnectionStatus('server', 'Auto-Sync Active', 'Local Server Active: All edits, categories & files auto-saved to project folder');
         await loadFromServer();
         return;
       }
@@ -246,14 +246,17 @@ async function checkServerAndLoadData() {
 
   // Fallback to IndexedDB / localStorage
   AppState.serverMode = false;
-  updateConnectionStatus('offline', 'Standalone Mode (Launch open_app.bat to auto-sync all changes to folder)');
+  updateConnectionStatus('offline', 'Standalone', 'Standalone Mode: Launch open_app.bat to auto-sync changes to project folder');
   await loadFromLocal();
 }
 
-function updateConnectionStatus(type, text) {
+function updateConnectionStatus(type, text, tooltip) {
   const badge = document.getElementById('connectionStatus');
   if (!badge) return;
   badge.className = 'connection-status ' + (type === 'server' ? '' : 'offline-mode');
+  if (tooltip) {
+    badge.title = tooltip;
+  }
   badge.innerHTML = `<span class="status-dot"></span><span>${text}</span>`;
 }
 

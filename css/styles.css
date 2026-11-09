@@ -113,12 +113,10 @@ h1, h2, h3, .section-title, .issue-title, .category-name {
 .header-container {
   max-width: 1440px;
   margin: 0 auto;
-  padding: 14px 28px;
+  padding: 14px 28px 12px 28px;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 16px;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .brand-section {
@@ -177,23 +175,43 @@ h1, h2, h3, .section-title, .issue-title, .category-name {
 .header-actions {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 12px;
+}
+
+.header-actions-left {
+  display: flex;
+  align-items: center;
   gap: 10px;
   flex-wrap: wrap;
 }
 
-/* Connection Status Badge */
-.connection-status {
+.header-actions-right {
   display: flex;
   align-items: center;
-  gap: 7px;
-  padding: 6px 14px;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-left: auto;
+}
+
+/* Connection Status Badge */
+.connection-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 11px;
   border-radius: 9999px;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 600;
   background: rgba(16, 185, 129, 0.1);
   border: 1px solid rgba(16, 185, 129, 0.25);
   color: #34d399;
   letter-spacing: 0.01em;
+  white-space: nowrap;
+  line-height: 1;
+  cursor: help;
+  transition: var(--transition-smooth);
 }
 .connection-status.offline-mode {
   background: rgba(56, 189, 248, 0.1);
@@ -1656,6 +1674,14 @@ h1, h2, h3, .section-title, .issue-title, .category-name {
 @media (max-width: 768px) {
   .header-container {
     padding: 10px 16px;
+    gap: 10px;
+  }
+  .header-actions {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .header-actions-right {
+    margin-left: 0;
   }
   .main-wrapper {
     padding: 16px;
