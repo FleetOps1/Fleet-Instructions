@@ -2126,6 +2126,48 @@ function exportDatabaseJSON() {
   showToast('Backup JSON downloaded to your computer!', 'success');
 }
 
+// 1-Click Push to GitHub from Web Dashboard
+async function triggerWebGitPush() {
+  const btn = document.getElementById('btnGitPush');
+  const originalHtml = btn ? btn.innerHTML : '';
+
+  if (!AppState.serverMode) {
+    showToast('In Standalone Mode. Launch open_app.bat or run git_push.bat to push to GitHub.', 'warning');
+    return;
+  }
+
+  try {
+    if (btn) {
+      btn.disabled = true;
+      btn.innerHTML = `<span class="status-dot" style="background:#38bdf8;animation:pulse 1s infinite;display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;"></span> Pushing...`;
+    }
+    showToast('Pushing latest edits and photos to GitHub...', 'info');
+
+    // First ensure database and offline cache are cleanly persisted to disk
+    await persistDatabase();
+
+    const res = await fetch('/api/git-push', { method: 'POST' });
+    if (res.ok) {
+      const data = await res.json();
+      if (data.success) {
+        showToast('✓ Successfully pushed all updates and photos to GitHub!', 'success');
+      } else {
+        showToast('Git push: ' + (data.message || 'Check terminal / token'), 'warning');
+      }
+    } else {
+      showToast('Could not reach push server. Double-click git_push.bat to push.', 'error');
+    }
+  } catch (err) {
+    console.error('Git push error:', err);
+    showToast('Push error. Double-click git_push.bat to push manually.', 'error');
+  } finally {
+    if (btn) {
+      btn.disabled = false;
+      btn.innerHTML = originalHtml;
+    }
+  }
+}
+
 function importDatabaseJSON(file) {
   if (!file) return;
   const reader = new FileReader();

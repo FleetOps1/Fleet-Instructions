@@ -124,6 +124,31 @@ while ($listener.IsListening) {
             continue
         }
 
+        if ($rawUrl -eq "/api/git-push" -and $request.HttpMethod -eq "POST") {
+            $gitPath = "C:\Users\user\AppData\Local\Programs\Git\cmd;C:\Users\user\AppData\Local\Programs\Git\ucrt64\bin;"
+            $env:Path = $gitPath + $env:Path
+            
+            try {
+                git add .
+                $commitMsg = "FleetOps update: " + (Get-Date -Format "yyyy-MM-dd HH:mm")
+                git commit -m $commitMsg 2>&1 | Out-Null
+            } catch {}
+            
+            $pushOut = git push origin main 2>&1
+            $success = ($LASTEXITCODE -eq 0)
+            
+            $result = @{
+                success = $success
+                message = if ($success) { "Successfully pushed all changes and photos to GitHub!" } else { ($pushOut | Out-String).Trim() }
+            } | ConvertTo-Json
+            
+            $buffer = [System.Text.Encoding]::UTF8.GetBytes($result)
+            $response.ContentType = "application/json; charset=utf-8"
+            $response.OutputStream.Write($buffer, 0, $buffer.Length)
+            $response.Close()
+            continue
+        }
+
         if ($rawUrl -eq "/api/upload" -and $request.HttpMethod -eq "POST") {
             $reader = New-Object System.IO.StreamReader($request.InputStream, [System.Text.Encoding]::UTF8)
             $body = $reader.ReadToEnd()
