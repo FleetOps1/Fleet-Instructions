@@ -7,11 +7,20 @@ echo   Freightliner FleetOps - Pull Latest from GitHub
 echo ========================================================
 echo.
 
+:: Ensure Git is in PATH
 where git >nul 2>nul
 if %ERRORLEVEL% neq 0 (
-    echo [ERROR] Git is not found in PATH!
-    pause
-    exit /b 1
+    if exist "%LOCALAPPDATA%\Programs\Git\cmd\git.exe" (
+        set "PATH=%LOCALAPPDATA%\Programs\Git\cmd;%PATH%"
+    ) else if exist "C:\Program Files\Git\cmd\git.exe" (
+        set "PATH=C:\Program Files\Git\cmd;%PATH%"
+    ) else (
+        echo [ERROR] Git is not found!
+        echo Please install Git on this PC to pull changes.
+        echo.
+        pause
+        exit /b 1
+    )
 )
 
 echo Pulling latest updates from GitHub...
@@ -22,9 +31,7 @@ if %ERRORLEVEL% neq 0 (
 
 echo.
 echo Syncing seed database to disk...
-if exist "%~dp0server.ps1" (
-    powershell -NoProfile -Command "if (Test-Path 'data\fleet_database.json') { $c = Get-Content 'data\fleet_database.json' -Raw; [System.IO.File]::WriteAllText('js\seed_data.js', '// Seed Database for Offline / Standalone Fallback`r`nconst INITIAL_DATABASE = ' + $c + ';`r`n', [System.Text.UTF8Encoding]::new($false)) }"
-)
+powershell -NoProfile -Command "if (Test-Path 'data\fleet_database.json') { $c = Get-Content 'data\fleet_database.json' -Raw; [System.IO.File]::WriteAllText('js\seed_data.js', '// Seed Database for Offline / Standalone Fallback`r`nconst INITIAL_DATABASE = ' + $c + ';`r`n', [System.Text.UTF8Encoding]::new($false)) }"
 
 echo.
 echo ========================================================

@@ -7,39 +7,58 @@ echo   Freightliner FleetOps - Sync Changes to GitHub
 echo ========================================================
 echo.
 
+:: Ensure Git is in PATH
 where git >nul 2>nul
 if %ERRORLEVEL% neq 0 (
-    echo [ERROR] Git is not found in PATH!
-    echo Please install Git or restart your command prompt.
-    echo.
+    if exist "%LOCALAPPDATA%\Programs\Git\cmd\git.exe" (
+        set "PATH=%LOCALAPPDATA%\Programs\Git\cmd;%PATH%"
+    ) else if exist "C:\Program Files\Git\cmd\git.exe" (
+        set "PATH=C:\Program Files\Git\cmd;%PATH%"
+    ) else (
+        echo [ERROR] Git is not found!
+        echo Please install Git on this PC to push changes.
+        echo.
+        pause
+        exit /b 1
+    )
+)
+
+if not exist "%~dp0.git" (
+    echo [ERROR] Git repository is not initialized here.
     pause
     exit /b 1
 )
 
-if not exist "%~dp0.git" (
-    echo [ERROR] Git repository is not initialized here yet.
-    echo Please initialize git first.
+:: Check if remote is configured
+git remote get-url origin >nul 2>nul
+if %ERRORLEVEL% neq 0 (
+    echo [NOTICE] GitHub remote URL is not configured yet!
     echo.
-    pause
-    exit /b 1
+    set /p REPO_URL="Enter your GitHub repository URL (e.g. https://github.com/username/repo.git): "
+    if not "%REPO_URL%"=="" (
+        git remote add origin %REPO_URL%
+        echo Remote added: %REPO_URL%
+    ) else (
+        echo No remote entered. Cannot push.
+        pause
+        exit /b 1
+    )
 )
 
 set /p COMMIT_MSG="Enter commit note (press Enter for auto-timestamp): "
 if "%COMMIT_MSG%"=="" (
-    for /f "tokens=2-4 delims=/ " %%a in ('date /t') do (set mydate=%%c-%%a-%%b)
-    for /f "tokens=1-2 delims=/:" %%a in ('time /t') do (set mytime=%%a:%%b)
     set COMMIT_MSG=FleetOps update - %DATE% %TIME%
 )
 
 echo.
-echo [1/3] Adding all files and uploads...
+echo [1/3] Adding all files, uploads, and database changes...
 git add .
 
 echo [2/3] Committing changes...
 git commit -m "%COMMIT_MSG%"
 
 echo [3/3] Pushing to GitHub...
-git push origin main
+git push -u origin main
 
 if %ERRORLEVEL% equ 0 (
     echo.
@@ -48,8 +67,8 @@ if %ERRORLEVEL% equ 0 (
     echo ========================================================
 ) else (
     echo.
-    echo [NOTICE] Push encountered an issue. Trying 'master' branch or check connection...
-    git push origin master
+    echo [NOTICE] If this is your first push or authentication is required,
+    echo sign in with your GitHub account in the browser prompt or token.
 )
 
 echo.
