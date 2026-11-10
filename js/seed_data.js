@@ -208,55 +208,13 @@ const INITIAL_DATABASE = {
                                           "caption":  "Freightliner Approved Coolant / Antifreeze: ELC OAT 50/50 Premix (Red/Pink)",
                                           "name":  "05_Freightliner_Coolant_OAT.png",
                                           "type":  "image"
-                                      }
+                                      },
+                                      "assets/coolant_surge_tank.svg"
                                   ],
                        "notes":  "Specifications: Extended Life Coolant (ELC) Organic Acid Technology (OAT) 50/50 Premix (Red/Pink). Complies with Detroit DFS 93K217.",
                        "shopUrgency":  "urgent",
                        "createdAt":  "2026-11-08T15:10:00.000Z",
                        "updatedAt":  "2026-11-08T15:10:00.000Z"
-                   },
-                   {
-                       "id":  "parts-anatomy-guide",
-                       "categoryId":  "truck_anatomy",
-                       "title":  "Freightliner Cascadia Truck Parts \u0026 Component Anatomy",
-                       "dashCodes":  "Reference Guide | Standard Fleet Parts Nomenclature",
-                       "symptoms":  [
-                                        "Driver cannot identify or name broken component when reporting to dispatch or mobile mechanic",
-                                        "New driver onboarding and training on standard Class 8 tractor nomenclature and chassis layout",
-                                        "Documenting physical body and chassis damage for insurance and maintenance repair logs"
-                                    ],
-                       "driverSteps":  [
-                                           "1. FRONT HOOD \u0026 BUMPER: Aerodynamic hood latch assembly, front bumper with integrated collision radar, chrome grille, LED headlight pods, pre-trip bug screen, and hood safety cables.",
-                                           "2. STEER AXLE \u0026 WHEELS: Steer rims (22.5 inch), 295/75R22.5 steer tires (minimum 4/32 inch tread), clear oil hub sight glass (inspect oil level), tie rod, drag link, steering gear box, leaf springs, and shock absorbers.",
-                                           "3. UNDER HOOD / ENGINE: Detroit DD15 / Cummins X15 block, plastic coolant surge tank (fill to MAX cold), charge air cooler (CAC) hoses, serpentine belt \u0026 automatic tensioner, alternator, A/C compressor, primary/secondary fuel filters, oil dipstick, and washer fluid neck.",
-                                           "4. DRIVER SIDE \u0026 CABIN: Aerodynamic cab side fairings, battery box (4 AGM 12V batteries \u0026 master shutoff switch), driver-side aluminum fuel tank \u0026 rubber-cushioned mounting straps, DEF tank (blue cap, 23 gallon capacity), and cab entry grab handles.",
-                                           "5. BEHIND CAB \u0026 COUPLING: Headache rack / sleeper cab extenders, metal catwalk, Red emergency air line, Blue service air line, Green 7-way electrical cable (pigtail), gladhands with rubber grommets, and Bendix air dryer.",
-                                           "6. CHASSIS \u0026 FIFTH WHEEL: Fifth wheel top skid plate (must be lubricated with grease), release handle arm, locking jaws (closed tight around kingpin), sliding fifth wheel locking pins, driveshaft, and U-joints.",
-                                           "7. DRIVE TANDEM AXLES: Forward-drive and rear-drive differential axles, Type 30/30 brake chambers, manual/automatic slack adjusters, S-cam shafts, air suspension rubber bags, torque rods, and drive tires (minimum 2/32 inch tread).",
-                                           "8. REAR \u0026 CAB INTERIOR: Rear anti-spray mud flaps (DOT max 8 inches off ground), rear LED tail/brake lights, upper windshield Detroit Assurance lane-departure camera, digital dashboard display, yellow tractor park brake valve, and red trailer air supply valve."
-                                       ],
-                       "images":  [
-                                      {
-                                          "url":  "uploads/01_Tractor_Truck_Parts_Diagram_1.png",
-                                          "caption":  "Diagram 1: Tractor Front \u0026 Cab Anatomy (Exterior Cab, Hood, Bumper, Mirrors)",
-                                          "name":  "01_Tractor_Truck_Parts_Diagram_1.png",
-                                          "type":  "image"
-                                      },
-                                      {
-                                          "url":  "uploads/02_Tractor_Truck_Parts_Diagram_2.png",
-                                          "caption":  "Diagram 2: Chassis \u0026 Powertrain Nomenclature (Chassis, Tanks, DPF, Fifth Wheel)",
-                                          "name":  "02_Tractor_Truck_Parts_Diagram_2.png",
-                                          "type":  "image"
-                                      },
-                                      {
-                                          "url":  "uploads/03_Tractor_Truck_Parts_Diagram_3.png",
-                                          "caption":  "Diagram 3: Drive Axles, Suspension \u0026 Air Brakes (Tandem Axles, Brakes, Tires)",
-                                          "name":  "03_Tractor_Truck_Parts_Diagram_3.png",
-                                          "type":  "image"
-                                      }
-                                  ],
-                       "updatedAt":  "2026-11-08T17:45:00Z",
-                       "shopUrgency":  "routine_sop"
                    },
                    {
                        "id":  "sop-pre-trip-inspection",
@@ -288,7 +246,8 @@ const INITIAL_DATABASE = {
                                           "caption":  "Pre-Trip Inspection: Valve Stem PSI Pressure Measurement (Target Cold 100-115 PSI)",
                                           "name":  "08_PreTrip_Tire_Gauge_Measurement.png",
                                           "type":  "image"
-                                      }
+                                      },
+                                      "assets/pti_walkaround_inspection.svg"
                                   ],
                        "updatedAt":  "2026-11-10T20:27:03Z",
                        "shopUrgency":  "routine_sop",
@@ -362,48 +321,6 @@ const INITIAL_DATABASE = {
                        "notes":  ""
                    },
                    {
-                       "id":  "samsara-device-installation",
-                       "categoryId":  "fleet_instructions",
-                       "title":  "How to Install Samsara Vehicle Gateway (ELD) \u0026 Dash Cam",
-                       "dashCodes":  "Telematics Hardware SOP | Samsara VG54 / VG55 \u0026 CM31 / CM32",
-                       "symptoms":  [
-                                        "Equipping a new fleet tractor or transferring Samsara hardware to a rental swap tractor",
-                                        "Samsara Gateway blinking orange (searching for LTE/GPS) or red (power fault)",
-                                        "ELD not recording engine odometer, speed, or RPM data automatically"
-                                    ],
-                       "driverSteps":  [
-                                           "1. STEP 1 - LOCATE RP1226 DIAGNOSTIC CONNECTOR: On 2017+ Freightliner Cascadia, remove the lower passenger-side dash kick panel or access the diagnostic port behind the center lower dash console. Older trucks use the round 9-pin black connector under the driver steering column.",
-                                           "2. STEP 2 - CONNECT SAMSARA HARNESS: Plug the Samsara CBL-VG-BRP1226 diagnostic cable firmly into the truck mating receptacle. Turn the twist-lock locking ring clockwise until fully locked.",
-                                           "3. STEP 3 - MOUNT SAMSARA GATEWAY (VG54): Mount the black gateway box high inside the dash panel using heavy-duty zip ties. Ensure the side labeled \u0027THIS SIDE FACES THE SKY\u0027 points upward through the windshield glass for optimal GPS satellite and 4G LTE reception.",
-                                           "4. STEP 4 - MOUNT DUAL-FACING DASH CAM (CM31/CM32): Clean the windshield glass with 70% isopropyl alcohol wipe. Mount camera in the upper center of windshield, within the sweep path of the windshield wipers (DOT compliant zone, outside driver line of sight). Press 3M adhesive firmly for 30 seconds.",
-                                           "5. STEP 5 - ROUTE AND TIE CABLING: Route the USB camera cable into the upper windshield rubber molding, down behind the passenger A-pillar trim, and plug directly into the Samsara Gateway USB port. Secure loose slack with wire ties.",
-                                           "6. STEP 6 - VERIFY LED DIAGNOSTICS: Turn truck ignition ON (engine running). Check Gateway indicator lights: SOLID GREEN = GPS, Cellular, and Engine ECM communication locked and active (Normal). FLASHING ORANGE = Booting and searching for cellular/satellite signal (allow 2-4 minutes outdoors). SOLID RED = Power or diagnostic bus failure (reseat connector).",
-                                           "7. STEP 7 - CONFIGURE IN SAMSARA DRIVER APP: Open Samsara Driver App on phone or tablet. Log in and select the tractor number. Verify that odometer and engine hours reflect the truck dashboard reading. Perform a 1-minute test drive to verify automatic driving status."
-                                       ],
-                       "images":  [
-                                      {
-                                          "url":  "uploads/09_PT30_ELD_Cable.png",
-                                          "caption":  "PT30 ELD Diagnostic Cable for RP1226 Diagnostic Port",
-                                          "name":  "09_PT30_ELD_Cable.png",
-                                          "type":  "image"
-                                      },
-                                      {
-                                          "url":  "uploads/10_Samsara_Device_Gateway.png",
-                                          "caption":  "Samsara Vehicle Gateway (VG54 / VG55 Telematics Device)",
-                                          "name":  "10_Samsara_Device_Gateway.png",
-                                          "type":  "image"
-                                      },
-                                      {
-                                          "url":  "uploads/12_Samsara_Dashcam.png",
-                                          "caption":  "Samsara Dual-Facing AI Dash Cam (CM31 / CM32)",
-                                          "name":  "12_Samsara_Dashcam.png",
-                                          "type":  "image"
-                                      }
-                                  ],
-                       "updatedAt":  "2026-11-08T17:45:00Z",
-                       "shopUrgency":  "driver_fix"
-                   },
-                   {
                        "id":  "sop-post-trip-dvir",
                        "categoryId":  "fleet_instructions",
                        "title":  "Post-Trip Inspection (DVIR) \u0026 Defect Reporting SOP",
@@ -421,7 +338,7 @@ const INITIAL_DATABASE = {
                                            "5. STEP 5 - SHOP CERTIFICATION: When shop completes repairs, mechanic must certify repairs on DVIR. Driver starting next shift must review and counter-sign before departure."
                                        ],
                        "images":  [
-
+                                      "assets/dvir_post_trip_inspection.svg"
                                   ],
                        "updatedAt":  "2026-11-08T06:20:00Z",
                        "shopUrgency":  "routine_sop"
@@ -444,7 +361,7 @@ const INITIAL_DATABASE = {
                                            "5. STEP 5 - COLD STARTING \u0026 IDLE: If truck is not equipped with an APU and temperature is below 15°F, leave engine idling on high-idle (900-1000 RPM) using cruise control buttons to prevent engine slobber and maintain cylinder heat."
                                        ],
                        "images":  [
-
+                                      "assets/winter_anti_gel_protocol.svg"
                                   ],
                        "updatedAt":  "2026-11-08T06:20:00Z",
                        "shopUrgency":  "driver_fix"
@@ -452,31 +369,27 @@ const INITIAL_DATABASE = {
                    {
                        "id":  "sop-accident-emergency-protocol",
                        "categoryId":  "accidents",
-                       "title":  "Commercial Vehicle Accident \u0026 Crash Emergency Response SOP",
-                       "dashCodes":  "DOT 49 CFR В§ 382.303 | DOT В§ 390.15 | FMCSA Post-Accident Testing Protocol",
+                       "title":  "In Case of an Accident, Always Request the Following Information:",
+                       "dashCodes":  "",
                        "symptoms":  [
-                                        "Commercial motor vehicle collision, jackknife, rollover, or backing impact at customer facility",
-                                        "Physical damage to tractor front end, steer axle, fuel tanks, trailer body, or third-party vehicle",
-                                        "Law enforcement on scene conducting commercial vehicle crash investigation and issuing police report",
-                                        "Mandatory determination for DOT FMCSA post-accident drug and alcohol screening within statutory time limits",
-                                        "Disabled tractor or trailer on interstate shoulder requiring heavy-duty rotator or wrecker towing"
+
                                     ],
                        "driverSteps":  [
-                                           "1. STEP 1 - SECURE SCENE \u0026 ENSURE LIFE SAFETY: Put transmission in Neutral/Park, set all tractor and trailer spring parking brakes, shut off ignition. Immediately switch ON emergency 4-way hazard flashers. Put on high-visibility reflective safety vest before exiting tractor cab.",
-                                           "2. STEP 2 - PLACE DOT WARNING TRIANGLES WITHIN 10 MINUTES: Under DOT 49 CFR В§ 392.22, deploy 3 reflective orange triangles: 10 feet behind trailer on traffic side, 100 feet behind truck in center of lane/shoulder, and 200 feet behind truck toward oncoming traffic.",
-                                           "3. STEP 3 - CHECK FOR INJURIES \u0026 DIAL 911: Assess yourself and all other involved parties for injuries. If anyone is injured or trapped, call 911 immediately. Request police and EMS emergency medical services. Always insist on an official police crash report even for low-speed parking lot fender benders.",
-                                           "4. STEP 4 - NEVER ADMIT FAULT OR SPECULATE ON BLAME: Be courteous and cooperative with law enforcement and other drivers, but NEVER admit fault, say \u0027I\u0027m sorry\u0027, or speculate on vehicle speeds or causes (\u0027I didn\u0027t see him\u0027, etc.). Do not sign any document except the police citation or accident report.",
-                                           "5. STEP 5 - NOTIFY FLEET SAFETY \u0026 DISPATCH IMMEDIATELY: Call company Safety Department and your dispatcher 24/7 hotline right away. Report your exact location (highway, mile marker, or cross streets), vehicle drivability, and whether injuries or fluid spills exist.",
-                                           "6. STEP 6 - TAKE 360В° SCENE \u0026 DAMAGE PHOTOS BEFORE VEHICLES MOVE: From safe roadside positions, capture wide-angle 4-corner photos of both vehicles, lane positions, skid marks, road conditions, and traffic signs. Take clear close-ups of all impact points, license plates, VIN tags, and insurance cards.",
-                                           "7. STEP 7 - EXCHANGE INFORMATION \u0026 GATHER WITNESSES: Collect other driver\u0027s full name, phone number, driver\u0027s license number, insurance company name, policy number, and vehicle plate. Politely ask any independent witnesses for their business cards or phone numbers.",
-                                           "8. STEP 8 - MANDATORY DOT POST-ACCIDENT DRUG \u0026 ALCOHOL TESTING: Under 49 CFR В§ 382.303, you MUST complete a DOT alcohol test within 2-8 hours and urine drug screen within 32 hours if: (A) any human fatality occurred, OR (B) you received a moving citation AND someone received immediate medical treatment away from scene, OR (C) you received a moving citation AND any vehicle required tow-away. Safety will route you to the nearest approved testing clinic.",
-                                           "9. STEP 9 - HEAVY-DUTY TOWING \u0026 AXLE SHAFT DISCONNECT: If tractor requires towing, ensure the wrecker driver removes BOTH rear drive axle half-shafts before towing with drive tires on the ground to prevent catastrophic Detroit DT12 automated transmission destruction."
+                                           "In Case of an Accident, Always Request the Following Information:",
+                                           "- photos of the damages to our unit",
+                                           "- photos of the damages to other unit as many as possible",
+                                           "- videos",
+                                           "- other driver\u0027s CDL",
+                                           "- other driver\u0027s insurance info",
+                                           "- other vehicle\u0027s registration, MC, USDOT",
+                                           "- other vehicle\u0027s plate number",
+                                           "- other vehicle\u0027s insurance info"
                                        ],
                        "images":  [
 
                                   ],
-                       "notes":  "FMCSA POST-ACCIDENT RECORDKEEPING \u0026 TESTING RULES (49 CFR В§ 382.303 \u0026 В§ 390.15):\nвЂў DOT Recordable Criteria: Any crash on a public road resulting in (1) a fatality, (2) bodily injury requiring immediate medical treatment away from scene, or (3) disabling damage requiring one or more motor vehicles to be towed from scene.\nвЂў Testing Deadlines: Alcohol testing must occur within 2 hours (documented reason required up to 8 hours max; testing ceases after 8 hours). Urine drug screen must be collected within 32 hours.\nвЂў Company Cab Card: Hand other driver/officer the official fleet insurance cab card located in the driver\u0027s door document pouch.\nвЂў Samsara Dashcam \u0026 Gateway: Video clips are automatically uploaded to the safety portal upon impact detection. Do not disconnect gateway wiring or remove camera SD card.",
-                       "updatedAt":  "2026-11-08T07:00:00Z",
+                       "notes":  "",
+                       "updatedAt":  "2026-11-10T20:37:57Z",
                        "shopUrgency":  "towing_accident"
                    },
                    {
@@ -499,7 +412,7 @@ const INITIAL_DATABASE = {
                                            "7. If crack exceeds 6 inches: Full glass replacement is required. Send clear photos holding a tape measure against the crack to dispatch."
                                        ],
                        "images":  [
-
+                                      "assets/windshield_dot_spec.svg"
                                   ],
                        "updatedAt":  "2026-11-08T06:10:00Z",
                        "shopUrgency":  "urgent_shop"
@@ -677,7 +590,8 @@ const INITIAL_DATABASE = {
                                           "caption":  "Freightliner Approved Coolant / Antifreeze: ELC OAT 50/50 Premix (Red/Pink)",
                                           "name":  "05_Freightliner_Coolant_OAT.png",
                                           "type":  "image"
-                                      }
+                                      },
+                                      "assets/coolant_surge_tank.svg"
                                   ],
                        "updatedAt":  "2026-11-08T17:45:00Z",
                        "shopUrgency":  "urgent_shop"
@@ -732,7 +646,7 @@ const INITIAL_DATABASE = {
                                            "7. If nail is in sidewall or shoulder: Cannot be patched legally. Tire must be replaced."
                                        ],
                        "images":  [
-
+                                      "assets/tire_repair_zone.svg"
                                   ],
                        "updatedAt":  "2026-11-08T05:30:00Z",
                        "shopUrgency":  "urgent_shop"
@@ -781,7 +695,7 @@ const INITIAL_DATABASE = {
                                            "8. When finished, engine idle will return to 600 RPM and DPF light will turn OFF."
                                        ],
                        "images":  [
-
+                                      "assets/freightliner_dash_dpf.svg"
                                   ],
                        "updatedAt":  "2026-11-08T05:30:00Z",
                        "shopUrgency":  "driver_fix"
@@ -804,7 +718,7 @@ const INITIAL_DATABASE = {
                                            "5. If DEF tank is already FULL but dash says empty: DEF header quality sensor failure. Do a hard master battery disconnect reset for 15 minutes."
                                        ],
                        "images":  [
-
+                                      "assets/freightliner_dash_dpf.svg"
                                   ],
                        "updatedAt":  "2026-11-08T05:30:00Z",
                        "shopUrgency":  "urgent_shop"
@@ -981,10 +895,101 @@ const INITIAL_DATABASE = {
                                            "6. TOWING PREPARATION: Ensure wrecker driver REMOVES the rear axle drive shafts (half-shafts) or disconnects main driveshaft before towing! Towing with driveshaft connected will destroy transmission ($15,000 damage). Ensure wrecker connects auxiliary air to release trailer spring brakes."
                                        ],
                        "images":  [
-
+                                      "assets/roadside_towing_safety.svg"
                                   ],
                        "updatedAt":  "2026-11-08T05:30:00Z",
                        "shopUrgency":  "towing_accident"
                    }
-               ]
+               ],
+    "trash":  [
+                  {
+                      "id":  "parts-anatomy-guide",
+                      "categoryId":  "truck_anatomy",
+                      "title":  "Freightliner Cascadia Truck Parts \u0026 Component Anatomy",
+                      "dashCodes":  "Reference Guide | Standard Fleet Parts Nomenclature",
+                      "symptoms":  [
+                                       "Driver cannot identify or name broken component when reporting to dispatch or mobile mechanic",
+                                       "New driver onboarding and training on standard Class 8 tractor nomenclature and chassis layout",
+                                       "Documenting physical body and chassis damage for insurance and maintenance repair logs"
+                                   ],
+                      "driverSteps":  [
+                                          "1. FRONT HOOD \u0026 BUMPER: Aerodynamic hood latch assembly, front bumper with integrated collision radar, chrome grille, LED headlight pods, pre-trip bug screen, and hood safety cables.",
+                                          "2. STEER AXLE \u0026 WHEELS: Steer rims (22.5 inch), 295/75R22.5 steer tires (minimum 4/32 inch tread), clear oil hub sight glass (inspect oil level), tie rod, drag link, steering gear box, leaf springs, and shock absorbers.",
+                                          "3. UNDER HOOD / ENGINE: Detroit DD15 / Cummins X15 block, plastic coolant surge tank (fill to MAX cold), charge air cooler (CAC) hoses, serpentine belt \u0026 automatic tensioner, alternator, A/C compressor, primary/secondary fuel filters, oil dipstick, and washer fluid neck.",
+                                          "4. DRIVER SIDE \u0026 CABIN: Aerodynamic cab side fairings, battery box (4 AGM 12V batteries \u0026 master shutoff switch), driver-side aluminum fuel tank \u0026 rubber-cushioned mounting straps, DEF tank (blue cap, 23 gallon capacity), and cab entry grab handles.",
+                                          "5. BEHIND CAB \u0026 COUPLING: Headache rack / sleeper cab extenders, metal catwalk, Red emergency air line, Blue service air line, Green 7-way electrical cable (pigtail), gladhands with rubber grommets, and Bendix air dryer.",
+                                          "6. CHASSIS \u0026 FIFTH WHEEL: Fifth wheel top skid plate (must be lubricated with grease), release handle arm, locking jaws (closed tight around kingpin), sliding fifth wheel locking pins, driveshaft, and U-joints.",
+                                          "7. DRIVE TANDEM AXLES: Forward-drive and rear-drive differential axles, Type 30/30 brake chambers, manual/automatic slack adjusters, S-cam shafts, air suspension rubber bags, torque rods, and drive tires (minimum 2/32 inch tread).",
+                                          "8. REAR \u0026 CAB INTERIOR: Rear anti-spray mud flaps (DOT max 8 inches off ground), rear LED tail/brake lights, upper windshield Detroit Assurance lane-departure camera, digital dashboard display, yellow tractor park brake valve, and red trailer air supply valve."
+                                      ],
+                      "images":  [
+                                     {
+                                         "url":  "uploads/01_Tractor_Truck_Parts_Diagram_1.png",
+                                         "caption":  "Diagram 1: Tractor Front \u0026 Cab Anatomy (Exterior Cab, Hood, Bumper, Mirrors)",
+                                         "name":  "01_Tractor_Truck_Parts_Diagram_1.png",
+                                         "type":  "image"
+                                     },
+                                     {
+                                         "url":  "uploads/02_Tractor_Truck_Parts_Diagram_2.png",
+                                         "caption":  "Diagram 2: Chassis \u0026 Powertrain Nomenclature (Chassis, Tanks, DPF, Fifth Wheel)",
+                                         "name":  "02_Tractor_Truck_Parts_Diagram_2.png",
+                                         "type":  "image"
+                                     },
+                                     {
+                                         "url":  "uploads/03_Tractor_Truck_Parts_Diagram_3.png",
+                                         "caption":  "Diagram 3: Drive Axles, Suspension \u0026 Air Brakes (Tandem Axles, Brakes, Tires)",
+                                         "name":  "03_Tractor_Truck_Parts_Diagram_3.png",
+                                         "type":  "image"
+                                     },
+                                     "assets/freightliner_anatomy_diagram.svg"
+                                 ],
+                      "updatedAt":  "2026-11-08T17:45:00Z",
+                      "shopUrgency":  "routine_sop",
+                      "deletedAt":  "2026-11-10T20:34:18.561Z"
+                  },
+                  {
+                      "id":  "samsara-device-installation",
+                      "categoryId":  "fleet_instructions",
+                      "title":  "How to Install Samsara Vehicle Gateway (ELD) \u0026 Dash Cam",
+                      "dashCodes":  "Telematics Hardware SOP | Samsara VG54 / VG55 \u0026 CM31 / CM32",
+                      "symptoms":  [
+                                       "Equipping a new fleet tractor or transferring Samsara hardware to a rental swap tractor",
+                                       "Samsara Gateway blinking orange (searching for LTE/GPS) or red (power fault)",
+                                       "ELD not recording engine odometer, speed, or RPM data automatically"
+                                   ],
+                      "driverSteps":  [
+                                          "1. STEP 1 - LOCATE RP1226 DIAGNOSTIC CONNECTOR: On 2017+ Freightliner Cascadia, remove the lower passenger-side dash kick panel or access the diagnostic port behind the center lower dash console. Older trucks use the round 9-pin black connector under the driver steering column.",
+                                          "2. STEP 2 - CONNECT SAMSARA HARNESS: Plug the Samsara CBL-VG-BRP1226 diagnostic cable firmly into the truck mating receptacle. Turn the twist-lock locking ring clockwise until fully locked.",
+                                          "3. STEP 3 - MOUNT SAMSARA GATEWAY (VG54): Mount the black gateway box high inside the dash panel using heavy-duty zip ties. Ensure the side labeled \u0027THIS SIDE FACES THE SKY\u0027 points upward through the windshield glass for optimal GPS satellite and 4G LTE reception.",
+                                          "4. STEP 4 - MOUNT DUAL-FACING DASH CAM (CM31/CM32): Clean the windshield glass with 70% isopropyl alcohol wipe. Mount camera in the upper center of windshield, within the sweep path of the windshield wipers (DOT compliant zone, outside driver line of sight). Press 3M adhesive firmly for 30 seconds.",
+                                          "5. STEP 5 - ROUTE AND TIE CABLING: Route the USB camera cable into the upper windshield rubber molding, down behind the passenger A-pillar trim, and plug directly into the Samsara Gateway USB port. Secure loose slack with wire ties.",
+                                          "6. STEP 6 - VERIFY LED DIAGNOSTICS: Turn truck ignition ON (engine running). Check Gateway indicator lights: SOLID GREEN = GPS, Cellular, and Engine ECM communication locked and active (Normal). FLASHING ORANGE = Booting and searching for cellular/satellite signal (allow 2-4 minutes outdoors). SOLID RED = Power or diagnostic bus failure (reseat connector).",
+                                          "7. STEP 7 - CONFIGURE IN SAMSARA DRIVER APP: Open Samsara Driver App on phone or tablet. Log in and select the tractor number. Verify that odometer and engine hours reflect the truck dashboard reading. Perform a 1-minute test drive to verify automatic driving status."
+                                      ],
+                      "images":  [
+                                     {
+                                         "url":  "uploads/09_PT30_ELD_Cable.png",
+                                         "caption":  "PT30 ELD Diagnostic Cable for RP1226 Diagnostic Port",
+                                         "name":  "09_PT30_ELD_Cable.png",
+                                         "type":  "image"
+                                     },
+                                     {
+                                         "url":  "uploads/10_Samsara_Device_Gateway.png",
+                                         "caption":  "Samsara Vehicle Gateway (VG54 / VG55 Telematics Device)",
+                                         "name":  "10_Samsara_Device_Gateway.png",
+                                         "type":  "image"
+                                     },
+                                     {
+                                         "url":  "uploads/12_Samsara_Dashcam.png",
+                                         "caption":  "Samsara Dual-Facing AI Dash Cam (CM31 / CM32)",
+                                         "name":  "12_Samsara_Dashcam.png",
+                                         "type":  "image"
+                                     },
+                                     "assets/samsara_installation_diagram.svg"
+                                 ],
+                      "updatedAt":  "2026-11-08T17:45:00Z",
+                      "shopUrgency":  "driver_fix",
+                      "deletedAt":  "2026-11-10T20:34:05.056Z"
+                  }
+              ]
 };
