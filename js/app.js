@@ -832,15 +832,22 @@ function renderIssuesList() {
 
   let filtered = AppState.db.issues.slice();
 
+  // Toggle Categories Section ("middle components") visibility when searching
+  const isSearching = !!AppState.searchQuery.trim();
+  const catSection = document.getElementById('categoriesSection') || document.querySelector('.categories-section');
+  if (catSection) {
+    catSection.style.display = isSearching ? 'none' : '';
+  }
+
   // Category filter
   if (AppState.selectedCategory !== 'all') {
     filtered = filtered.filter(i => issueMatchesCategory(i, AppState.selectedCategory));
     const cat = AppState.db.categories.find(c => c.id === AppState.selectedCategory);
     if (currentFilterTitle && cat) {
-      currentFilterTitle.textContent = cat.name;
+      currentFilterTitle.textContent = isSearching ? `${cat.name} (Search)` : cat.name;
     }
   } else {
-    if (currentFilterTitle) currentFilterTitle.textContent = 'All Issues & SOPs';
+    if (currentFilterTitle) currentFilterTitle.textContent = isSearching ? 'Search Results' : 'All Issues & SOPs';
   }
 
   // Search query filter
@@ -1016,6 +1023,8 @@ function resetFilters() {
   if (searchInput) searchInput.value = '';
   const clearBtn = document.getElementById('searchClearBtn');
   if (clearBtn) clearBtn.style.display = 'none';
+  const catSection = document.getElementById('categoriesSection') || document.querySelector('.categories-section');
+  if (catSection) catSection.style.display = '';
   renderCategoryCards();
   renderUrgencyPills();
   renderIssuesList();
