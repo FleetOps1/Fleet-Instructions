@@ -87,6 +87,27 @@
   ],
   "issues": [
     {
+      "id": "issue-1794344177698",
+      "categoryId": "fleet_instructions",
+      "title": "Windshield Crack",
+      "shopUrgency": "",
+      "dashCodes": "",
+      "symptoms": [],
+      "driverSteps": [
+        "If it's not bigger than a quarter coin you can apply windshield kit and prevent it from spreading"
+      ],
+      "images": [
+        {
+          "url": "uploads/img_66410183_image.png",
+          "caption": "Image",
+          "name": "image.png",
+          "type": "image"
+        }
+      ],
+      "notes": "",
+      "updatedAt": "2026-11-10T20:56:17.698Z"
+    },
+    {
       "id": "issue-1794159726250",
       "categoryId": "truck_anatomy",
       "title": "Tractor Truck Parts Definition",
@@ -152,18 +173,9 @@
       "id": "issue-1794148523580",
       "categoryId": "engine",
       "title": "Freightliner Oil Specifications (Shell Rotella T5 10W-30)",
-      "dashCodes": "Detroit DD13/DD15/DD16 Approved | DFS 93K222 / API CK-4",
-      "symptoms": [
-        "Low engine oil level warning on digital dash cluster",
-        "Adding make-up oil between scheduled PM preventative maintenance intervals",
-        "Verifying fleet standard oil viscosity and approved synthetic blend rating"
-      ],
-      "driverSteps": [
-        "1. Always verify oil level using physical dipstick on cold engine or 15 minutes after shutdown on level ground.",
-        "2. Approved fleet standard oil: Shell Rotella T5 Diesel Engine Oil Heavy Duty Synthetic Blend 10W-30.",
-        "3. If oil level is near MIN mark, add 1-2 gallons of Shell Rotella T5 10W-30.",
-        "4. Recheck dipstick level before starting engine. Ensure oil filler cap is secured tightly."
-      ],
+      "dashCodes": "",
+      "symptoms": [],
+      "driverSteps": [],
       "images": [
         {
           "url": "uploads/06_Freightliner_Oil_Rotella_T5.png",
@@ -172,41 +184,30 @@
           "type": "image"
         }
       ],
-      "notes": "Specifications: Shell Rotella T5 Heavy Duty Synthetic Blend 10W-30 (Meets Detroit Diesel DFS 93K222 & API CK-4 / CJ-4 specifications).",
-      "shopUrgency": "routine_sop",
+      "notes": "",
+      "shopUrgency": "",
       "createdAt": "2026-11-08T15:00:00.000Z",
-      "updatedAt": "2026-11-08T15:00:00.000Z"
+      "updatedAt": "2026-11-10T20:54:35.549Z"
     },
     {
       "id": "issue-1794148785452",
       "categoryId": "engine",
       "title": "Freightliner Coolant / Antifreeze Specifications (ELC OAT 50/50)",
-      "dashCodes": "Detroit Diesel DFS 93K217 Approved | ELC Nitrite-Free OAT",
-      "symptoms": [
-        "Low coolant light or red dash warning",
-        "Surge tank fluid level below MIN line",
-        "Topping off coolant surge tank during pre-trip inspection"
-      ],
-      "driverSteps": [
-        "1. CAUTION: NEVER open surge tank cap while engine is HOT! Allow system to cool completely.",
-        "2. Check fluid level in translucent plastic surge tank (must be between MIN and MAX marks cold).",
-        "3. Approved fleet specification: Extended Life Coolant (ELC) containing Organic Acid Technology (OAT) - 50/50 Premix (Red / Pink color).",
-        "4. NEVER mix green conventional coolant with red/pink OAT coolant - mixing causes gelation, clogged radiator, and water pump failure.",
-        "5. Tighten cap until it clicks firmly to maintain cooling system pressurization."
-      ],
+      "dashCodes": "",
+      "symptoms": [],
+      "driverSteps": [],
       "images": [
         {
           "url": "uploads/05_Freightliner_Coolant_OAT.png",
           "caption": "Freightliner Approved Coolant / Antifreeze: ELC OAT 50/50 Premix (Red/Pink)",
           "name": "05_Freightliner_Coolant_OAT.png",
           "type": "image"
-        },
-        "assets/coolant_surge_tank.svg"
+        }
       ],
-      "notes": "Specifications: Extended Life Coolant (ELC) Organic Acid Technology (OAT) 50/50 Premix (Red/Pink). Complies with Detroit DFS 93K217.",
-      "shopUrgency": "urgent",
+      "notes": "",
+      "shopUrgency": "",
       "createdAt": "2026-11-08T15:10:00.000Z",
-      "updatedAt": "2026-11-08T15:10:00.000Z"
+      "updatedAt": "2026-11-10T20:54:58.459Z"
     },
     {
       "id": "sop-pre-trip-inspection",
