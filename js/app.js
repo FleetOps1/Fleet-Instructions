@@ -27,9 +27,50 @@ function getAttachmentUrl(item) {
 }
 const getImageUrl = getAttachmentUrl;
 
+const KNOWN_CAPTIONS = {
+  '01_Tractor_Truck_Parts_Diagram_1.png': 'Diagram 1: Tractor Front & Cab Anatomy (Exterior Cab, Hood, Bumper, Mirrors)',
+  '02_Tractor_Truck_Parts_Diagram_2.png': 'Diagram 2: Chassis & Powertrain Nomenclature (Chassis, Tanks, DPF, Fifth Wheel)',
+  '03_Tractor_Truck_Parts_Diagram_3.png': 'Diagram 3: Drive Axles, Suspension & Air Brakes (Tandem Axles, Brakes, Tires)',
+  '04_Reset_AC_and_HVAC_Cascadia.png': 'Freightliner Cascadia AC & HVAC Control Panel Reset (A/C + Recirculation Buttons)',
+  '05_Freightliner_Coolant_OAT.png': 'Freightliner Approved Coolant / Antifreeze: ELC OAT 50/50 Premix (Red/Pink)',
+  '06_Freightliner_Oil_Rotella_T5.png': 'Freightliner Approved Engine Oil: Shell Rotella T5 10W-30 Synthetic Blend',
+  '07_PreTrip_Tire_Air_Gauge.png': 'Pre-Trip Inspection: Professional Tire Pressure Air Gauge Tool',
+  '08_PreTrip_Tire_Gauge_Measurement.png': 'Pre-Trip Inspection: Valve Stem PSI Pressure Measurement (Target Cold 100-115 PSI)',
+  '09_PT30_ELD_Cable.png': 'PT30 ELD Diagnostic Cable for RP1226 Diagnostic Port',
+  '10_Samsara_Device_Gateway.png': 'Samsara Vehicle Gateway (VG54 / VG55 Telematics Device)',
+  '11_Prepass_Transponder.png': 'PrePass Weigh Station & Toll Bypass Transponder',
+  '12_Samsara_Dashcam.png': 'Samsara Dual-Facing AI Dash Cam (CM31 / CM32)',
+  '13_Freightliner_Dashboard_Cluster.png': 'Freightliner Cascadia Digital Instrument Dashboard Cluster',
+  '14_Message_Fuel_Level_Example.png': 'Rental Sub Unit Drop/Pickup Fuel Level Reporting Example',
+  '15_ABA_Carriers_Red_Decals.pdf': 'Official ABA Carriers Red Door Decals Document'
+};
+
+function formatImageTitle(rawName) {
+  if (!rawName) return 'Photo Attachment';
+  const clean = String(rawName).split('?')[0].split('#')[0];
+  const parts = clean.split('/');
+  const filename = decodeURIComponent(parts[parts.length - 1] || '');
+  if (!filename) return 'Photo Attachment';
+  if (KNOWN_CAPTIONS[filename]) return KNOWN_CAPTIONS[filename];
+  
+  // Strip extension
+  let base = filename.replace(/\.[^/.]+$/, '');
+  // Remove leading numbers/underscores (e.g. 01_ or 123_)
+  base = base.replace(/^\d+[\s_-]*/, '');
+  // Replace underscores and hyphens with spaces
+  base = base.replace(/[_-]+/g, ' ').trim();
+  if (!base) return 'Photo Attachment';
+  // Capitalize words
+  return base.split(' ').map(w => w ? (w.charAt(0).toUpperCase() + w.slice(1)) : '').join(' ');
+}
+
 function getAttachmentCaption(item) {
-  if (!item || typeof item === 'string') return '';
-  return item.caption || '';
+  if (!item) return '';
+  if (typeof item === 'object' && item.caption && String(item.caption).trim()) {
+    return String(item.caption).trim();
+  }
+  const raw = typeof item === 'object' ? (item.name || item.url || '') : item;
+  return formatImageTitle(raw);
 }
 const getImageCaption = getAttachmentCaption;
 
@@ -94,20 +135,22 @@ function getFileBadgeInfo(type) {
 function getAttachmentObj(item) {
   if (!item) return { url: '', name: '', size: 0, type: 'file', caption: '' };
   if (typeof item === 'string') {
+    const name = getAttachmentName(item);
     return {
       url: item,
-      name: getAttachmentName(item),
+      name: name,
       size: 0,
       type: getFileType(item),
-      caption: ''
+      caption: getAttachmentCaption(item)
     };
   }
+  const name = item.name || getAttachmentName(item);
   return {
     url: item.url || '',
-    name: item.name || getAttachmentName(item),
+    name: name,
     size: item.size || 0,
     type: item.type || getFileType(item),
-    caption: item.caption || ''
+    caption: (item.caption && String(item.caption).trim()) ? String(item.caption).trim() : getAttachmentCaption(item)
   };
 }
 const getImageObj = getAttachmentObj;
@@ -1093,17 +1136,15 @@ function openIssueDetail(issueId) {
             <div class="detail-photo-grid" style="margin-bottom: ${docAtts.length > 0 ? '14px' : '0'};">
               ${imgAtts.map((img, idx) => {
                 const url = img.url;
-                const caption = img.caption;
+                const caption = img.caption || getAttachmentCaption(img) || 'Photo Attachment';
                 return `
-                  <div class="detail-photo-card" onclick="openLightbox('${issue.id}', ${idx})" title="${escapeHtml(caption ? caption + ' (Click to enlarge)' : 'Click to enlarge')}">
+                  <div class="detail-photo-card" onclick="openLightbox('${issue.id}', ${idx})" title="${escapeHtml(caption + ' (Click to enlarge)')}">
                     <div class="detail-photo-thumb">
-                      <img src="${url}" alt="${escapeHtml(caption || 'Attached photo')}" />
+                      <img src="${url}" alt="${escapeHtml(caption)}" />
                     </div>
-                    ${caption ? `
-                      <div class="detail-photo-caption">
-                        <span class="detail-caption-text">${escapeHtml(caption)}</span>
-                      </div>
-                    ` : ''}
+                    <div class="detail-photo-caption">
+                      <span class="detail-caption-text">${escapeHtml(caption)}</span>
+                    </div>
                   </div>
                 `;
               }).join('')}
@@ -2257,19 +2298,14 @@ function updateLightboxView() {
   const currentItem = lightboxImages[lightboxCurrentIndex];
   currentLightboxItem = getAttachmentObj(currentItem);
   const currentUrl = getSafeFileUrl(currentLightboxItem.url, 'image/png');
-  const currentCaption = currentLightboxItem.caption;
+  const currentCaption = currentLightboxItem.caption || getAttachmentCaption(currentLightboxItem) || currentLightboxItem.name || 'Photo';
 
   img.src = currentUrl;
-  img.alt = currentCaption || currentLightboxItem.name || 'Enlarged view';
+  img.alt = currentCaption;
 
   if (captionEl) {
-    if (currentCaption) {
-      captionEl.textContent = currentCaption;
-      captionEl.style.display = 'inline-flex';
-    } else {
-      captionEl.style.display = 'none';
-      captionEl.textContent = '';
-    }
+    captionEl.textContent = currentCaption;
+    captionEl.style.display = 'inline-flex';
   }
 
   const total = lightboxImages.length;

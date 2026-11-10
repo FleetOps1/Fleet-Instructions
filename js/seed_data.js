@@ -88,6 +88,135 @@ const INITIAL_DATABASE = {
   ],
   "issues": [
     {
+      "id": "issue-1794159726250",
+      "categoryId": "truck_anatomy",
+      "title": "Tractor Truck Parts Definition",
+      "dashCodes": "Fleet Component Nomenclature & Visual Guide",
+      "symptoms": [
+        "Driver needs anatomical parts reference to report damage or mechanical issues to dispatch",
+        "Visual nomenclature for Class 8 Freightliner Cascadia tractor truck and trailer components"
+      ],
+      "driverSteps": [
+        "1. Diagram 1: Tractor Front & Cab Anatomy - Exterior Cab, Hood, Bumper, Aerodynamics & Mirrors.",
+        "2. Diagram 2: Chassis & Powertrain Nomenclature - Chassis, Fuel Tanks, Exhaust/DPF, Fifth Wheel & Battery Box.",
+        "3. Diagram 3: Drive Axles, Suspension & Air Brakes - Drive Axles, Suspension, Air Brake Chambers & Tires."
+      ],
+      "images": [
+        {
+          "url": "uploads/01_Tractor_Truck_Parts_Diagram_1.png",
+          "caption": "Diagram 1: Tractor Front & Cab Anatomy (Exterior Cab, Hood, Bumper, Mirrors)",
+          "name": "01_Tractor_Truck_Parts_Diagram_1.png",
+          "type": "image"
+        },
+        {
+          "url": "uploads/02_Tractor_Truck_Parts_Diagram_2.png",
+          "caption": "Diagram 2: Chassis & Powertrain Nomenclature (Chassis, Tanks, DPF, Fifth Wheel)",
+          "name": "02_Tractor_Truck_Parts_Diagram_2.png",
+          "type": "image"
+        },
+        {
+          "url": "uploads/03_Tractor_Truck_Parts_Diagram_3.png",
+          "caption": "Diagram 3: Drive Axles, Suspension & Air Brakes (Tandem Axles, Brakes, Tires)",
+          "name": "03_Tractor_Truck_Parts_Diagram_3.png",
+          "type": "image"
+        }
+      ],
+      "notes": "Full visual reference and component parts nomenclature for Class 8 Freightliner Cascadia Tractor and Trailer assemblies.",
+      "shopUrgency": "routine_sop",
+      "createdAt": "2026-11-08T17:42:06.251Z",
+      "updatedAt": "2026-11-08T17:42:06.251Z"
+    },
+    {
+      "id": "issue-1794153390233",
+      "categoryId": "hvac",
+      "title": "How to Reset / Calibrate AC & HVAC on Freightliner New Cascadia",
+      "dashCodes": "HVAC Actuator Calibration | Flashing AC Lights",
+      "symptoms": [
+        "AC blowing warm air on one side or stuck on defrost",
+        "Bunk HVAC not responding to temperature changes",
+        "Blend door actuator out of synchronization or clicking under dashboard"
+      ],
+      "driverSteps": [
+        "1. Key ON (engine running or off).",
+        "2. Turn temperature knob to Full Cold (Max AC).",
+        "3. Set fan to speed 1.",
+        "4. Press and hold switch #1 (A/C) and #2 (Recirculation) until lights flash.",
+        "5. Wait till lights stop flashing (30-60 seconds actuator calibration). Do not turn key off or touch controls during calibration."
+      ],
+      "images": [
+        {
+          "url": "uploads/04_Reset_AC_and_HVAC_Cascadia.png",
+          "caption": "Freightliner Cascadia AC & HVAC Control Panel Reset (A/C + Recirculation Buttons)",
+          "name": "04_Reset_AC_and_HVAC_Cascadia.png",
+          "type": "image"
+        }
+      ],
+      "notes": "This recalibrates all electric stepper motors and blend doors on the Freightliner Cascadia HVAC unit to factory zero points.",
+      "shopUrgency": "minor",
+      "createdAt": "2026-11-08T16:00:00.000Z",
+      "updatedAt": "2026-11-08T16:00:00.000Z"
+    },
+    {
+      "id": "issue-1794148523580",
+      "categoryId": "engine",
+      "title": "Freightliner Oil Specifications (Shell Rotella T5 10W-30)",
+      "dashCodes": "Detroit DD13/DD15/DD16 Approved | DFS 93K222 / API CK-4",
+      "symptoms": [
+        "Low engine oil level warning on digital dash cluster",
+        "Adding make-up oil between scheduled PM preventative maintenance intervals",
+        "Verifying fleet standard oil viscosity and approved synthetic blend rating"
+      ],
+      "driverSteps": [
+        "1. Always verify oil level using physical dipstick on cold engine or 15 minutes after shutdown on level ground.",
+        "2. Approved fleet standard oil: Shell Rotella T5 Diesel Engine Oil Heavy Duty Synthetic Blend 10W-30.",
+        "3. If oil level is near MIN mark, add 1-2 gallons of Shell Rotella T5 10W-30.",
+        "4. Recheck dipstick level before starting engine. Ensure oil filler cap is secured tightly."
+      ],
+      "images": [
+        {
+          "url": "uploads/06_Freightliner_Oil_Rotella_T5.png",
+          "caption": "Freightliner Approved Engine Oil: Shell Rotella T5 10W-30 Synthetic Blend",
+          "name": "06_Freightliner_Oil_Rotella_T5.png",
+          "type": "image"
+        }
+      ],
+      "notes": "Specifications: Shell Rotella T5 Heavy Duty Synthetic Blend 10W-30 (Meets Detroit Diesel DFS 93K222 & API CK-4 / CJ-4 specifications).",
+      "shopUrgency": "routine_sop",
+      "createdAt": "2026-11-08T15:00:00.000Z",
+      "updatedAt": "2026-11-08T15:00:00.000Z"
+    },
+    {
+      "id": "issue-1794148785452",
+      "categoryId": "engine",
+      "title": "Freightliner Coolant / Antifreeze Specifications (ELC OAT 50/50)",
+      "dashCodes": "Detroit Diesel DFS 93K217 Approved | ELC Nitrite-Free OAT",
+      "symptoms": [
+        "Low coolant light or red dash warning",
+        "Surge tank fluid level below MIN line",
+        "Topping off coolant surge tank during pre-trip inspection"
+      ],
+      "driverSteps": [
+        "1. CAUTION: NEVER open surge tank cap while engine is HOT! Allow system to cool completely.",
+        "2. Check fluid level in translucent plastic surge tank (must be between MIN and MAX marks cold).",
+        "3. Approved fleet specification: Extended Life Coolant (ELC) containing Organic Acid Technology (OAT) - 50/50 Premix (Red / Pink color).",
+        "4. NEVER mix green conventional coolant with red/pink OAT coolant - mixing causes gelation, clogged radiator, and water pump failure.",
+        "5. Tighten cap until it clicks firmly to maintain cooling system pressurization."
+      ],
+      "images": [
+        {
+          "url": "uploads/05_Freightliner_Coolant_OAT.png",
+          "caption": "Freightliner Approved Coolant / Antifreeze: ELC OAT 50/50 Premix (Red/Pink)",
+          "name": "05_Freightliner_Coolant_OAT.png",
+          "type": "image"
+        },
+        "assets/coolant_surge_tank.svg"
+      ],
+      "notes": "Specifications: Extended Life Coolant (ELC) Organic Acid Technology (OAT) 50/50 Premix (Red/Pink). Complies with Detroit DFS 93K217.",
+      "shopUrgency": "urgent",
+      "createdAt": "2026-11-08T15:10:00.000Z",
+      "updatedAt": "2026-11-08T15:10:00.000Z"
+    },
+    {
       "id": "parts-anatomy-guide",
       "categoryId": "truck_anatomy",
       "title": "Freightliner Cascadia Truck Parts & Component Anatomy",
@@ -108,15 +237,33 @@ const INITIAL_DATABASE = {
         "8. REAR & CAB INTERIOR: Rear anti-spray mud flaps (DOT max 8 inches off ground), rear LED tail/brake lights, upper windshield Detroit Assurance lane-departure camera, digital dashboard display, yellow tractor park brake valve, and red trailer air supply valve."
       ],
       "images": [
+        {
+          "url": "uploads/01_Tractor_Truck_Parts_Diagram_1.png",
+          "caption": "Diagram 1: Tractor Front & Cab Anatomy (Exterior Cab, Hood, Bumper, Mirrors)",
+          "name": "01_Tractor_Truck_Parts_Diagram_1.png",
+          "type": "image"
+        },
+        {
+          "url": "uploads/02_Tractor_Truck_Parts_Diagram_2.png",
+          "caption": "Diagram 2: Chassis & Powertrain Nomenclature (Chassis, Tanks, DPF, Fifth Wheel)",
+          "name": "02_Tractor_Truck_Parts_Diagram_2.png",
+          "type": "image"
+        },
+        {
+          "url": "uploads/03_Tractor_Truck_Parts_Diagram_3.png",
+          "caption": "Diagram 3: Drive Axles, Suspension & Air Brakes (Tandem Axles, Brakes, Tires)",
+          "name": "03_Tractor_Truck_Parts_Diagram_3.png",
+          "type": "image"
+        },
         "assets/freightliner_anatomy_diagram.svg"
       ],
-      "updatedAt": "2026-11-08T06:20:00Z",
+      "updatedAt": "2026-11-08T17:45:00Z",
       "shopUrgency": "routine_sop"
     },
     {
       "id": "sop-pre-trip-inspection",
       "categoryId": "fleet_instructions",
-      "title": "Pre-Trip Inspection (PTI) Step-by-Step DOT Walkaround SOP",
+      "title": "Pre-Trip Inspection (PTI) & Tire Pressure Specifications",
       "dashCodes": "DOT 49 CFR § 396.13 | Pre-Trip Standard Operating Procedure",
       "symptoms": [
         "Mandatory daily driver pre-trip inspection before operating commercial vehicle on public roads",
@@ -124,24 +271,36 @@ const INITIAL_DATABASE = {
         "Catching air leaks, loose lug nuts, low fluids, and worn tires before dispatch departure"
       ],
       "driverSteps": [
-        "1. STEP 1 - ENGINE BAY FLUIDS & BELTS: Unlatch hood safely. Inspect coolant level in plastic surge tank (between MIN and MAX cold). Check engine oil dipstick. Inspect serpentine belt for cracks/frays (deflection under 1/2 inch). Inspect all coolant and CAC hoses for bulging or leaks. Look under engine for active drips.",
-        "2. STEP 2 - STEER AXLE & SUSPENSION: Verify steer tires have at least 4/32 inch tread depth, no recaps or bulges. Check 10 lug nuts (no rust streaks indicating looseness). Inspect hub oil level through sight glass. Inspect leaf springs (no cracks or missing leaves), U-bolts tight, shock absorber not leaking.",
-        "3. STEP 3 - SIDES, TANKS & BATTERY: Inspect fuel tanks (straps tight, rubber intact, cap gasket sealed). Inspect DEF tank (cap tight, no white crystal crust on neck). Confirm battery box lid is latched securely. Inspect cab steps and mirrors.",
-        "4. STEP 4 - COUPLING & AIR LINES: Verify Red and Blue air lines and 7-way electric cord are suspended 6+ inches above catwalk. Gladhands connected firmly with zero leaks. Verify fifth wheel plate is flat against trailer apron (NO gap). Confirm locking jaws are 100% closed around trailer kingpin.",
-        "5. STEP 5 - DRIVE TANDEMS & BRAKES: Verify drive tires have minimum 2/32 inch tread and 100-110 PSI cold. Check dual spacing (no rocks or debris). Inspect brake pads (minimum 1/4 inch thickness). Verify brake drums have no heat cracks or oil contamination. Slack adjuster pushrod travel under 2 inches.",
-        "6. STEP 6 - MANDATORY IN-CAB AIR BRAKE TEST (L-A-B): Build air to 120-130 PSI governor cutout. Turn engine OFF, switch key back ON. Push in Yellow and Red parking brake valves. Press and hold foot brake firmly: combination must not lose over 4 PSI in 1 minute (Leak test). Pump foot brake until buzzer sounds at or above 60 PSI (Alarm test). Continue pumping until Yellow and Red valves pop out between 20-45 PSI (Buttons test).",
-        "7. STEP 7 - TUG TEST & BRAKE STOP: Start engine, rebuild air to 120 PSI. Gently pull forward against trailer brake to test kingpin lock. Gently pull against tractor yellow brake. Pull forward at 5 MPH and step on brake pedal to confirm truck stops straight without pulling."
+        "1. MANDATORY DRIVER CHECKLIST: (1) All tires on truck and trailer. (2) Mudflaps on truck and trailer. (3) Liquid levels (engine oil, coolant, windshield washer, power steering). (4) Air lines & electrical pigtail. (5) Trailer doors, latch bars, and landing gear. (6) Truck and trailer 360 degree photos from all sides. (7) Truck and trailer brake pads (min 1/4 inch). (8) Tires checked with air pressure gauge showing actual PSI.",
+        "2. COLD TIRE PRESSURE SPECIFICATIONS (Class 8 / 295/75R22.5): Steer Axle: 110 - 120 PSI (Target: 115 PSI Cold). Drive Tandem Duals: 95 - 105 PSI (Target: 100 PSI Cold). Trailer Tandem Duals: 95 - 105 PSI (Target: 100 PSI Cold). Always measure when tires have sat parked at least 3 hours.",
+        "3. ENGINE BAY FLUIDS & BELTS: Unlatch hood safely. Inspect coolant level in plastic surge tank (between MIN and MAX cold). Check engine oil dipstick (Shell Rotella T5 10W-30). Inspect serpentine belt for cracks/frays. Inspect all coolant and CAC hoses for leaks. Look under engine for active drips.",
+        "4. STEER AXLE & WHEELS: Verify steer tires have at least 4/32 inch tread depth, no recaps or bulges. Check 10 lug nuts (no rust streaks indicating looseness). Inspect hub oil level through sight glass. Inspect leaf springs, U-bolts, and shock absorbers.",
+        "5. COUPLING & FIFTH WHEEL: Verify Red and Blue air lines suspended 6+ inches above catwalk. Gladhands connected firmly with zero leaks. Verify fifth wheel plate flat against trailer apron (no gap). Confirm locking jaws are 100% closed around kingpin.",
+        "6. MANDATORY IN-CAB AIR BRAKE TEST (L-A-B): Build air to 120-130 PSI. Key ON, engine OFF. Push in Yellow and Red valves. Hold foot brake 1 min (max 4 PSI leak). Fan brake to 60 PSI (buzzer alarm). Continue fanning until valves pop out between 20-45 PSI.",
+        "7. TUG TEST & BRAKE STOP: Start engine, rebuild air to 120 PSI. Gently pull forward against trailer brake to test kingpin lock. Gently pull against tractor yellow brake. Pull forward at 5 MPH and test service brakes."
       ],
       "images": [
+        {
+          "url": "uploads/07_PreTrip_Tire_Air_Gauge.png",
+          "caption": "Pre-Trip Inspection: Professional Tire Pressure Air Gauge Tool",
+          "name": "07_PreTrip_Tire_Air_Gauge.png",
+          "type": "image"
+        },
+        {
+          "url": "uploads/08_PreTrip_Tire_Gauge_Measurement.png",
+          "caption": "Pre-Trip Inspection: Valve Stem PSI Pressure Measurement (Target Cold 100-115 PSI)",
+          "name": "08_PreTrip_Tire_Gauge_Measurement.png",
+          "type": "image"
+        },
         "assets/pti_walkaround_inspection.svg"
       ],
-      "updatedAt": "2026-11-08T06:20:00Z",
+      "updatedAt": "2026-11-08T16:15:00Z",
       "shopUrgency": "routine_sop"
     },
     {
       "id": "sop-ryder-swap",
       "categoryId": "fleet_instructions",
-      "title": "Ryder & Penske Rental Unit Swap Procedure",
+      "title": "Ryder Unit Swap Procedure (ABA Carriers Standard)",
       "dashCodes": "Rental Unit Exchange Protocol | Fleet SOP",
       "symptoms": [
         "Assigned fleet tractor broke down or requires long-term dealership repair",
@@ -149,20 +308,61 @@ const INITIAL_DATABASE = {
         "Transferring payload, trailer, and driver equipment into a replacement unit"
       ],
       "driverSteps": [
-        "1. STEP 1 - DISPATCH & PURCHASE ORDER: Do not arrive at rental yard without an approved PO and reservation number from breakdown dispatch. Verify branch hours and vehicle readiness.",
-        "2. STEP 2 - DOCUMENT RETURNING TRACTOR: Record final odometer mileage, engine hours, diesel fuel level, and DEF level on your ELD. Take 360-degree photos of all 4 corners, windshield, mirrors, and tires before handing over keys.",
-        "3. STEP 3 - UNCOUPLE TRAILER SAFELY: Park trailer on level pavement. Lower landing gear fully until pads contact ground, then turn high gear crank 2-3 extra turns. Disconnect gladhands and 7-way cord, stow neatly. Pull fifth wheel pin, slowly drive tractor out.",
-        "4. STEP 4 - JOINT INSPECTION WITH RENTAL AGENT: Walk around the replacement truck with the Ryder/Penske agent. Note EVERY preexisting scratch, cracked lens, chipped windshield, or tire damage directly on the outbound condition sheet before signing.",
-        "5. STEP 5 - TRANSFER CAB DOCUMENTS & PERMITS: Transfer your IRP Cab Card, IFTA decal paperwork, ELD instruction card, safety permit book, and company insurance binder to the new truck. Take all personal belongings, toll transponders, and CB radio.",
-        "6. STEP 6 - TRANSFER SAMSARA ELD GATEWAY: Unplug Samsara gateway from old truck RP1226 port and plug into replacement truck diagnostic port. Verify green LED light. Change active truck number in your Samsara Driver Mobile App immediately.",
-        "7. STEP 7 - COUPLE TRAILER & PERFORM FULL PTI: Back rental tractor under trailer, listen for locking jaws latching. Perform forward tug test. Inspect fifth wheel jaws with flashlight. Hook up lines and complete a full 15-minute Pre-Trip Inspection.",
-        "8. STEP 8 - NOTIFY DISPATCH: Send photos of the signed rental agreement, new unit number, license plate, VIN, starting mileage, and fuel level to dispatch and safety."
+        "1. RETRIEVE ALL CAB EQUIPMENT: Need to make sure driver retrieves everything: PrePass transponder, Samsara gateway, Samsara dashcam, PT30 ELD cable, trip folder, fridge, microwave, load straps, and chains. (Request photo proofs from driver before handing over keys).",
+        "2. INSTALL HARDWARE ON SUB: Need to install everything on the sub unit immediately (Samsara device, dashcam mount, PT30 cable into RP1226 diagnostic port, and PrePass on windshield).",
+        "3. INSPECTION & FUEL LEVEL PHOTOS: Make sure driver will send good pictures of SUB from all sides including fuel level at the moment of pickup/drop. If any external damages are found, make sure driver will mention and photograph them before leaving the yard.",
+        "4. COMPANY DECALS & PAPERWORK: Need to print out company decals, annual inspection (AI), and registration for the sub unit right after driver starts driving the sub. Company decals must be stuck on both sides of the cab doors. AI and registration can be requested from the same Ryder branch you are getting the sub or any other Ryder location.",
+        "5. FUEL LEVEL TO ABA FLEET & ACCOUNTING: Copy the picture of SUB fuel level and send it to 'ABA fleet' tagging all accounting with the date of drop/pickup and transponder # (PrePass).",
+        "6. SAME-DAY RYDER EMAIL: Get the Ryder branch email and send pictures of the pickup/drop THE SAME DAY. Example branch email format: 0101shop@ryder.com."
       ],
       "images": [
-        "assets/ryder_penske_swap_protocol.svg"
+        {
+          "url": "uploads/09_PT30_ELD_Cable.png",
+          "caption": "PT30 ELD Diagnostic Cable for RP1226 Diagnostic Port",
+          "name": "09_PT30_ELD_Cable.png",
+          "type": "image"
+        },
+        {
+          "url": "uploads/10_Samsara_Device_Gateway.png",
+          "caption": "Samsara Vehicle Gateway (VG54 / VG55 Telematics Device)",
+          "name": "10_Samsara_Device_Gateway.png",
+          "type": "image"
+        },
+        {
+          "url": "uploads/11_Prepass_Transponder.png",
+          "caption": "PrePass Weigh Station & Toll Bypass Transponder",
+          "name": "11_Prepass_Transponder.png",
+          "type": "image"
+        },
+        {
+          "url": "uploads/12_Samsara_Dashcam.png",
+          "caption": "Samsara Dual-Facing AI Dash Cam (CM31 / CM32)",
+          "name": "12_Samsara_Dashcam.png",
+          "type": "image"
+        },
+        {
+          "url": "uploads/13_Freightliner_Dashboard_Cluster.png",
+          "caption": "Dashboard",
+          "name": "13_Freightliner_Dashboard_Cluster.png",
+          "type": "image"
+        },
+        {
+          "url": "uploads/14_Message_Fuel_Level_Example.png",
+          "caption": "Message example",
+          "name": "14_Message_Fuel_Level_Example.png",
+          "type": "image"
+        },
+        {
+          "url": "uploads/15_ABA_Carriers_Red_Decals.pdf",
+          "name": "15_ABA_Carriers_Red_Decals.pdf",
+          "size": 0,
+          "type": "pdf",
+          "caption": "Official ABA Carriers Decals"
+        }
       ],
-      "updatedAt": "2026-11-08T06:20:00Z",
-      "shopUrgency": "routine_sop"
+      "updatedAt": "2026-11-10T20:15:30.375Z",
+      "shopUrgency": "routine_sop",
+      "notes": ""
     },
     {
       "id": "samsara-device-installation",
@@ -184,9 +384,27 @@ const INITIAL_DATABASE = {
         "7. STEP 7 - CONFIGURE IN SAMSARA DRIVER APP: Open Samsara Driver App on phone or tablet. Log in and select the tractor number. Verify that odometer and engine hours reflect the truck dashboard reading. Perform a 1-minute test drive to verify automatic driving status."
       ],
       "images": [
+        {
+          "url": "uploads/09_PT30_ELD_Cable.png",
+          "caption": "PT30 ELD Diagnostic Cable for RP1226 Diagnostic Port",
+          "name": "09_PT30_ELD_Cable.png",
+          "type": "image"
+        },
+        {
+          "url": "uploads/10_Samsara_Device_Gateway.png",
+          "caption": "Samsara Vehicle Gateway (VG54 / VG55 Telematics Device)",
+          "name": "10_Samsara_Device_Gateway.png",
+          "type": "image"
+        },
+        {
+          "url": "uploads/12_Samsara_Dashcam.png",
+          "caption": "Samsara Dual-Facing AI Dash Cam (CM31 / CM32)",
+          "name": "12_Samsara_Dashcam.png",
+          "type": "image"
+        },
         "assets/samsara_installation_diagram.svg"
       ],
-      "updatedAt": "2026-11-08T06:20:00Z",
+      "updatedAt": "2026-11-08T17:45:00Z",
       "shopUrgency": "driver_fix"
     },
     {
@@ -446,9 +664,15 @@ const INITIAL_DATABASE = {
         "7. Ensure cap is tightened until it clicks firmly. Restart engine and verify the dash light clears."
       ],
       "images": [
+        {
+          "url": "uploads/05_Freightliner_Coolant_OAT.png",
+          "caption": "Freightliner Approved Coolant / Antifreeze: ELC OAT 50/50 Premix (Red/Pink)",
+          "name": "05_Freightliner_Coolant_OAT.png",
+          "type": "image"
+        },
         "assets/coolant_surge_tank.svg"
       ],
-      "updatedAt": "2026-11-08T05:30:00Z",
+      "updatedAt": "2026-11-08T17:45:00Z",
       "shopUrgency": "urgent_shop"
     },
     {
@@ -470,8 +694,15 @@ const INITIAL_DATABASE = {
         "6. If dipstick is dry: Add 1-2 gallons of 15W-40 or 10W-30 CK-4 heavy duty engine oil before any restart attempt.",
         "7. If oil level is full on dipstick but dash reads 0 PSI: Oil pressure sensor or internal oil pump failure. DO NOT DRIVE."
       ],
-      "images": [],
-      "updatedAt": "2026-11-08T05:30:00Z",
+      "images": [
+        {
+          "url": "uploads/06_Freightliner_Oil_Rotella_T5.png",
+          "caption": "Freightliner Approved Engine Oil: Shell Rotella T5 10W-30 Synthetic Blend",
+          "name": "06_Freightliner_Oil_Rotella_T5.png",
+          "type": "image"
+        }
+      ],
+      "updatedAt": "2026-11-08T17:45:00Z",
       "shopUrgency": "urgent_shop"
     },
     {
