@@ -90,8 +90,26 @@ const SEED_DATABASE = {
                    ],
     "issues":  [
                    {
+                       "id":  "issue-1794344371065",
+                       "categoryId":  "sops",
+                       "title":  "ABA Company Address",
+                       "shopUrgency":  "",
+                       "dashCodes":  "",
+                       "symptoms":  [
+
+                                    ],
+                       "driverSteps":  [
+
+                                       ],
+                       "images":  [
+
+                                  ],
+                       "notes":  "Company name: ABA carriers\nAddress: 4764 FISHBURG RD SUITE D2, HUBER HEIGHTS, OH, 45424\nPhone: (502) 805-3333 ex. 105\nEmail: fleet@abacarriers.com\nrep.",
+                       "updatedAt":  "2026-11-10T20:59:31.065Z"
+                   },
+                   {
                        "id":  "issue-1794344177698",
-                       "categoryId":  "fleet_instructions",
+                       "categoryId":  "safety_cab",
                        "title":  "Windshield Crack",
                        "shopUrgency":  "",
                        "dashCodes":  "",
@@ -110,7 +128,7 @@ const SEED_DATABASE = {
                                       }
                                   ],
                        "notes":  "",
-                       "updatedAt":  "2026-11-10T20:56:17.698Z"
+                       "updatedAt":  "2026-11-10T23:59:59.000Z"
                    },
                    {
                        "id":  "issue-1794159726250",
@@ -377,7 +395,7 @@ const SEED_DATABASE = {
                                            "7. If crack exceeds 6 inches: Full glass replacement is required. Send clear photos holding a tape measure against the crack to dispatch."
                                        ],
                        "images":  [
-
+                                      "assets/windshield_dot_spec.svg"
                                   ],
                        "updatedAt":  "2026-11-08T06:10:00Z",
                        "shopUrgency":  "urgent_shop"
@@ -555,7 +573,8 @@ const SEED_DATABASE = {
                                           "caption":  "Freightliner Approved Coolant / Antifreeze: ELC OAT 50/50 Premix (Red/Pink)",
                                           "name":  "05_Freightliner_Coolant_OAT.png",
                                           "type":  "image"
-                                      }
+                                      },
+                                      "assets/coolant_surge_tank.svg"
                                   ],
                        "updatedAt":  "2026-11-08T17:45:00Z",
                        "shopUrgency":  "urgent_shop"
@@ -610,7 +629,7 @@ const SEED_DATABASE = {
                                            "7. If nail is in sidewall or shoulder: Cannot be patched legally. Tire must be replaced."
                                        ],
                        "images":  [
-
+                                      "assets/tire_repair_zone.svg"
                                   ],
                        "updatedAt":  "2026-11-08T05:30:00Z",
                        "shopUrgency":  "urgent_shop"
@@ -659,7 +678,7 @@ const SEED_DATABASE = {
                                            "8. When finished, engine idle will return to 600 RPM and DPF light will turn OFF."
                                        ],
                        "images":  [
-
+                                      "assets/freightliner_dash_dpf.svg"
                                   ],
                        "updatedAt":  "2026-11-08T05:30:00Z",
                        "shopUrgency":  "driver_fix"
@@ -682,7 +701,7 @@ const SEED_DATABASE = {
                                            "5. If DEF tank is already FULL but dash says empty: DEF header quality sensor failure. Do a hard master battery disconnect reset for 15 minutes."
                                        ],
                        "images":  [
-
+                                      "assets/freightliner_dash_dpf.svg"
                                   ],
                        "updatedAt":  "2026-11-08T05:30:00Z",
                        "shopUrgency":  "urgent_shop"
