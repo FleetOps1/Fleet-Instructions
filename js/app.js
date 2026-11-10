@@ -683,6 +683,14 @@ const URGENCY_CONFIG = {
   }
 };
 
+function issueMatchesCategory(issue, catId) {
+  if (!issue) return false;
+  if (issue.categoryId === catId) return true;
+  // Allow Freightliner Oil and Coolant to appear under both Truck Anatomy and Engine
+  if ((issue.id === 'issue-1794148523580' || issue.id === 'issue-1794148785452') && (catId === 'truck_anatomy' || catId === 'engine')) return true;
+  return false;
+}
+
 // Render Master Interface
 function renderApp() {
   renderCategoryCards();
@@ -708,7 +716,7 @@ function renderUrgencyPills() {
   // Base list filtered by category and search query
   let baseList = AppState.db.issues || [];
   if (AppState.selectedCategory !== 'all') {
-    baseList = baseList.filter(i => i.categoryId === AppState.selectedCategory);
+    baseList = baseList.filter(i => issueMatchesCategory(i, AppState.selectedCategory));
   }
   if (AppState.searchQuery.trim()) {
     const q = AppState.searchQuery.toLowerCase().trim();
@@ -777,7 +785,7 @@ function renderCategoryCards() {
   if (!container) return;
 
   const cardsHtml = AppState.db.categories.map(cat => {
-    const count = AppState.db.issues.filter(i => i.categoryId === cat.id).length;
+    const count = AppState.db.issues.filter(i => issueMatchesCategory(i, cat.id)).length;
     const isSelected = AppState.selectedCategory === cat.id;
     const iconHtml = Icons[cat.icon] || Icons.truck;
 
@@ -826,7 +834,7 @@ function renderIssuesList() {
 
   // Category filter
   if (AppState.selectedCategory !== 'all') {
-    filtered = filtered.filter(i => i.categoryId === AppState.selectedCategory);
+    filtered = filtered.filter(i => issueMatchesCategory(i, AppState.selectedCategory));
     const cat = AppState.db.categories.find(c => c.id === AppState.selectedCategory);
     if (currentFilterTitle && cat) {
       currentFilterTitle.textContent = cat.name;
