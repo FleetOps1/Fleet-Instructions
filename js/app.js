@@ -530,18 +530,7 @@ async function loadFromLocal() {
           needsPersist = true;
         }
 
-        // Auto-populate default visual diagrams if instructions have empty images
-        const defaultDiagramMap = {
-          'sop-pre-trip-inspection': 'assets/pti_walkaround_inspection.svg',
-          'sop-ryder-swap': 'assets/ryder_penske_swap_protocol.svg',
-          'sop-post-trip-dvir': 'assets/dvir_post_trip_inspection.svg',
-          'sop-winter-anti-gel': 'assets/winter_anti_gel_protocol.svg',
-          'sop-roadside-towing': 'assets/roadside_towing_safety.svg'
-        };
-        if (defaultDiagramMap[issue.id] && (!issue.images || issue.images.length === 0)) {
-          issue.images = [defaultDiagramMap[issue.id]];
-          needsPersist = true;
-        }
+
       });
 
       // Ensure sop-accident-emergency-protocol exists
