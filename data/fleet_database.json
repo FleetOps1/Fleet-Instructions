@@ -213,7 +213,7 @@
       "notes": "",
       "shopUrgency": "",
       "createdAt": "2026-11-08T15:00:00.000Z",
-      "updatedAt": "2026-11-10T23:59:59.000Z"
+      "updatedAt": "2026-11-10T21:04:41.726Z"
     },
     {
       "id": "issue-1794148785452",
@@ -222,7 +222,7 @@
       "dashCodes": "",
       "symptoms": [],
       "driverSteps": [
-        "Extended Life Coolant (ELC) containing Organic Acid Technology (OAT) - 50/50 Premix (Red/Pink)"
+        "Extended Life Coolant (ELC) contains Organic Acid Technology (OAT)"
       ],
       "images": [
         {
@@ -235,7 +235,7 @@
       "notes": "",
       "shopUrgency": "",
       "createdAt": "2026-11-08T15:10:00.000Z",
-      "updatedAt": "2026-11-10T23:59:59.000Z"
+      "updatedAt": "2026-11-10T21:04:29.356Z"
     },
     {
       "id": "sop-pre-trip-inspection",
@@ -523,68 +523,6 @@
       "shopUrgency": "urgent_shop"
     },
     {
-      "id": "eng-coolant-leak",
-      "categoryId": "engine",
-      "title": "Coolant Leak / Low Coolant Level",
-      "dashCodes": "SPN 111 FMI 1 | Red or Amber Engine Lamp | Low Coolant Light",
-      "symptoms": [
-        "Low Coolant warning light and chime on dashboard",
-        "Sweet chemical smell from engine bay or AC vents",
-        "Temperature gauge climbing above 215°F",
-        "Pink/Red fluid dripping under front axle or bumper"
-      ],
-      "driverSteps": [
-        "1. Safely pull over at the nearest truck stop or safe shoulder. Put on high-visibility vest and hazard lights.",
-        "2. DO NOT immediately open the surge tank cap while engine is hot! Risk of severe burns from boiling coolant under pressure.",
-        "3. Wait 15-20 minutes for engine to cool down. Use a thick towel/rag to slowly twist the cap 1/4 turn to relieve pressure.",
-        "4. Inspect coolant level in the translucent plastic surge tank against the MIN / MAX COLD line.",
-        "5. Visually inspect upper/lower radiator hoses, water pump weep hole, and EGR cooler lines with a flashlight for pink wet crust.",
-        "6. If level is low without an active pouring leak: Top up with 50/50 Red Extended Life Coolant (Rotella ELC or Peak Final Charge).",
-        "7. Ensure cap is tightened until it clicks firmly. Restart engine and verify the dash light clears."
-      ],
-      "images": [
-        {
-          "url": "uploads/05_Freightliner_Coolant_OAT.png",
-          "caption": "Freightliner Approved Coolant / Antifreeze: ELC OAT 50/50 Premix (Red/Pink)",
-          "name": "05_Freightliner_Coolant_OAT.png",
-          "type": "image"
-        },
-        "assets/coolant_surge_tank.svg"
-      ],
-      "updatedAt": "2026-11-08T17:45:00Z",
-      "shopUrgency": "urgent_shop"
-    },
-    {
-      "id": "eng-oil-pressure-low",
-      "categoryId": "engine",
-      "title": "Low Engine Oil Pressure / Red Stop Engine",
-      "dashCodes": "SPN 100 FMI 1 | RED STOP ENGINE | Oil Can Symbol",
-      "symptoms": [
-        "Oil pressure gauge drops below 15 PSI at idle or below 25 PSI under load",
-        "Red STOP ENGINE lamp illuminated with continuous alarm buzzer",
-        "Engine knock, ticking, or mechanical clatter"
-      ],
-      "driverSteps": [
-        "1. PULL OVER AND SHUT OFF ENGINE RIGHT AWAY. Running without oil pressure will destroy engine bearings in 60 seconds.",
-        "2. Park on flat level ground. Set parking brakes, deploy emergency triangles 100 ft behind truck.",
-        "3. Wait 10 minutes for oil to drain completely into the oil pan.",
-        "4. Pull oil dipstick, wipe clean with rag, re-insert fully, and pull again to read oil level.",
-        "5. Inspect underneath for blown oil filter seal, punctured oil pan, or loose drain plug.",
-        "6. If dipstick is dry: Add 1-2 gallons of 15W-40 or 10W-30 CK-4 heavy duty engine oil before any restart attempt.",
-        "7. If oil level is full on dipstick but dash reads 0 PSI: Oil pressure sensor or internal oil pump failure. DO NOT DRIVE."
-      ],
-      "images": [
-        {
-          "url": "uploads/06_Freightliner_Oil_Rotella_T5.png",
-          "caption": "Freightliner Approved Engine Oil: Shell Rotella T5 10W-30 Synthetic Blend",
-          "name": "06_Freightliner_Oil_Rotella_T5.png",
-          "type": "image"
-        }
-      ],
-      "updatedAt": "2026-11-08T17:45:00Z",
-      "shopUrgency": "urgent_shop"
-    },
-    {
       "id": "tire-nail-slow-leak",
       "categoryId": "tires",
       "title": "Nail / Screw in Drive or Trailer Tire (Slow Leak)",
@@ -779,51 +717,68 @@
   ],
   "trash": [
     {
-      "id": "elec-inverter-tripped",
-      "categoryId": "electrical",
-      "title": "Sleeper Inverter Tripped / Continuous Beep / No AC Power",
-      "dashCodes": "Inverter Red Fault LED | Continuous BEEP | Outlets Dead",
+      "id": "eng-coolant-leak",
+      "categoryId": "engine",
+      "title": "Coolant Leak / Low Coolant Level",
+      "dashCodes": "SPN 111 FMI 1 | Red or Amber Engine Lamp | Low Coolant Light",
       "symptoms": [
-        "Microwave, fridge, or TV in sleeper turns off suddenly",
-        "High-pitched screeching or continuous beeping from under the bunk mattress",
-        "Outlets do not supply 110V power"
+        "Low Coolant warning light and chime on dashboard",
+        "Sweet chemical smell from engine bay or AC vents",
+        "Temperature gauge climbing above 215°F",
+        "Pink/Red fluid dripping under front axle or bumper"
       ],
       "driverSteps": [
-        "1. Turn off or unplug high-wattage appliances (microwave, kettle, space heater).",
-        "2. Lift the lower bunk mattress to access the inverter unit.",
-        "3. Check battery voltage on truck dash. If voltage dropped below 12.0V, the inverter shuts off automatically for low-voltage battery protection.",
-        "4. If voltage is low: Start the truck engine to let alternator charge batteries above 13.5V.",
-        "5. On the inverter body: Locate the POWER switch (turn OFF, wait 10 seconds, turn back ON).",
-        "6. Check for a round black or red popped breaker button (GFCI reset or pop-out circuit breaker) on the front or side of the inverter. Push it firmly back IN until it clicks.",
-        "7. Ensure cooling fan vents on the inverter are not blocked by luggage or blankets."
+        "1. Safely pull over at the nearest truck stop or safe shoulder. Put on high-visibility vest and hazard lights.",
+        "2. DO NOT immediately open the surge tank cap while engine is hot! Risk of severe burns from boiling coolant under pressure.",
+        "3. Wait 15-20 minutes for engine to cool down. Use a thick towel/rag to slowly twist the cap 1/4 turn to relieve pressure.",
+        "4. Inspect coolant level in the translucent plastic surge tank against the MIN / MAX COLD line.",
+        "5. Visually inspect upper/lower radiator hoses, water pump weep hole, and EGR cooler lines with a flashlight for pink wet crust.",
+        "6. If level is low without an active pouring leak: Top up with 50/50 Red Extended Life Coolant (Rotella ELC or Peak Final Charge).",
+        "7. Ensure cap is tightened until it clicks firmly. Restart engine and verify the dash light clears."
       ],
-      "images": [],
-      "updatedAt": "2026-11-08T05:30:00Z",
-      "shopUrgency": "driver_fix",
-      "deletedAt": "2026-11-10T20:57:25.661Z"
+      "images": [
+        {
+          "url": "uploads/05_Freightliner_Coolant_OAT.png",
+          "caption": "Freightliner Approved Coolant / Antifreeze: ELC OAT 50/50 Premix (Red/Pink)",
+          "name": "05_Freightliner_Coolant_OAT.png",
+          "type": "image"
+        },
+        "assets/coolant_surge_tank.svg"
+      ],
+      "updatedAt": "2026-11-08T17:45:00Z",
+      "shopUrgency": "urgent_shop",
+      "deletedAt": "2026-11-10T21:06:38.107Z"
     },
     {
-      "id": "elec-alternator-low-voltage",
-      "categoryId": "electrical",
-      "title": "Alternator Not Charging / Battery Voltage Dropping",
-      "dashCodes": "Battery Symbol | Voltage Gauge < 12.0V while Running",
+      "id": "eng-oil-pressure-low",
+      "categoryId": "engine",
+      "title": "Low Engine Oil Pressure / Red Stop Engine",
+      "dashCodes": "SPN 100 FMI 1 | RED STOP ENGINE | Oil Can Symbol",
       "symptoms": [
-        "Voltmeter on dash reads 11.5V-12.2V with engine running (normal is 13.8V-14.4V)",
-        "Battery light illuminated",
-        "Headlights or dash lights dimming gradually"
+        "Oil pressure gauge drops below 15 PSI at idle or below 25 PSI under load",
+        "Red STOP ENGINE lamp illuminated with continuous alarm buzzer",
+        "Engine knock, ticking, or mechanical clatter"
       ],
       "driverSteps": [
-        "1. While engine is still running: Roll to nearest truck stop or safe exit immediately. Once batteries drop below 10.5V, the ECM will shut down the engine in the middle of traffic!",
-        "2. Park safely. Pop hood and visually check the serpentine belt on the front of the alternator. Is the belt snapped, slipped off pulley, or spinning loose?",
-        "3. Check the thick positive cable nut on the back of alternator - is it loose or burned?",
-        "4. Inspect battery box under cab steps: check for loose battery terminal clamps, heavy green corrosion, or loose ground cables.",
-        "5. If belt is missing: Needs immediate belt replacement ($45 part).",
-        "6. Do NOT shut off the engine until you are parked in a safe spot, because it will not restart on dead batteries."
+        "1. PULL OVER AND SHUT OFF ENGINE RIGHT AWAY. Running without oil pressure will destroy engine bearings in 60 seconds.",
+        "2. Park on flat level ground. Set parking brakes, deploy emergency triangles 100 ft behind truck.",
+        "3. Wait 10 minutes for oil to drain completely into the oil pan.",
+        "4. Pull oil dipstick, wipe clean with rag, re-insert fully, and pull again to read oil level.",
+        "5. Inspect underneath for blown oil filter seal, punctured oil pan, or loose drain plug.",
+        "6. If dipstick is dry: Add 1-2 gallons of 15W-40 or 10W-30 CK-4 heavy duty engine oil before any restart attempt.",
+        "7. If oil level is full on dipstick but dash reads 0 PSI: Oil pressure sensor or internal oil pump failure. DO NOT DRIVE."
       ],
-      "images": [],
-      "updatedAt": "2026-11-08T05:30:00Z",
+      "images": [
+        {
+          "url": "uploads/06_Freightliner_Oil_Rotella_T5.png",
+          "caption": "Freightliner Approved Engine Oil: Shell Rotella T5 10W-30 Synthetic Blend",
+          "name": "06_Freightliner_Oil_Rotella_T5.png",
+          "type": "image"
+        }
+      ],
+      "updatedAt": "2026-11-08T17:45:00Z",
       "shopUrgency": "urgent_shop",
-      "deletedAt": "2026-11-10T20:57:23.035Z"
+      "deletedAt": "2026-11-10T21:06:34.935Z"
     }
   ]
 }
