@@ -280,6 +280,7 @@ async function checkServerAndLoadData() {
         AppState.serverMode = true;
         updateConnectionStatus('server', 'Auto-Sync Active', 'Local Server Active: All edits, categories & files auto-saved to project folder');
         await loadFromServer();
+        await runDatabaseMigrations();
         return;
       }
     }
@@ -291,6 +292,7 @@ async function checkServerAndLoadData() {
   AppState.serverMode = false;
   updateConnectionStatus('offline', 'Standalone', 'Standalone Mode: Launch open_app.bat to auto-sync changes to project folder');
   await loadFromLocal();
+  await runDatabaseMigrations();
 }
 
 function updateConnectionStatus(type, text, tooltip) {
@@ -440,123 +442,206 @@ async function loadFromLocal() {
       saveToIndexedDB(AppState.db);
     }
   }
+}
 
-  // Automatic Migration: Separate "Truck Anatomy" and "Fleet Instructions"
-  if (AppState.db && Array.isArray(AppState.db.categories)) {
-    let needsPersist = false;
+// Guarantee all essential categories exist in the database
+function ensureRequiredCategories(db) {
+  if (!db || !Array.isArray(db.categories)) return false;
+  let changed = false;
 
-    // Check if legacy fleet_tips exists
-    const fleetTipsCat = AppState.db.categories.find(c => c.id === 'fleet_tips');
-    if (fleetTipsCat) {
-      fleetTipsCat.id = 'fleet_instructions';
-      fleetTipsCat.name = 'Fleet Instructions';
-      fleetTipsCat.icon = 'clipboard';
-      fleetTipsCat.color = 'amber';
-      fleetTipsCat.description = 'Unit swap protocols, PTI walkaround SOP, Samsara ELD setup, DVIR & winter operations';
-      needsPersist = true;
+  const REQUIRED_CATEGORIES = [
+    {
+      id: 'truck_anatomy',
+      name: 'Truck Anatomy',
+      icon: 'truck',
+      color: 'cyan',
+      description: 'Truck parts nomenclature, Freightliner Cascadia diagrams, schematics & component photos'
+    },
+    {
+      id: 'fleet_instructions',
+      name: 'Fleet Instructions',
+      icon: 'clipboard',
+      color: 'amber',
+      description: 'Unit swap protocols, PTI walkaround SOP, Samsara ELD setup, DVIR & winter operations'
+    },
+    {
+      id: 'accidents',
+      name: 'Accidents',
+      icon: 'alertTriangle',
+      color: 'red',
+      description: 'Collision protocol, 911 police/EMS, 360° photo checklist, DOT drug & alcohol testing and towing'
+    },
+    {
+      id: 'engine',
+      name: 'Engine & Mechanical',
+      icon: 'engine',
+      color: 'orange',
+      description: 'Cooling, belts, turbo, oil & fuel leaks, water pump, thermostat'
+    },
+    {
+      id: 'tires',
+      name: 'Tires & Wheels',
+      icon: 'tire',
+      color: 'blue',
+      description: 'Nails in tire, blowouts, PSI drops, hub seals, tread wear & steer issues'
+    },
+    {
+      id: 'safety_cab',
+      name: 'Cab, Glass & Safety Sensors',
+      icon: 'truck',
+      color: 'cyan',
+      description: 'Windshield DOT specs, lane departure camera, radar sensors, fifth wheel'
+    },
+    {
+      id: 'emissions',
+      name: 'Emissions & DEF / DPF',
+      icon: 'exhaust',
+      color: 'purple',
+      description: 'Parked regen, DEF quality, doser crystallization, 5 MPH derate timer'
+    },
+    {
+      id: 'brakes',
+      name: 'Brakes & Air System',
+      icon: 'brake',
+      color: 'red',
+      description: 'Air leaks, air dryer purge, gladhands, frozen lines, low air warning'
+    },
+    {
+      id: 'electrical',
+      name: 'Electrical & Batteries',
+      icon: 'battery',
+      color: 'yellow',
+      description: 'Alternator charging, sleeper inverter, starter click, trailer lights, fuses'
+    },
+    {
+      id: 'transmission',
+      name: 'Transmission & Drivetrain',
+      icon: 'transmission',
+      color: 'indigo',
+      description: 'DT12 automated manual, clutch calibration, driveline vibration, diff locks'
+    },
+    {
+      id: 'hvac',
+      name: 'HVAC & Cab Comfort',
+      icon: 'snowflake',
+      color: 'teal',
+      description: 'Bunk heaters (Espar/Webasto), A/C compressor, cabin air filters'
+    },
+    {
+      id: 'trailer',
+      name: 'Trailer',
+      icon: 'trailer',
+      color: 'amber',
+      description: 'Trailer doors, landing gear, tandem sliders, reefers, kingpin, seals & roof leaks'
+    },
+    {
+      id: 'sops',
+      name: 'Fleet SOPs & Procedures',
+      icon: 'clipboard',
+      color: 'emerald',
+      description: 'Roadside breakdown rules, towing safety protocols, emergency dispatch'
     }
+  ];
 
-    // Ensure truck_anatomy exists
-    if (!AppState.db.categories.some(c => c.id === 'truck_anatomy')) {
-      AppState.db.categories.unshift({
-        id: 'truck_anatomy',
-        name: 'Truck Anatomy',
-        icon: 'truck',
-        color: 'cyan',
-        description: 'Truck parts nomenclature, Freightliner Cascadia diagrams, schematics & component photos'
-      });
-      needsPersist = true;
-    }
-
-    // Ensure fleet_instructions exists
-    if (!AppState.db.categories.some(c => c.id === 'fleet_instructions')) {
-      AppState.db.categories.splice(1, 0, {
-        id: 'fleet_instructions',
-        name: 'Fleet Instructions',
-        icon: 'clipboard',
-        color: 'amber',
-        description: 'Unit swap protocols, PTI walkaround SOP, Samsara ELD setup, DVIR & winter operations'
-      });
-      needsPersist = true;
-    }
-
-    // Ensure accidents category exists
-    if (!AppState.db.categories.some(c => c.id === 'accidents')) {
-      const fiIdx = AppState.db.categories.findIndex(c => c.id === 'fleet_instructions');
-      const accidentCat = {
-        id: 'accidents',
-        name: 'Accidents',
-        icon: 'alertTriangle',
-        color: 'red',
-        description: 'Collision protocol, 911 police/EMS, 360° photo checklist, DOT drug & alcohol testing and towing'
-      };
-      if (fiIdx >= 0) {
-        AppState.db.categories.splice(fiIdx + 1, 0, accidentCat);
+  REQUIRED_CATEGORIES.forEach(req => {
+    const exists = db.categories.some(c => c.id === req.id);
+    if (!exists) {
+      if (req.id === 'trailer') {
+        const sopsIdx = db.categories.findIndex(c => c.id === 'sops');
+        if (sopsIdx >= 0) db.categories.splice(sopsIdx, 0, { ...req });
+        else db.categories.push({ ...req });
       } else {
-        AppState.db.categories.push(accidentCat);
+        db.categories.push({ ...req });
       }
-      needsPersist = true;
+      changed = true;
     }
+  });
 
-    // Update issues category mapping and shopUrgency
-    if (Array.isArray(AppState.db.issues)) {
-      AppState.db.issues.forEach(issue => {
-        if (issue.id === 'parts-anatomy-guide') {
-          if (issue.categoryId !== 'truck_anatomy') {
-            issue.categoryId = 'truck_anatomy';
-            needsPersist = true;
-          }
-        } else if (issue.categoryId === 'fleet_tips') {
-          issue.categoryId = 'fleet_instructions';
+  return changed;
+}
+
+// Automatic Migrations & Integrity Checks
+async function runDatabaseMigrations() {
+  if (!AppState.db || !Array.isArray(AppState.db.categories)) return;
+  let needsPersist = false;
+
+  if (ensureRequiredCategories(AppState.db)) {
+    needsPersist = true;
+  }
+
+  // Check if legacy fleet_tips exists
+  const fleetTipsCat = AppState.db.categories.find(c => c.id === 'fleet_tips');
+  if (fleetTipsCat) {
+    fleetTipsCat.id = 'fleet_instructions';
+    fleetTipsCat.name = 'Fleet Instructions';
+    fleetTipsCat.icon = 'clipboard';
+    fleetTipsCat.color = 'amber';
+    fleetTipsCat.description = 'Unit swap protocols, PTI walkaround SOP, Samsara ELD setup, DVIR & winter operations';
+    needsPersist = true;
+  }
+
+  // Update issues category mapping and shopUrgency
+  if (Array.isArray(AppState.db.issues)) {
+    AppState.db.issues.forEach(issue => {
+      if (issue.id === 'parts-anatomy-guide') {
+        if (issue.categoryId !== 'truck_anatomy') {
+          issue.categoryId = 'truck_anatomy';
           needsPersist = true;
-        } else if (issue.id === 'sop-accident-emergency-protocol' || issue.id === 'sop-roadside-towing') {
-          if (issue.categoryId !== 'accidents') {
-            issue.categoryId = 'accidents';
-            needsPersist = true;
-          }
-          if (issue.shopUrgency !== 'towing_accident') {
-            issue.shopUrgency = 'towing_accident';
-            needsPersist = true;
-          }
         }
-
-        if (issue.shopUrgency === 'not_mentioned') {
-          issue.shopUrgency = '';
+      } else if (issue.categoryId === 'fleet_tips') {
+        issue.categoryId = 'fleet_instructions';
+        needsPersist = true;
+      } else if (issue.id === 'sop-accident-emergency-protocol' || issue.id === 'sop-roadside-towing') {
+        if (issue.categoryId !== 'accidents') {
+          issue.categoryId = 'accidents';
           needsPersist = true;
         }
-
-        if (issue.categoryId === 'accidents' && (!issue.shopUrgency || issue.shopUrgency === 'urgent_shop')) {
+        if (issue.shopUrgency !== 'towing_accident') {
           issue.shopUrgency = 'towing_accident';
           needsPersist = true;
         }
+      }
 
+      if (issue.shopUrgency === 'not_mentioned') {
+        issue.shopUrgency = '';
+        needsPersist = true;
+      }
 
-      });
+      if (issue.categoryId === 'accidents' && (!issue.shopUrgency || issue.shopUrgency === 'urgent_shop')) {
+        issue.shopUrgency = 'towing_accident';
+        needsPersist = true;
+      }
 
-      // Ensure sop-accident-emergency-protocol exists
-      if (!AppState.db.issues.some(i => i.id === 'sop-accident-emergency-protocol')) {
-        const accidentSeed = (typeof INITIAL_DATABASE !== 'undefined' && Array.isArray(INITIAL_DATABASE.issues))
-          ? INITIAL_DATABASE.issues.find(si => si.id === 'sop-accident-emergency-protocol')
-          : null;
-        if (accidentSeed) {
-          const wIdx = AppState.db.issues.findIndex(i => i.id === 'sop-winter-anti-gel');
-          if (wIdx >= 0) {
-            AppState.db.issues.splice(wIdx + 1, 0, JSON.parse(JSON.stringify(accidentSeed)));
-          } else {
-            AppState.db.issues.push(JSON.parse(JSON.stringify(accidentSeed)));
-          }
-          needsPersist = true;
+      // Automatically categorize Trailer worn brake shoes into Trailer category
+      if ((issue.id === 'issue-1794345092163' || issue.title === 'Trailer worn brake shoes') && issue.categoryId !== 'trailer') {
+        issue.categoryId = 'trailer';
+        needsPersist = true;
+      }
+    });
+
+    // Ensure sop-accident-emergency-protocol exists
+    if (!AppState.db.issues.some(i => i.id === 'sop-accident-emergency-protocol')) {
+      const accidentSeed = (typeof INITIAL_DATABASE !== 'undefined' && Array.isArray(INITIAL_DATABASE.issues))
+        ? INITIAL_DATABASE.issues.find(si => si.id === 'sop-accident-emergency-protocol')
+        : null;
+      if (accidentSeed) {
+        const wIdx = AppState.db.issues.findIndex(i => i.id === 'sop-winter-anti-gel');
+        if (wIdx >= 0) {
+          AppState.db.issues.splice(wIdx + 1, 0, JSON.parse(JSON.stringify(accidentSeed)));
+        } else {
+          AppState.db.issues.push(JSON.parse(JSON.stringify(accidentSeed)));
         }
+        needsPersist = true;
       }
     }
+  }
 
-    if (AppState.selectedCategory === 'fleet_tips') {
-      AppState.selectedCategory = 'fleet_instructions';
-    }
+  if (AppState.selectedCategory === 'fleet_tips') {
+    AppState.selectedCategory = 'fleet_instructions';
+  }
 
-    if (needsPersist) {
-      saveToIndexedDB(AppState.db);
-    }
+  if (needsPersist) {
+    await persistDatabase();
   }
 }
 
@@ -783,6 +868,7 @@ function setUrgencyFilter(urgencyKey) {
 function renderCategoryCards() {
   const container = document.getElementById('categoryGrid');
   if (!container) return;
+  ensureRequiredCategories(AppState.db);
 
   const cardsHtml = AppState.db.categories.map(cat => {
     const count = AppState.db.issues.filter(i => issueMatchesCategory(i, cat.id)).length;
@@ -1515,6 +1601,7 @@ function openEditModal(issueId) {
 function populateCategorySelect(selectedId) {
   const sel = document.getElementById('editCategorySelect');
   if (!sel) return;
+  ensureRequiredCategories(AppState.db);
   sel.innerHTML = AppState.db.categories.map(c => `
     <option value="${c.id}" ${c.id === selectedId ? 'selected' : ''}>${escapeHtml(c.name)}</option>
   `).join('');

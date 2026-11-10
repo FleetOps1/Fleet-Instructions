@@ -79,6 +79,13 @@ const INITIAL_DATABASE = {
       "description": "Bunk heaters (Espar/Webasto), A/C compressor, cabin air filters"
     },
     {
+      "id": "trailer",
+      "name": "Trailer",
+      "icon": "trailer",
+      "color": "amber",
+      "description": "Trailer doors, landing gear, tandem sliders, reefers, kingpin, seals & roof leaks"
+    },
+    {
       "id": "sops",
       "name": "Fleet SOPs & Procedures",
       "icon": "clipboard",
@@ -89,7 +96,7 @@ const INITIAL_DATABASE = {
   "issues": [
     {
       "id": "issue-1794345092163",
-      "categoryId": "truck_anatomy",
+      "categoryId": "trailer",
       "title": "Trailer worn brake shoes",
       "shopUrgency": "",
       "dashCodes": "",
