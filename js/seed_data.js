@@ -103,8 +103,8 @@ const INITIAL_DATABASE = {
           "type": "image"
         }
       ],
-      "notes": "",
-      "updatedAt": "2026-11-10T21:11:32.163Z"
+      "notes": "Need to replace the brake pads",
+      "updatedAt": "2026-11-10T21:15:04.666Z"
     },
     {
       "id": "issue-1794344443542",
