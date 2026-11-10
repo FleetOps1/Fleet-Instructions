@@ -1087,9 +1087,6 @@ function renderIssuesList() {
         <div class="issue-actions">
           <span style="font-size: 0.75rem; color: #64748b;">${stepsBadgeText}</span>
           <div style="display: flex; gap: 6px; margin-left: auto;">
-            <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation(); copyIssueQuick('${issue.id}', this)" title="Copy text to clipboard">
-              ${Icons.copy}
-            </button>
             <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation(); openEditModal('${issue.id}')" title="Edit">
               ${Icons.edit}
             </button>
@@ -1134,34 +1131,23 @@ function openIssueDetail(issueId) {
   const urg = (issue.shopUrgency && issue.shopUrgency !== 'not_mentioned') ? URGENCY_CONFIG[issue.shopUrgency] : null;
 
   modalContent.innerHTML = `
-    <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 6px;">
+    <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 4px;">
       <span style="font-size: 0.85rem; color: #94a3b8; font-weight: 600;">
         Category: <strong style="color: var(--freightliner-${category.color || 'blue'});">${escapeHtml(category.name)}</strong>
       </span>
-      <button class="btn btn-secondary btn-sm btn-copy-action" onclick="copyAllIssueText('${issue.id}', this)" title="Copy entire guide & instructions to clipboard">
-        ${Icons.copy} <span>Copy Full Guide</span>
-      </button>
     </div>
 
-    <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; flex-wrap: wrap;">
-      <h1 style="font-size: 1.45rem; font-weight: 800; color: var(--text-main); margin: 0;">${escapeHtml(issue.title)}</h1>
-      <button class="btn btn-secondary btn-sm btn-copy-action" onclick="copyIssueTitle('${issue.id}', this)" title="Copy title to clipboard">
-        ${Icons.copy} <span>Copy Title</span>
-      </button>
+    <div>
+      <h1 style="font-size: 1.45rem; font-weight: 800; color: var(--text-main); margin-bottom: 4px;">${escapeHtml(issue.title)}</h1>
     </div>
 
     ${issue.dashCodes ? `
-      <div class="detail-fault-codes-box" style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
-        <div style="display: flex; align-items: center; gap: 10px;">
-          <span style="color: #f59e0b; font-size: 1.25rem;">⚠️</span>
-          <div>
-            <div style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Dashboard Fault Code / Warning Light:</div>
-            <div style="font-family: var(--font-mono); font-size: 0.95rem; color: #0284c7; font-weight: 600;">${escapeHtml(issue.dashCodes)}</div>
-          </div>
+      <div class="detail-fault-codes-box">
+        <span style="color: #f59e0b; font-size: 1.25rem;">⚠️</span>
+        <div>
+          <div style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Dashboard Fault Code / Warning Light:</div>
+          <div style="font-family: var(--font-mono); font-size: 0.95rem; color: #0284c7; font-weight: 600;">${escapeHtml(issue.dashCodes)}</div>
         </div>
-        <button class="btn btn-secondary btn-sm btn-copy-action" onclick="copyDashCodes('${issue.id}', this)" title="Copy fault code to clipboard">
-          ${Icons.copy} <span>Copy Code</span>
-        </button>
       </div>
     ` : ''}
 
@@ -1169,11 +1155,11 @@ function openIssueDetail(issueId) {
     ${hasInstructions(issue.driverSteps) ? `
       <div>
         <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
-          <h3 style="font-size: 1.1rem; font-weight: 700; color: var(--text-main); display: flex; align-items: center; gap: 8px; margin: 0;">
+          <h3 style="font-size: 1.1rem; font-weight: 700; color: var(--text-main); display: flex; align-items: center; gap: 8px;">
             <span>📋</span> Driver Instructions:
           </h3>
-          <button class="btn btn-secondary btn-sm btn-copy-action" onclick="copyInstructions('${issue.id}', this)" title="Copy instructions to clipboard">
-            ${Icons.copy} <span>Copy Instructions</span>
+          <button class="btn btn-secondary btn-sm" onclick="copyInstructions('${issue.id}')" title="Copy instructions to clipboard">
+            ${Icons.copy} Copy Instructions
           </button>
         </div>
 
@@ -1184,13 +1170,8 @@ function openIssueDetail(issueId) {
     <!-- Observed Symptoms -->
     ${(issue.symptoms && issue.symptoms.length > 0) ? `
       <div class="detail-symptoms-box">
-        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
-          <div style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; display: flex; align-items: center; gap: 6px;">
-            <span>🔍</span> Observed Symptoms:
-          </div>
-          <button class="btn btn-secondary btn-sm btn-copy-action" onclick="copySymptoms('${issue.id}', this)" title="Copy symptoms to clipboard">
-            ${Icons.copy} <span>Copy Symptoms</span>
-          </button>
+        <div style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 8px;">
+          🔍 Observed Symptoms:
         </div>
         <ul style="padding-left: 18px; margin: 0; color: var(--text-main); font-size: 0.9rem; line-height: 1.6;">
           ${issue.symptoms.map(s => `<li>${escapeHtml(s)}</li>`).join('')}
@@ -1205,11 +1186,11 @@ function openIssueDetail(issueId) {
           <div style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; display: flex; align-items: center; gap: 6px;">
             <span>📝</span> Additional Notes & Technical Specs:
           </div>
-          <button class="btn btn-secondary btn-sm btn-copy-action" onclick="copyNotes('${issue.id}', this)" title="Copy all notes to clipboard">
-            ${Icons.copy} <span>Copy Notes</span>
+          <button class="btn-copy-icon" onclick="copyNotes('${issue.id}', this)" title="Copy text">
+            ${Icons.copy}
           </button>
         </div>
-        <div class="notes-content-wrap">${formatNotesHtml(issue.notes)}</div>
+        <div style="white-space: pre-wrap; color: var(--text-main); font-size: 0.92rem; line-height: 1.6;">${escapeHtml(issue.notes)}</div>
       </div>
     ` : ''}
 
@@ -1316,9 +1297,6 @@ function openIssueDetail(issueId) {
       <button class="btn btn-outline-danger btn-sm" onclick="deleteIssue('${issue.id}')" style="margin-right: auto;">
         ${Icons.trash} Delete
       </button>
-      <button class="btn btn-secondary btn-sm btn-copy-action" onclick="copyAllIssueText('${issue.id}', this)" title="Copy entire guide & instructions to clipboard">
-        ${Icons.copy} <span>Copy Full Guide</span>
-      </button>
       <button class="btn btn-secondary btn-sm" onclick="openEditModal('${issue.id}')">
         ${Icons.edit} Edit Issue
       </button>
@@ -1332,44 +1310,11 @@ function openIssueDetail(issueId) {
   initDetailDropzone();
 }
 
-// Format notes lines with per-line instant copy chips
-function formatNotesHtml(notesText) {
-  if (!notesText) return '';
-  const lines = notesText.split('\n');
-  return lines.map(line => {
-    const trimmed = line.trim();
-    if (!trimmed) return '<div style="height: 6px;"></div>';
-
-    const colonIdx = trimmed.indexOf(':');
-    let copyVal = trimmed;
-    if (colonIdx > 0 && colonIdx < trimmed.length - 1) {
-      copyVal = trimmed.substring(colonIdx + 1).trim();
-    }
-
-    return `
-      <div class="notes-line-item">
-        <span class="notes-line-text">${escapeHtml(line)}</span>
-        <button type="button" class="btn-copy-chip notes-line-copy-btn" data-copy-val="${escapeHtml(copyVal)}" onclick="copyFromDataAttr(this)" title="Copy: ${escapeHtml(copyVal)}">
-          <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-          <span>Copy</span>
-        </button>
-      </div>
-    `;
-  }).join('');
-}
-
-function copyFromDataAttr(btnEl) {
-  if (!btnEl) return;
-  const val = btnEl.getAttribute('data-copy-val');
-  if (!val) return;
-  copyTextToClipboard(val, btnEl);
-}
-
-function copyInstructions(issueId, btnEl = null) {
+function copyInstructions(issueId) {
   const issue = AppState.db.issues.find(i => i.id === issueId);
   if (!issue || !issue.driverSteps) return;
   const text = getInstructionsText(issue.driverSteps);
-  copyTextToClipboard(text, btnEl);
+  copyTextToClipboard(text);
 }
 
 function copyNotes(issueId, btnEl = null) {
@@ -1378,69 +1323,9 @@ function copyNotes(issueId, btnEl = null) {
   copyTextToClipboard(issue.notes, btnEl);
 }
 
-function copyDashCodes(issueId, btnEl = null) {
-  const issue = AppState.db.issues.find(i => i.id === issueId);
-  if (!issue || !issue.dashCodes) return;
-  copyTextToClipboard(issue.dashCodes, btnEl);
-}
-
-function copySymptoms(issueId, btnEl = null) {
-  const issue = AppState.db.issues.find(i => i.id === issueId);
-  if (!issue || !issue.symptoms || issue.symptoms.length === 0) return;
-  copyTextToClipboard(issue.symptoms.join('\n'), btnEl);
-}
-
-function copyIssueTitle(issueId, btnEl = null) {
-  const issue = AppState.db.issues.find(i => i.id === issueId);
-  if (!issue || !issue.title) return;
-  copyTextToClipboard(issue.title, btnEl);
-}
-
-function copyAllIssueText(issueId, btnEl = null) {
-  const issue = AppState.db.issues.find(i => i.id === issueId);
-  if (!issue) return;
-  const parts = [];
-  parts.push(issue.title);
-  if (issue.dashCodes) parts.push(`Fault Code / Warning: ${issue.dashCodes}`);
-  if (issue.driverSteps && issue.driverSteps.length > 0) {
-    parts.push(`Driver Instructions:\n${getInstructionsText(issue.driverSteps)}`);
-  }
-  if (issue.symptoms && issue.symptoms.length > 0) {
-    parts.push(`Observed Symptoms:\n${issue.symptoms.map(s => '• ' + s).join('\n')}`);
-  }
-  if (issue.notes && issue.notes.trim()) {
-    parts.push(`Additional Notes & Specs:\n${issue.notes}`);
-  }
-  copyTextToClipboard(parts.join('\n\n'), btnEl);
-}
-
-function copyFormInput(elementId, btnEl = null) {
-  const el = document.getElementById(elementId);
-  if (!el) return;
-  const val = (typeof el.value === 'string') ? el.value : (el.textContent || '');
-  if (!val.trim()) {
-    showToast('Field is empty', 'info');
-    return;
-  }
-  copyTextToClipboard(val, btnEl);
-}
-
-function copyIssueQuick(issueId, btnEl = null) {
-  const issue = AppState.db.issues.find(i => i.id === issueId);
-  if (!issue) return;
-  let text = issue.title;
-  if (issue.dashCodes) text += '\nCode: ' + issue.dashCodes;
-  if (issue.driverSteps && issue.driverSteps.length > 0) {
-    text += '\n\nInstructions:\n' + getInstructionsText(issue.driverSteps);
-  } else if (issue.notes) {
-    text += '\n\nNotes:\n' + issue.notes;
-  }
-  copyTextToClipboard(text, btnEl);
-}
-
 function copyTextToClipboard(text, btnEl = null) {
-  if (!text || !text.trim()) {
-    showToast('Nothing to copy', 'error');
+  if (!text) {
+    showToast('Text is empty', 'error');
     return;
   }
   const cleanText = text.trim();
@@ -1450,11 +1335,11 @@ function copyTextToClipboard(text, btnEl = null) {
     if (btnEl) {
       btnEl.classList.add('copied');
       const origHtml = btnEl.innerHTML;
-      btnEl.innerHTML = `<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span>Copied!</span>`;
+      btnEl.innerHTML = `<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
       setTimeout(() => {
         btnEl.classList.remove('copied');
         btnEl.innerHTML = origHtml;
-      }, 2000);
+      }, 1500);
     }
   };
 

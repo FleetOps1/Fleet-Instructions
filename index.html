@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=13.0">
+  <link rel="stylesheet" href="css/styles.css?v=14.0">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ea580c'><rect x='1' y='3' width='15' height='13' rx='2'/><path d='M16 8h4l3 3v5h-7V8z'/><circle cx='5.5' cy='18.5' r='2.5'/><circle cx='18.5' cy='18.5' r='2.5'/></svg>">
 </head>
 <body>
@@ -204,15 +204,7 @@
           </div>
 
           <div class="form-group">
-            <div class="form-field-header">
-              <label class="form-label" for="editTitle">Issue Title *</label>
-              <div class="form-field-actions">
-                <button type="button" class="btn-copy-chip" onclick="copyFormInput('editTitle', this)" title="Copy issue title">
-                  <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                  <span>Copy</span>
-                </button>
-              </div>
-            </div>
+            <label class="form-label">Issue Title *</label>
             <input type="text" id="editTitle" class="form-input" placeholder="e.g., Coolant Leak / Low Coolant Level" required />
           </div>
 
@@ -238,16 +230,10 @@
           <div class="form-group field-wrapper" id="fieldWrapper_dashCodes">
             <div class="form-field-header">
               <label class="form-label" for="editDashCodes">Dashboard Fault Code</label>
-              <div class="form-field-actions">
-                <button type="button" class="btn-copy-chip" onclick="copyFormInput('editDashCodes', this)" title="Copy fault codes">
-                  <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                  <span>Copy</span>
-                </button>
-                <button type="button" class="btn-remove-field" onclick="removeFormField('dashCodes')" title="Remove this field from issue">
-                  <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                  <span>Remove</span>
-                </button>
-              </div>
+              <button type="button" class="btn-remove-field" onclick="removeFormField('dashCodes')" title="Remove this field from issue">
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                <span>Remove</span>
+              </button>
             </div>
             <input type="text" id="editDashCodes" class="form-input" placeholder="e.g., SPN 111 FMI 1 | Red or Amber Engine Lamp | Low Coolant Light" />
           </div>
@@ -256,16 +242,10 @@
           <div class="form-group field-wrapper" id="fieldWrapper_driverSteps">
             <div class="form-field-header">
               <label class="form-label" for="editDriverSteps">Driver Instructions:</label>
-              <div class="form-field-actions">
-                <button type="button" class="btn-copy-chip" onclick="copyFormInput('editDriverSteps', this)" title="Copy driver instructions">
-                  <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                  <span>Copy</span>
-                </button>
-                <button type="button" class="btn-remove-field" onclick="removeFormField('driverSteps')" title="Remove this field from issue">
-                  <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                  <span>Remove</span>
-                </button>
-              </div>
+              <button type="button" class="btn-remove-field" onclick="removeFormField('driverSteps')" title="Remove this field from issue">
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                <span>Remove</span>
+              </button>
             </div>
             <textarea id="editDriverSteps" class="form-textarea" rows="14" placeholder="Enter driver instructions, procedures, or checklists..."></textarea>
           </div>
@@ -274,16 +254,10 @@
           <div class="form-group field-wrapper" id="fieldWrapper_symptoms">
             <div class="form-field-header">
               <label class="form-label" for="editSymptoms">Observed Symptoms (1 per line):</label>
-              <div class="form-field-actions">
-                <button type="button" class="btn-copy-chip" onclick="copyFormInput('editSymptoms', this)" title="Copy symptoms">
-                  <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                  <span>Copy</span>
-                </button>
-                <button type="button" class="btn-remove-field" onclick="removeFormField('symptoms')" title="Remove this field from issue">
-                  <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                  <span>Remove</span>
-                </button>
-              </div>
+              <button type="button" class="btn-remove-field" onclick="removeFormField('symptoms')" title="Remove this field from issue">
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                <span>Remove</span>
+              </button>
             </div>
             <textarea id="editSymptoms" class="form-textarea" rows="3" placeholder="Sweet coolant smell&#10;Drops under front bumper&#10;Audible chime on dashboard"></textarea>
           </div>
@@ -292,16 +266,10 @@
           <div class="form-group field-wrapper is-hidden" id="fieldWrapper_notes">
             <div class="form-field-header">
               <label class="form-label" for="editNotes">Additional Notes & Specifications:</label>
-              <div class="form-field-actions">
-                <button type="button" class="btn-copy-chip" onclick="copyFormInput('editNotes', this)" title="Copy notes">
-                  <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                  <span>Copy</span>
-                </button>
-                <button type="button" class="btn-remove-field" onclick="removeFormField('notes')" title="Remove this field from issue">
-                  <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                  <span>Remove</span>
-                </button>
-              </div>
+              <button type="button" class="btn-remove-field" onclick="removeFormField('notes')" title="Remove this field from issue">
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                <span>Remove</span>
+              </button>
             </div>
             <textarea id="editNotes" class="form-textarea" rows="3" placeholder="e.g., Torque specifications, OEM part numbers, wire color codes, fluid capacities..."></textarea>
           </div>
@@ -363,15 +331,7 @@
       <form onsubmit="handleSaveCategory(event)">
         <div class="modal-body">
           <div class="form-group">
-            <div class="form-field-header">
-              <label class="form-label">Category Name *</label>
-              <div class="form-field-actions">
-                <button type="button" class="btn-copy-chip" onclick="copyFormInput('newCatName', this)" title="Copy category name">
-                  <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                  <span>Copy</span>
-                </button>
-              </div>
-            </div>
+            <label class="form-label">Category Name *</label>
             <input type="text" id="newCatName" class="form-input" placeholder="e.g., Fuel System" required />
           </div>
           <div class="form-row">
@@ -405,15 +365,7 @@
             </div>
           </div>
           <div class="form-group">
-            <div class="form-field-header">
-              <label class="form-label">Description (what parts belong here)</label>
-              <div class="form-field-actions">
-                <button type="button" class="btn-copy-chip" onclick="copyFormInput('newCatDesc', this)" title="Copy description">
-                  <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                  <span>Copy</span>
-                </button>
-              </div>
-            </div>
+            <label class="form-label">Description (what parts belong here)</label>
             <input type="text" id="newCatDesc" class="form-input" placeholder="e.g., Fuel filters, Davco separator, priming pump, air ingress" />
           </div>
         </div>
@@ -554,8 +506,8 @@
   <div id="toastContainer" class="toast-container"></div>
 
   <!-- Scripts -->
-  <script src="js/icons.js?v=13.0"></script>
-  <script src="js/seed_data.js?v=13.0"></script>
-  <script src="js/app.js?v=13.0"></script>
+  <script src="js/icons.js?v=14.0"></script>
+  <script src="js/seed_data.js?v=14.0"></script>
+  <script src="js/app.js?v=14.0"></script>
 </body>
 </html>
