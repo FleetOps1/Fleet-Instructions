@@ -788,32 +788,5 @@
       "shopUrgency": "scheduled_shop"
     }
   ],
-  "trash": [
-    {
-      "id": "glass-cracked-windshield",
-      "categoryId": "safety_cab",
-      "title": "Cracked Windshield & Stone Chips (DOT 393.60 Compliance)",
-      "dashCodes": "Visual Pre-Trip Inspection | DOT Scale Out-of-Service Risk",
-      "symptoms": [
-        "Stone chip, bullseye, or star crack caused by road debris",
-        "Horizontal or vertical crack expanding across driver's field of view",
-        "Wiper blades snagging, chattering, or tearing over glass fracture"
-      ],
-      "driverSteps": [
-        "1. Check crack location and size immediately with a tape measure or coin.",
-        "2. DOT 393.60 CRITICAL SWEEP ZONE: Cracks or chips of ANY size are strictly prohibited in the driver critical viewing area (8.5 inches wide by 11 inches high centered directly above the steering wheel rim). Any damage here is an automatic DOT citation or Out of Service.",
-        "3. ALLOWABLE DAMAGE (OUTSIDE CRITICAL AREA): An isolated stone chip under 3/4 inch diameter (penny size), or a single crack that does NOT intersect with another crack is legally permitted outside the driver sweep area, provided it is at least 3 inches away from any other fracture.",
-        "4. INTERSECTING CRACK BAN: If two cracks touch or cross each other (spider-web pattern), it is an automatic Out-of-Service violation regardless of where it is on the glass.",
-        "5. TEMP REPAIR: Apply a strip of clear packing tape over the chip immediately to block road dirt, salt, and washer fluid from contaminating the resin cavity.",
-        "6. If chip is under 1 inch and non-branching: Dispatch can route driver to a Love's, Pilot, or Safelite bay for a $65 resin injection repair before temperature changes cause it to run across the entire windshield.",
-        "7. If crack exceeds 6 inches: Full glass replacement is required. Send clear photos holding a tape measure against the crack to dispatch."
-      ],
-      "images": [
-        "assets/windshield_dot_spec.svg"
-      ],
-      "updatedAt": "2026-11-08T06:10:00Z",
-      "shopUrgency": "urgent_shop",
-      "deletedAt": "2026-11-11T14:40:57.886Z"
-    }
-  ]
+  "trash": []
 }
