@@ -611,6 +611,12 @@ async function runDatabaseMigrations() {
         issue.categoryId = 'trailer';
         needsPersist = true;
       }
+
+      // Automatically categorize trailer issues into Trailer category
+      if (issue.title && issue.title.toLowerCase().includes('trailer') && issue.categoryId === 'truck_anatomy') {
+        issue.categoryId = 'trailer';
+        needsPersist = true;
+      }
     });
 
     // Ensure sop-accident-emergency-protocol exists

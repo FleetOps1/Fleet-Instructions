@@ -94,6 +94,20 @@
   ],
   "issues": [
     {
+      "id": "issue-1794405064448",
+      "categoryId": "trailer",
+      "title": "Any issues with trailer",
+      "shopUrgency": "",
+      "dashCodes": "",
+      "symptoms": [],
+      "driverSteps": [
+        "Before searching for shops always ask driver to take a picture of the trailer number to clarify whether it's broker's trailer or company trailer, don't start any repair before it's confirmed by broker!"
+      ],
+      "images": [],
+      "notes": "",
+      "updatedAt": "2026-11-11T13:51:04.448Z"
+    },
+    {
       "id": "issue-1794345092163",
       "categoryId": "trailer",
       "title": "Trailer worn brake shoes",
