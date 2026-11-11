@@ -284,6 +284,10 @@
       "dashCodes": "",
       "symptoms": [],
       "driverSteps": [
+        "GM   please complete PTI of the unit and send pictures",
+        "",
+        "Make sure everything is covered from this list:",
+        "",
         "1. All tires on the truck and trailer",
         "2. Mud flaps on the truck and trailer",
         "3. Liquid levels (oil, coolant, windshield washer, power steering)",
@@ -307,7 +311,7 @@
           "type": "image"
         }
       ],
-      "updatedAt": "2026-11-10T20:47:21.657Z",
+      "updatedAt": "2026-11-11T14:18:17.278Z",
       "shopUrgency": "routine_sop",
       "notes": "RECOMMENDED COLD TIRE PRESSURES (Class 8 / 295/75R22.5):\n\nSteer Axle Tires: 115 PSI (Cold) [Acceptable range: 110 - 120 PSI]\nDrive Tandem Duals: 100 PSI (Cold) [Acceptable range: 95 - 105 PSI]\nTrailer Tandem Duals: 100 PSI (Cold) [Acceptable range: 95 - 105 PSI]"
     },
