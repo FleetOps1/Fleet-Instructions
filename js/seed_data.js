@@ -95,6 +95,41 @@ const INITIAL_DATABASE = {
   ],
   "issues": [
     {
+      "id": "issue-1794428616657",
+      "categoryId": "engine",
+      "title": "WATER IN THE FUEL",
+      "shopUrgency": "",
+      "dashCodes": "WATER IN THE FUEL",
+      "symptoms": [],
+      "driverSteps": [
+        "TEXT INSTRUCTIONS",
+        "ALL YOU NEED",
+        "",
+        "A. Water bottle or bucket (Anything where you will drain)",
+        "",
+        "B. Hose",
+        "",
+        "1. In the bottom of fuel module you should find black square peg and spin it until fluid comes out.",
+        "",
+        "2. Should be connected hose and put all liquid in a water bottle or bucket.",
+        "",
+        "3. You should stop when you get green fluid coming through",
+        "",
+        "",
+        "https://www.youtube.com/watch?v=qh-1KMt7BTY"
+      ],
+      "images": [
+        {
+          "url": "uploads/img_064e392c_image.png",
+          "caption": "Image",
+          "name": "image.png",
+          "type": "image"
+        }
+      ],
+      "notes": "",
+      "updatedAt": "2026-11-11T20:23:36.657Z"
+    },
+    {
       "id": "issue-1794407889238",
       "categoryId": "sops",
       "title": "Air Pressure Gauge",
