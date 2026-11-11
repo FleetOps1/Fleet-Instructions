@@ -94,6 +94,39 @@
   ],
   "issues": [
     {
+      "id": "issue-1794407797852",
+      "categoryId": "electrical",
+      "title": "Engine Protection Performing Shutdown / Coolant Sensor",
+      "shopUrgency": "",
+      "dashCodes": "Engine Protection Performing Shutdown",
+      "symptoms": [],
+      "driverSteps": [
+        "Ask driver:",
+        "",
+        "1) Check your coolant tank and send a picture",
+        "2) is there any coolant check light?",
+        "3) https://youtu.be/dD6y21v4krk?si=ZutjNGpzHwrYRl-t",
+        "",
+        "Please unplug coolant sensor, wait for 5 minutes and start the truck again"
+      ],
+      "images": [
+        {
+          "url": "uploads/img_24c07ebb_image.png",
+          "caption": "Engine Protection Performing Shutdown",
+          "name": "image.png",
+          "type": "image"
+        },
+        {
+          "url": "uploads/img_199f1a51_image.png",
+          "caption": "Image",
+          "name": "image.png",
+          "type": "image"
+        }
+      ],
+      "notes": "",
+      "updatedAt": "2026-11-11T14:36:37.853Z"
+    },
+    {
       "id": "issue-1794405064448",
       "categoryId": "trailer",
       "title": "Any issues with trailer",
