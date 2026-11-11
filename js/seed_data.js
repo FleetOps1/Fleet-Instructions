@@ -173,13 +173,13 @@ const INITIAL_DATABASE = {
       "images": [
         {
           "url": "uploads/img_f00c2f54_image.png",
-          "caption": "Image",
+          "caption": "Worn Brake Pads",
           "name": "image.png",
           "type": "image"
         }
       ],
       "notes": "Need to replace the brake pads",
-      "updatedAt": "2026-11-10T21:15:04.666Z"
+      "updatedAt": "2026-11-11T14:38:55.646Z"
     },
     {
       "id": "issue-1794344443542",
