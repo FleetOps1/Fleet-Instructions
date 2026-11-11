@@ -457,8 +457,8 @@ const INITIAL_DATABASE = {
           "type": "image"
         }
       ],
-      "notes": "All the damages to our unit send to this group: TRUCK & TRL DAMAGES\n\nIn case if police is asking for the video just tell that you don't have an access, permission to do it and don't provide any files",
-      "updatedAt": "2026-11-10T21:03:18.698Z",
+      "notes": "❗ IMPORTANT: All the damages to our unit send to this group: TRUCK & TRL DAMAGES\n\n🛑 DO NOT: In case if police is asking for the video just tell that you don't have an access, permission to do it and don't provide any files",
+      "updatedAt": "2026-11-11T18:18:39.134Z",
       "shopUrgency": "towing_accident"
     },
     {
