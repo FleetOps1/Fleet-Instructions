@@ -16,11 +16,25 @@ const INITIAL_DATABASE = {
       "description": "Unit swap protocols, PTI walkaround SOP, Samsara ELD setup, DVIR & winter operations"
     },
     {
+      "id": "brakes",
+      "name": "Brakes & Air System",
+      "icon": "brake",
+      "color": "red",
+      "description": "Air leaks, air dryer purge, gladhands, frozen lines, low air warning"
+    },
+    {
+      "id": "trailer",
+      "name": "Trailer",
+      "icon": "trailer",
+      "color": "amber",
+      "description": "Trailer doors, landing gear, tandem sliders, reefers, kingpin, seals & roof leaks"
+    },
+    {
       "id": "accidents",
       "name": "Accidents",
       "icon": "alertTriangle",
       "color": "red",
-      "description": "Collision protocol, 911 police/EMS, 360В° photo checklist, DOT drug & alcohol testing and towing"
+      "description": "Collision protocol, 911 police/EMS, 360° photo checklist, DOT drug & alcohol testing and towing"
     },
     {
       "id": "engine",
@@ -51,13 +65,6 @@ const INITIAL_DATABASE = {
       "description": "Parked regen, DEF quality, doser crystallization, 5 MPH derate timer"
     },
     {
-      "id": "brakes",
-      "name": "Brakes & Air System",
-      "icon": "brake",
-      "color": "red",
-      "description": "Air leaks, air dryer purge, gladhands, frozen lines, low air warning"
-    },
-    {
       "id": "electrical",
       "name": "Electrical & Batteries",
       "icon": "battery",
@@ -77,13 +84,6 @@ const INITIAL_DATABASE = {
       "icon": "snowflake",
       "color": "teal",
       "description": "Bunk heaters (Espar/Webasto), A/C compressor, cabin air filters"
-    },
-    {
-      "id": "trailer",
-      "name": "Trailer",
-      "icon": "trailer",
-      "color": "amber",
-      "description": "Trailer doors, landing gear, tandem sliders, reefers, kingpin, seals & roof leaks"
     },
     {
       "id": "sops",

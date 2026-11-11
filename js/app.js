@@ -465,6 +465,20 @@ function ensureRequiredCategories(db) {
       description: 'Unit swap protocols, PTI walkaround SOP, Samsara ELD setup, DVIR & winter operations'
     },
     {
+      id: 'brakes',
+      name: 'Brakes & Air System',
+      icon: 'brake',
+      color: 'red',
+      description: 'Air leaks, air dryer purge, gladhands, frozen lines, low air warning'
+    },
+    {
+      id: 'trailer',
+      name: 'Trailer',
+      icon: 'trailer',
+      color: 'amber',
+      description: 'Trailer doors, landing gear, tandem sliders, reefers, kingpin, seals & roof leaks'
+    },
+    {
       id: 'accidents',
       name: 'Accidents',
       icon: 'alertTriangle',
@@ -500,13 +514,6 @@ function ensureRequiredCategories(db) {
       description: 'Parked regen, DEF quality, doser crystallization, 5 MPH derate timer'
     },
     {
-      id: 'brakes',
-      name: 'Brakes & Air System',
-      icon: 'brake',
-      color: 'red',
-      description: 'Air leaks, air dryer purge, gladhands, frozen lines, low air warning'
-    },
-    {
       id: 'electrical',
       name: 'Electrical & Batteries',
       icon: 'battery',
@@ -528,13 +535,6 @@ function ensureRequiredCategories(db) {
       description: 'Bunk heaters (Espar/Webasto), A/C compressor, cabin air filters'
     },
     {
-      id: 'trailer',
-      name: 'Trailer',
-      icon: 'trailer',
-      color: 'amber',
-      description: 'Trailer doors, landing gear, tandem sliders, reefers, kingpin, seals & roof leaks'
-    },
-    {
       id: 'sops',
       name: 'Fleet SOPs & Procedures',
       icon: 'clipboard',
@@ -543,16 +543,10 @@ function ensureRequiredCategories(db) {
     }
   ];
 
-  REQUIRED_CATEGORIES.forEach(req => {
-    const exists = db.categories.some(c => c.id === req.id);
-    if (!exists) {
-      if (req.id === 'trailer') {
-        const sopsIdx = db.categories.findIndex(c => c.id === 'sops');
-        if (sopsIdx >= 0) db.categories.splice(sopsIdx, 0, { ...req });
-        else db.categories.push({ ...req });
-      } else {
-        db.categories.push({ ...req });
-      }
+  REQUIRED_CATEGORIES.forEach((req, idx) => {
+    const existingIdx = db.categories.findIndex(c => c.id === req.id);
+    if (existingIdx === -1) {
+      db.categories.splice(idx, 0, { ...req });
       changed = true;
     }
   });
@@ -773,6 +767,16 @@ function issueMatchesCategory(issue, catId) {
   if (issue.categoryId === catId) return true;
   // Allow Freightliner Oil and Coolant to appear under both Truck Anatomy and Engine
   if ((issue.id === 'issue-1794148523580' || issue.id === 'issue-1794148785452') && (catId === 'truck_anatomy' || catId === 'engine')) return true;
+
+  // Cross-link Trailer and Brakes: Trailer brake issues appear in BOTH Trailer and Brakes
+  const titleLower = (issue.title || '').toLowerCase();
+  const isTrailerBrake = (issue.id === 'issue-1794345092163') ||
+    (titleLower.includes('trailer') && (titleLower.includes('brake') || titleLower.includes('gladhand'))) ||
+    (issue.categoryId === 'trailer' && titleLower.includes('brake')) ||
+    (issue.categoryId === 'brakes' && (titleLower.includes('trailer') || issue.id === 'brake-air-gladhand-leak' || issue.id === 'brake-frozen-lines-winter'));
+
+  if (isTrailerBrake && (catId === 'brakes' || catId === 'trailer')) return true;
+
   return false;
 }
 
