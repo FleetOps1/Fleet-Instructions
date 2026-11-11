@@ -1168,8 +1168,8 @@ function openIssueDetail(issueId) {
           <h3 style="font-size: 1.1rem; font-weight: 700; color: var(--text-main); display: flex; align-items: center; gap: 8px;">
             <span>📋</span> Driver Instructions:
           </h3>
-          <button class="btn btn-secondary btn-sm" onclick="copyInstructions('${issue.id}')" title="Copy instructions to clipboard">
-            ${Icons.copy} Copy Instructions
+          <button class="btn-copy-icon" onclick="copyInstructions('${issue.id}', this)" title="Copy instructions">
+            ${Icons.copy}
           </button>
         </div>
 
@@ -1320,11 +1320,11 @@ function openIssueDetail(issueId) {
   initDetailDropzone();
 }
 
-function copyInstructions(issueId) {
+function copyInstructions(issueId, btnEl = null) {
   const issue = AppState.db.issues.find(i => i.id === issueId);
   if (!issue || !issue.driverSteps) return;
   const text = getInstructionsText(issue.driverSteps);
-  copyTextToClipboard(text);
+  copyTextToClipboard(text, btnEl);
 }
 
 function copyNotes(issueId, btnEl = null) {
