@@ -178,8 +178,8 @@ const INITIAL_DATABASE = {
           "type": "image"
         }
       ],
-      "notes": "Need to replace the brake pads",
-      "updatedAt": "2026-11-11T14:38:55.646Z"
+      "notes": "Need to replace the brake shoes\n\nNormal price around $600",
+      "updatedAt": "2026-11-11T18:48:58.894Z"
     },
     {
       "id": "issue-1794344443542",
