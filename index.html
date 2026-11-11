@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=18.0">
+  <link rel="stylesheet" href="css/styles.css?v=19.0">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ea580c'><rect x='1' y='3' width='15' height='13' rx='2'/><path d='M16 8h4l3 3v5h-7V8z'/><circle cx='5.5' cy='18.5' r='2.5'/><circle cx='18.5' cy='18.5' r='2.5'/></svg>">
 </head>
 <body>
@@ -252,6 +252,98 @@
                 <span>Remove</span>
               </button>
             </div>
+
+            <!-- Emoji & Warning Quick Toolbar -->
+            <div class="emoji-toolbar">
+              <span class="emoji-toolbar-label">Quick Warnings:</span>
+              <button type="button" class="btn-emoji-tag btn-emoji-warn" onclick="insertEmojiTemplate('editDriverSteps', '⚠️ WARNING: ')" title="Insert Warning Header">
+                <span>⚠️</span> Warning
+              </button>
+              <button type="button" class="btn-emoji-tag btn-emoji-urgent" onclick="insertEmojiTemplate('editDriverSteps', '🚨 URGENT: ')" title="Insert Urgent Alert">
+                <span>🚨</span> Urgent
+              </button>
+              <button type="button" class="btn-emoji-tag btn-emoji-stop" onclick="insertEmojiTemplate('editDriverSteps', '🛑 DO NOT: ')" title="Insert Stop / Do Not Action">
+                <span>🛑</span> Do Not
+              </button>
+              <button type="button" class="btn-emoji-tag btn-emoji-attention" onclick="insertEmojiTemplate('editDriverSteps', '❗ IMPORTANT: ')" title="Insert Important Notice">
+                <span>❗</span> Important
+              </button>
+              <button type="button" class="btn-emoji-tag btn-emoji-note" onclick="insertEmojiTemplate('editDriverSteps', '📌 NOTE: ')" title="Insert Note">
+                <span>📌</span> Note
+              </button>
+              <button type="button" class="btn-emoji-tag btn-emoji-check" onclick="insertEmojiTemplate('editDriverSteps', '✅ ')" title="Insert Checkmark">
+                <span>✅</span> Check
+              </button>
+
+              <div class="dropdown-wrapper emoji-dropdown-wrap">
+                <button type="button" class="btn-emoji-pack-toggle" onclick="toggleEmojiPack(event, 'editDriverSteps')" title="Show Emoji Pack (Warnings, Actions, Fleet, Numbers)">
+                  <span>😀</span> Emoji Pack ▾
+                </button>
+                <div id="emojiPack_editDriverSteps" class="emoji-pack-menu" style="display: none;">
+                  <div class="emoji-pack-section">
+                    <div class="emoji-pack-header">⚠️ Attention & Warnings</div>
+                    <div class="emoji-grid">
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editDriverSteps', '⚠️')" title="Warning">⚠️</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editDriverSteps', '🚨')" title="Urgent Siren">🚨</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editDriverSteps', '🛑')" title="Stop Sign">🛑</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editDriverSteps', '❗')" title="Exclamation">❗</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editDriverSteps', '‼️')" title="Double Exclamation">‼️</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editDriverSteps', '⛔')" title="No Entry">⛔</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editDriverSteps', '🚫')" title="Prohibited">🚫</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editDriverSteps', '🔔')" title="Alert Bell">🔔</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editDriverSteps', '📢')" title="Loudspeaker">📢</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editDriverSteps', '⚡')" title="High Voltage">⚡</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editDriverSteps', '🔥')" title="Extreme Heat">🔥</button>
+                    </div>
+                  </div>
+                  <div class="emoji-pack-section">
+                    <div class="emoji-pack-header">📋 Notes, Status & Actions</div>
+                    <div class="emoji-grid">
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editDriverSteps', '📌')" title="Pushpin">📌</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editDriverSteps', '💡')" title="Tip / Advice">💡</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editDriverSteps', 'ℹ️')" title="Information">ℹ️</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editDriverSteps', '✅')" title="Verified / Done">✅</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editDriverSteps', '❌')" title="Cross / Defect">❌</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editDriverSteps', '🔍')" title="Inspect / Look">🔍</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editDriverSteps', '📞')" title="Call Phone">📞</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editDriverSteps', '📱')" title="Mobile / Telegram">📱</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editDriverSteps', '⏱️')" title="Stopwatch">⏱️</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editDriverSteps', '⏳')" title="Wait / Hourglass">⏳</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editDriverSteps', '📝')" title="Memo / Checklist">📝</button>
+                    </div>
+                  </div>
+                  <div class="emoji-pack-section">
+                    <div class="emoji-pack-header">🚛 Fleet, Truck & Trailer</div>
+                    <div class="emoji-grid">
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editDriverSteps', '🚛')" title="Semi Truck">🚛</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editDriverSteps', '🚚')" title="Truck">🚚</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editDriverSteps', '🛞')" title="Tire / Wheel">🛞</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editDriverSteps', '🔧')" title="Wrench">🔧</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editDriverSteps', '🛠️')" title="Tools">🛠️</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editDriverSteps', '⛽')" title="Diesel Fuel">⛽</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editDriverSteps', '❄️')" title="Winter / Cold">❄️</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editDriverSteps', '🌡️')" title="Temperature">🌡️</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editDriverSteps', '🔑')" title="Key / Ignition">🔑</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editDriverSteps', '📍')" title="Location / Yard">📍</button>
+                    </div>
+                  </div>
+                  <div class="emoji-pack-section">
+                    <div class="emoji-pack-header">🔢 Steps & Numbers</div>
+                    <div class="emoji-grid">
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editDriverSteps', '1️⃣')" title="Step 1">1️⃣</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editDriverSteps', '2️⃣')" title="Step 2">2️⃣</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editDriverSteps', '3️⃣')" title="Step 3">3️⃣</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editDriverSteps', '4️⃣')" title="Step 4">4️⃣</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editDriverSteps', '5️⃣')" title="Step 5">5️⃣</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editDriverSteps', '➡️')" title="Next Step">➡️</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editDriverSteps', '👉')" title="Point Right">👉</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editDriverSteps', '⭐')" title="Priority">⭐</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <textarea id="editDriverSteps" class="form-textarea" rows="14" placeholder="Enter driver instructions, procedures, or checklists..."></textarea>
           </div>
 
@@ -276,6 +368,98 @@
                 <span>Remove</span>
               </button>
             </div>
+
+            <!-- Emoji & Warning Quick Toolbar for Notes -->
+            <div class="emoji-toolbar">
+              <span class="emoji-toolbar-label">Quick Warnings:</span>
+              <button type="button" class="btn-emoji-tag btn-emoji-warn" onclick="insertEmojiTemplate('editNotes', '⚠️ WARNING: ')" title="Insert Warning">
+                <span>⚠️</span> Warning
+              </button>
+              <button type="button" class="btn-emoji-tag btn-emoji-urgent" onclick="insertEmojiTemplate('editNotes', '🚨 URGENT: ')" title="Insert Urgent Alert">
+                <span>🚨</span> Urgent
+              </button>
+              <button type="button" class="btn-emoji-tag btn-emoji-stop" onclick="insertEmojiTemplate('editNotes', '🛑 DO NOT: ')" title="Insert Stop / Do Not">
+                <span>🛑</span> Do Not
+              </button>
+              <button type="button" class="btn-emoji-tag btn-emoji-attention" onclick="insertEmojiTemplate('editNotes', '❗ IMPORTANT: ')" title="Insert Important Notice">
+                <span>❗</span> Important
+              </button>
+              <button type="button" class="btn-emoji-tag btn-emoji-note" onclick="insertEmojiTemplate('editNotes', '📌 NOTE: ')" title="Insert Note">
+                <span>📌</span> Note
+              </button>
+              <button type="button" class="btn-emoji-tag btn-emoji-check" onclick="insertEmojiTemplate('editNotes', '✅ ')" title="Insert Checkmark">
+                <span>✅</span> Check
+              </button>
+
+              <div class="dropdown-wrapper emoji-dropdown-wrap">
+                <button type="button" class="btn-emoji-pack-toggle" onclick="toggleEmojiPack(event, 'editNotes')" title="Show all emojis">
+                  <span>😀</span> Emoji Pack ▾
+                </button>
+                <div id="emojiPack_editNotes" class="emoji-pack-menu" style="display: none;">
+                  <div class="emoji-pack-section">
+                    <div class="emoji-pack-header">⚠️ Attention & Warnings</div>
+                    <div class="emoji-grid">
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editNotes', '⚠️')" title="Warning">⚠️</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editNotes', '🚨')" title="Urgent Siren">🚨</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editNotes', '🛑')" title="Stop Sign">🛑</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editNotes', '❗')" title="Exclamation">❗</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editNotes', '‼️')" title="Double Exclamation">‼️</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editNotes', '⛔')" title="No Entry">⛔</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editNotes', '🚫')" title="Prohibited">🚫</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editNotes', '🔔')" title="Alert Bell">🔔</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editNotes', '📢')" title="Announcement">📢</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editNotes', '⚡')" title="High Voltage">⚡</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editNotes', '🔥')" title="Extreme Heat">🔥</button>
+                    </div>
+                  </div>
+                  <div class="emoji-pack-section">
+                    <div class="emoji-pack-header">📋 Notes, Status & Actions</div>
+                    <div class="emoji-grid">
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editNotes', '📌')" title="Pushpin">📌</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editNotes', '💡')" title="Tip / Advice">💡</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editNotes', 'ℹ️')" title="Information">ℹ️</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editNotes', '✅')" title="Verified / Done">✅</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editNotes', '❌')" title="Cross / Defect">❌</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editNotes', '🔍')" title="Inspect / Look">🔍</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editNotes', '📞')" title="Call Phone">📞</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editNotes', '📱')" title="Mobile / Telegram">📱</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editNotes', '⏱️')" title="Stopwatch">⏱️</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editNotes', '⏳')" title="Wait / Hourglass">⏳</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editNotes', '📝')" title="Memo / Checklist">📝</button>
+                    </div>
+                  </div>
+                  <div class="emoji-pack-section">
+                    <div class="emoji-pack-header">🚛 Fleet, Truck & Trailer</div>
+                    <div class="emoji-grid">
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editNotes', '🚛')" title="Semi Truck">🚛</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editNotes', '🚚')" title="Truck">🚚</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editNotes', '🛞')" title="Tire / Wheel">🛞</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editNotes', '🔧')" title="Wrench">🔧</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editNotes', '🛠️')" title="Tools">🛠️</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editNotes', '⛽')" title="Diesel Fuel">⛽</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editNotes', '❄️')" title="Winter / Cold">❄️</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editNotes', '🌡️')" title="Temperature">🌡️</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editNotes', '🔑')" title="Key / Ignition">🔑</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editNotes', '📍')" title="Location / Yard">📍</button>
+                    </div>
+                  </div>
+                  <div class="emoji-pack-section">
+                    <div class="emoji-pack-header">🔢 Steps & Numbers</div>
+                    <div class="emoji-grid">
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editNotes', '1️⃣')" title="Step 1">1️⃣</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editNotes', '2️⃣')" title="Step 2">2️⃣</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editNotes', '3️⃣')" title="Step 3">3️⃣</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editNotes', '4️⃣')" title="Step 4">4️⃣</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editNotes', '5️⃣')" title="Step 5">5️⃣</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editNotes', '➡️')" title="Next Step">➡️</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editNotes', '👉')" title="Point Right">👉</button>
+                      <button type="button" class="emoji-btn" onclick="insertEmojiChar('editNotes', '⭐')" title="Priority">⭐</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <textarea id="editNotes" class="form-textarea" rows="3" placeholder="e.g., Torque specifications, OEM part numbers, wire color codes, fluid capacities..."></textarea>
           </div>
 
@@ -511,8 +695,8 @@
   <div id="toastContainer" class="toast-container"></div>
 
   <!-- Scripts -->
-  <script src="js/icons.js?v=18.0"></script>
-  <script src="js/seed_data.js?v=18.0"></script>
-  <script src="js/app.js?v=18.0"></script>
+  <script src="js/icons.js?v=19.0"></script>
+  <script src="js/seed_data.js?v=19.0"></script>
+  <script src="js/app.js?v=19.0"></script>
 </body>
 </html>

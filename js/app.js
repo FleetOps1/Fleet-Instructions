@@ -2800,6 +2800,15 @@ function setupEventListeners() {
     });
   });
 
+  // Close emoji pack menus when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.emoji-dropdown-wrap')) {
+      document.querySelectorAll('.emoji-pack-menu').forEach(m => {
+        m.style.display = 'none';
+      });
+    }
+  });
+
   // Floating Scroll to Top button listener
   initScrollToTop();
 }
@@ -2860,3 +2869,71 @@ function cleanInstructionLine(l) {
     .replace(/^[\x29\.\-:\s]+/, '')
     .trim();
 }
+
+// ==========================================================================
+// Emoji & Warning Quick Toolbar Handlers
+// ==========================================================================
+
+function insertEmojiTemplate(targetId, template) {
+  const el = document.getElementById(targetId);
+  if (!el) return;
+
+  el.focus();
+  const start = el.selectionStart ?? el.value.length;
+  const end = el.selectionEnd ?? el.value.length;
+  const val = el.value;
+
+  const selectedText = val.substring(start, end);
+  const insertion = selectedText ? `${template}${selectedText}` : template;
+
+  el.value = val.substring(0, start) + insertion + val.substring(end);
+  const nextPos = start + insertion.length;
+  el.focus();
+  el.setSelectionRange(nextPos, nextPos);
+  el.dispatchEvent(new Event('input', { bubbles: true }));
+}
+
+function insertEmojiChar(targetId, emojiChar) {
+  const el = document.getElementById(targetId);
+  if (!el) return;
+
+  el.focus();
+  const start = el.selectionStart ?? el.value.length;
+  const end = el.selectionEnd ?? el.value.length;
+  const val = el.value;
+
+  // Insert emoji with trailing space for convenient immediate typing
+  const insertion = `${emojiChar} `;
+  el.value = val.substring(0, start) + insertion + val.substring(end);
+  const nextPos = start + insertion.length;
+  el.focus();
+  el.setSelectionRange(nextPos, nextPos);
+  el.dispatchEvent(new Event('input', { bubbles: true }));
+}
+
+function toggleEmojiPack(e, targetId) {
+  if (e) {
+    e.preventDefault();
+    e.stopPropagation();
+  }
+  const menuId = `emojiPack_${targetId}`;
+  const menu = document.getElementById(menuId);
+  if (!menu) return;
+
+  const isHidden = menu.style.display === 'none' || !menu.style.display;
+
+  // Close all other emoji packs first
+  document.querySelectorAll('.emoji-pack-menu').forEach(m => {
+    m.style.display = 'none';
+  });
+
+  if (isHidden) {
+    menu.style.display = 'block';
+  }
+}
+
+// Make accessible to inline onclick handlers
+window.insertEmojiTemplate = insertEmojiTemplate;
+window.insertEmojiChar = insertEmojiChar;
+window.toggleEmojiPack = toggleEmojiPack;
+

@@ -159,7 +159,7 @@
       ],
       "images": [],
       "notes": "",
-      "updatedAt": "2026-11-11T13:51:04.448Z"
+      "updatedAt": "2026-11-11T14:42:15.309Z"
     },
     {
       "id": "issue-1794345092163",
@@ -459,31 +459,6 @@
       "notes": "All the damages to our unit send to this group: TRUCK & TRL DAMAGES\n\nIn case if police is asking for the video just tell that you don't have an access, permission to do it and don't provide any files",
       "updatedAt": "2026-11-10T21:03:18.698Z",
       "shopUrgency": "towing_accident"
-    },
-    {
-      "id": "glass-cracked-windshield",
-      "categoryId": "safety_cab",
-      "title": "Cracked Windshield & Stone Chips (DOT 393.60 Compliance)",
-      "dashCodes": "Visual Pre-Trip Inspection | DOT Scale Out-of-Service Risk",
-      "symptoms": [
-        "Stone chip, bullseye, or star crack caused by road debris",
-        "Horizontal or vertical crack expanding across driver's field of view",
-        "Wiper blades snagging, chattering, or tearing over glass fracture"
-      ],
-      "driverSteps": [
-        "1. Check crack location and size immediately with a tape measure or coin.",
-        "2. DOT 393.60 CRITICAL SWEEP ZONE: Cracks or chips of ANY size are strictly prohibited in the driver critical viewing area (8.5 inches wide by 11 inches high centered directly above the steering wheel rim). Any damage here is an automatic DOT citation or Out of Service.",
-        "3. ALLOWABLE DAMAGE (OUTSIDE CRITICAL AREA): An isolated stone chip under 3/4 inch diameter (penny size), or a single crack that does NOT intersect with another crack is legally permitted outside the driver sweep area, provided it is at least 3 inches away from any other fracture.",
-        "4. INTERSECTING CRACK BAN: If two cracks touch or cross each other (spider-web pattern), it is an automatic Out-of-Service violation regardless of where it is on the glass.",
-        "5. TEMP REPAIR: Apply a strip of clear packing tape over the chip immediately to block road dirt, salt, and washer fluid from contaminating the resin cavity.",
-        "6. If chip is under 1 inch and non-branching: Dispatch can route driver to a Love's, Pilot, or Safelite bay for a $65 resin injection repair before temperature changes cause it to run across the entire windshield.",
-        "7. If crack exceeds 6 inches: Full glass replacement is required. Send clear photos holding a tape measure against the crack to dispatch."
-      ],
-      "images": [
-        "assets/windshield_dot_spec.svg"
-      ],
-      "updatedAt": "2026-11-08T06:10:00Z",
-      "shopUrgency": "urgent_shop"
     },
     {
       "id": "sensor-lane-departure",
@@ -815,68 +790,30 @@
   ],
   "trash": [
     {
-      "id": "eng-coolant-leak",
-      "categoryId": "engine",
-      "title": "Coolant Leak / Low Coolant Level",
-      "dashCodes": "SPN 111 FMI 1 | Red or Amber Engine Lamp | Low Coolant Light",
+      "id": "glass-cracked-windshield",
+      "categoryId": "safety_cab",
+      "title": "Cracked Windshield & Stone Chips (DOT 393.60 Compliance)",
+      "dashCodes": "Visual Pre-Trip Inspection | DOT Scale Out-of-Service Risk",
       "symptoms": [
-        "Low Coolant warning light and chime on dashboard",
-        "Sweet chemical smell from engine bay or AC vents",
-        "Temperature gauge climbing above 215°F",
-        "Pink/Red fluid dripping under front axle or bumper"
+        "Stone chip, bullseye, or star crack caused by road debris",
+        "Horizontal or vertical crack expanding across driver's field of view",
+        "Wiper blades snagging, chattering, or tearing over glass fracture"
       ],
       "driverSteps": [
-        "1. Safely pull over at the nearest truck stop or safe shoulder. Put on high-visibility vest and hazard lights.",
-        "2. DO NOT immediately open the surge tank cap while engine is hot! Risk of severe burns from boiling coolant under pressure.",
-        "3. Wait 15-20 minutes for engine to cool down. Use a thick towel/rag to slowly twist the cap 1/4 turn to relieve pressure.",
-        "4. Inspect coolant level in the translucent plastic surge tank against the MIN / MAX COLD line.",
-        "5. Visually inspect upper/lower radiator hoses, water pump weep hole, and EGR cooler lines with a flashlight for pink wet crust.",
-        "6. If level is low without an active pouring leak: Top up with 50/50 Red Extended Life Coolant (Rotella ELC or Peak Final Charge).",
-        "7. Ensure cap is tightened until it clicks firmly. Restart engine and verify the dash light clears."
+        "1. Check crack location and size immediately with a tape measure or coin.",
+        "2. DOT 393.60 CRITICAL SWEEP ZONE: Cracks or chips of ANY size are strictly prohibited in the driver critical viewing area (8.5 inches wide by 11 inches high centered directly above the steering wheel rim). Any damage here is an automatic DOT citation or Out of Service.",
+        "3. ALLOWABLE DAMAGE (OUTSIDE CRITICAL AREA): An isolated stone chip under 3/4 inch diameter (penny size), or a single crack that does NOT intersect with another crack is legally permitted outside the driver sweep area, provided it is at least 3 inches away from any other fracture.",
+        "4. INTERSECTING CRACK BAN: If two cracks touch or cross each other (spider-web pattern), it is an automatic Out-of-Service violation regardless of where it is on the glass.",
+        "5. TEMP REPAIR: Apply a strip of clear packing tape over the chip immediately to block road dirt, salt, and washer fluid from contaminating the resin cavity.",
+        "6. If chip is under 1 inch and non-branching: Dispatch can route driver to a Love's, Pilot, or Safelite bay for a $65 resin injection repair before temperature changes cause it to run across the entire windshield.",
+        "7. If crack exceeds 6 inches: Full glass replacement is required. Send clear photos holding a tape measure against the crack to dispatch."
       ],
       "images": [
-        {
-          "url": "uploads/05_Freightliner_Coolant_OAT.png",
-          "caption": "Freightliner Approved Coolant / Antifreeze: ELC OAT 50/50 Premix (Red/Pink)",
-          "name": "05_Freightliner_Coolant_OAT.png",
-          "type": "image"
-        },
-        "assets/coolant_surge_tank.svg"
+        "assets/windshield_dot_spec.svg"
       ],
-      "updatedAt": "2026-11-08T17:45:00Z",
+      "updatedAt": "2026-11-08T06:10:00Z",
       "shopUrgency": "urgent_shop",
-      "deletedAt": "2026-11-10T21:06:38.107Z"
-    },
-    {
-      "id": "eng-oil-pressure-low",
-      "categoryId": "engine",
-      "title": "Low Engine Oil Pressure / Red Stop Engine",
-      "dashCodes": "SPN 100 FMI 1 | RED STOP ENGINE | Oil Can Symbol",
-      "symptoms": [
-        "Oil pressure gauge drops below 15 PSI at idle or below 25 PSI under load",
-        "Red STOP ENGINE lamp illuminated with continuous alarm buzzer",
-        "Engine knock, ticking, or mechanical clatter"
-      ],
-      "driverSteps": [
-        "1. PULL OVER AND SHUT OFF ENGINE RIGHT AWAY. Running without oil pressure will destroy engine bearings in 60 seconds.",
-        "2. Park on flat level ground. Set parking brakes, deploy emergency triangles 100 ft behind truck.",
-        "3. Wait 10 minutes for oil to drain completely into the oil pan.",
-        "4. Pull oil dipstick, wipe clean with rag, re-insert fully, and pull again to read oil level.",
-        "5. Inspect underneath for blown oil filter seal, punctured oil pan, or loose drain plug.",
-        "6. If dipstick is dry: Add 1-2 gallons of 15W-40 or 10W-30 CK-4 heavy duty engine oil before any restart attempt.",
-        "7. If oil level is full on dipstick but dash reads 0 PSI: Oil pressure sensor or internal oil pump failure. DO NOT DRIVE."
-      ],
-      "images": [
-        {
-          "url": "uploads/06_Freightliner_Oil_Rotella_T5.png",
-          "caption": "Freightliner Approved Engine Oil: Shell Rotella T5 10W-30 Synthetic Blend",
-          "name": "06_Freightliner_Oil_Rotella_T5.png",
-          "type": "image"
-        }
-      ],
-      "updatedAt": "2026-11-08T17:45:00Z",
-      "shopUrgency": "urgent_shop",
-      "deletedAt": "2026-11-10T21:06:34.935Z"
+      "deletedAt": "2026-11-11T14:40:57.886Z"
     }
   ]
 }
