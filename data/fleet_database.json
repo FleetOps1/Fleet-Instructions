@@ -94,6 +94,27 @@
   ],
   "issues": [
     {
+      "id": "issue-1794407889238",
+      "categoryId": "sops",
+      "title": "Air Pressure Gauge",
+      "shopUrgency": "",
+      "dashCodes": "",
+      "symptoms": [],
+      "driverSteps": [
+        "10-120 PSI air gauge"
+      ],
+      "images": [
+        {
+          "url": "uploads/img_5bfd9c22_image.png",
+          "caption": "Air Pressure Tire Gauge",
+          "name": "image.png",
+          "type": "image"
+        }
+      ],
+      "notes": "",
+      "updatedAt": "2026-11-11T14:38:09.238Z"
+    },
+    {
       "id": "issue-1794407797852",
       "categoryId": "electrical",
       "title": "Engine Protection Performing Shutdown / Coolant Sensor",
