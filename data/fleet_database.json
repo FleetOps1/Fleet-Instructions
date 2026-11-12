@@ -256,27 +256,12 @@
         "https://www.youtube.com/watch?v=3Guu88noOic"
       ],
       "images": [
-        {
-          "url": "uploads/img_66410183_image.png",
-          "caption": "",
-          "name": "image.png",
-          "type": "image"
-        },
-        {
-          "url": "uploads/img_0f6155ed_image.png",
-          "caption": "Permatex",
-          "name": "image.png",
-          "type": "image"
-        },
-        {
-          "url": "uploads/img_cf73fa8a_image.png",
-          "caption": "",
-          "name": "image.png",
-          "type": "image"
-        }
+        "uploads/img_05ecf06f_img_0f6155ed_image.png",
+        "uploads/img_66410183_image.png",
+        "uploads/img_cf73fa8a_image.png"
       ],
       "notes": "",
-      "updatedAt": "2026-11-12T17:08:12.480Z"
+      "updatedAt": "2026-11-12T17:46:22.343Z"
     },
     {
       "id": "issue-1794159726250",
