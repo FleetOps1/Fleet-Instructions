@@ -1173,7 +1173,7 @@ function openIssueDetail(issueId) {
           </button>
         </div>
 
-        <div class="instructions-text-box">${escapeHtml(getInstructionsText(issue.driverSteps))}</div>
+        <div class="instructions-text-box">${renderRichTextWithMedia(getInstructionsText(issue.driverSteps))}</div>
       </div>
     ` : ''}
 
@@ -1200,7 +1200,7 @@ function openIssueDetail(issueId) {
             ${Icons.copy}
           </button>
         </div>
-        <div style="white-space: pre-wrap; color: var(--text-main); font-size: 0.92rem; line-height: 1.6;">${escapeHtml(issue.notes)}</div>
+        <div style="white-space: pre-wrap; color: var(--text-main); font-size: 0.92rem; line-height: 1.6;">${renderRichTextWithMedia(issue.notes)}</div>
       </div>
     ` : ''}
 
@@ -2936,4 +2936,77 @@ function toggleEmojiPack(e, targetId) {
 window.insertEmojiTemplate = insertEmojiTemplate;
 window.insertEmojiChar = insertEmojiChar;
 window.toggleEmojiPack = toggleEmojiPack;
+
+// ==========================================================================
+// YouTube & Rich Media Link & Preview Formatter
+// ==========================================================================
+
+function extractYouTubeVideoId(url) {
+  if (!url) return null;
+  const match = url.match(/(?:https?:\/\/)?(?:www\.|m\.)?(?:youtube\.com\/(?:watch\?(?:.*&)?v=|shorts\/|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/i);
+  return match ? match[1] : null;
+}
+
+function renderRichTextWithMedia(text) {
+  if (!text) return '';
+
+  const lines = String(text).split(/\r?\n/);
+  const urlRegex = /(https?:\/\/[^\s<]+)/gi;
+
+  const processedLines = lines.map(rawLine => {
+    const ytVideos = [];
+    let lastIdx = 0;
+    let lineHtml = '';
+    let match;
+
+    while ((match = urlRegex.exec(rawLine)) !== null) {
+      const matchIndex = match.index;
+      const fullMatch = match[0];
+
+      if (matchIndex > lastIdx) {
+        lineHtml += escapeHtml(rawLine.substring(lastIdx, matchIndex));
+      }
+
+      let cleanUrl = fullMatch;
+      let trailing = '';
+      const punctMatch = fullMatch.match(/[.,;:!?)]+$/);
+      if (punctMatch) {
+        trailing = punctMatch[0];
+        cleanUrl = fullMatch.substring(0, fullMatch.length - trailing.length);
+      }
+
+      const videoId = extractYouTubeVideoId(cleanUrl);
+      const isYt = !!videoId;
+
+      if (videoId && !ytVideos.some(v => v.videoId === videoId)) {
+        ytVideos.push({
+          videoId,
+          url: cleanUrl
+        });
+      }
+
+      const ytSvg = `<svg viewBox="0 0 24 24" width="14" height="14" fill="#ef4444" style="vertical-align: -2px; margin-right: 4px; display: inline-block; flex-shrink: 0;"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>`;
+      const genericSvg = `<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: -2px; margin-right: 4px; display: inline-block; flex-shrink: 0;"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>`;
+      const icon = isYt ? ytSvg : genericSvg;
+
+      lineHtml += `<a href="${encodeURI(cleanUrl)}" target="_blank" rel="noopener noreferrer" class="rich-text-link">${icon}${escapeHtml(cleanUrl)}</a>${escapeHtml(trailing)}`;
+
+      lastIdx = matchIndex + fullMatch.length;
+    }
+
+    if (lastIdx < rawLine.length) {
+      lineHtml += escapeHtml(rawLine.substring(lastIdx));
+    }
+
+    if (ytVideos.length > 0) {
+      const cards = ytVideos.map(v => `<div class="youtube-preview-card"><div class="youtube-player-wrap"><iframe src="https://www.youtube-nocookie.com/embed/${v.videoId}?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe></div><div class="youtube-preview-footer"><div class="yt-badge"><svg viewBox="0 0 24 24" width="15" height="15" fill="#ef4444"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg><span>YouTube Preview</span></div><a href="${encodeURI(v.url)}" target="_blank" rel="noopener noreferrer" class="yt-external-btn"><span>Watch on YouTube</span><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div></div>`).join('');
+      return lineHtml + cards;
+    }
+
+    return lineHtml;
+  });
+
+  return processedLines.join('\n');
+}
+
 

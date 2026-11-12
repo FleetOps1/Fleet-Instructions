@@ -268,10 +268,16 @@ const INITIAL_DATABASE = {
           "caption": "Permatex",
           "name": "image.png",
           "type": "image"
+        },
+        {
+          "url": "uploads/img_cf73fa8a_image.png",
+          "caption": "Image",
+          "name": "image.png",
+          "type": "image"
         }
       ],
       "notes": "",
-      "updatedAt": "2026-11-12T17:01:49.535Z"
+      "updatedAt": "2026-11-12T17:05:22.589Z"
     },
     {
       "id": "issue-1794159726250",
