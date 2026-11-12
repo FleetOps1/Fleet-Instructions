@@ -101,16 +101,11 @@
       "dashCodes": "",
       "symptoms": [],
       "driverSteps": [
-        "All new company trucks is covered.",
-        "If not sure about issue, call dealer and ask if it's warranty case.",
-        "",
-        "If truck won't start, request towing to Love's",
-        "",
         "Send driver to Love's (supposed to be covered by warranty)"
       ],
       "images": [],
-      "notes": "",
-      "updatedAt": "2026-11-12T18:35:44.703Z"
+      "notes": "All new company trucks is covered.\nIf not sure about issue, call dealer and ask if it's warranty case.\n\nIf truck won't start, request towing to Love's",
+      "updatedAt": "2026-11-12T18:36:12.277Z"
     },
     {
       "id": "issue-1794428616657",
