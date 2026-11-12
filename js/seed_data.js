@@ -256,10 +256,16 @@ const INITIAL_DATABASE = {
           "caption": "Image",
           "name": "image.png",
           "type": "image"
+        },
+        {
+          "url": "uploads/img_e984041a_image.png",
+          "caption": "Repair Kit",
+          "name": "image.png",
+          "type": "image"
         }
       ],
       "notes": "",
-      "updatedAt": "2026-11-10T23:59:59.000Z"
+      "updatedAt": "2026-11-12T16:37:56.849Z"
     },
     {
       "id": "issue-1794159726250",
