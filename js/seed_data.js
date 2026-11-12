@@ -95,6 +95,25 @@ const INITIAL_DATABASE = {
   ],
   "issues": [
     {
+      "id": "issue-1794507888582",
+      "categoryId": "engine",
+      "title": "Coolant leak",
+      "shopUrgency": "",
+      "dashCodes": "",
+      "symptoms": [],
+      "driverSteps": [
+        "All new company trucks is covered.",
+        "If not sure about issue, call dealer and ask if it's warranty case.",
+        "",
+        "If truck won't start, request towing to Love's",
+        "",
+        "Send driver to Love's (supposed to be covered by warranty)"
+      ],
+      "images": [],
+      "notes": "",
+      "updatedAt": "2026-11-12T18:35:44.703Z"
+    },
+    {
       "id": "issue-1794428616657",
       "categoryId": "engine",
       "title": "WATER IN THE FUEL",
@@ -250,8 +269,8 @@ const INITIAL_DATABASE = {
       "driverSteps": [
         "If it's not bigger than a quarter coin you can apply windshield kit and prevent it from spreading",
         "",
-        "Shop to purchase:",
-        "AutoZone Auto Parts",
+        "Shop to purchase Permatex Windshield Kit:",
+        "AutoZone Auto Parts $19",
         "",
         "Instruction on how to apply it:",
         "https://www.youtube.com/watch?v=3Guu88noOic"
@@ -262,7 +281,7 @@ const INITIAL_DATABASE = {
         "uploads/img_cf73fa8a_image.png"
       ],
       "notes": "",
-      "updatedAt": "2026-11-12T17:46:22.343Z"
+      "updatedAt": "2026-11-12T17:56:15.987Z"
     },
     {
       "id": "issue-1794159726250",
@@ -467,7 +486,7 @@ const INITIAL_DATABASE = {
           "caption": "Official ABA Carriers Decals"
         }
       ],
-      "updatedAt": "2026-11-10T20:53:54.013Z",
+      "updatedAt": "2026-11-12T17:47:03.998Z",
       "shopUrgency": "",
       "notes": ""
     },
