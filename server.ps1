@@ -135,11 +135,22 @@ while ($listener.IsListening) {
             } catch {}
             
             $pushOut = git push origin main 2>&1
+            $pushOutStr = ($pushOut | Out-String).Trim()
             $success = ($LASTEXITCODE -eq 0)
+            
+            $msg = if ($success) {
+                if ($pushOutStr -match "Everything up-to-date") {
+                    "GitHub is already up-to-date! (All latest edits & photos are on the repo)"
+                } else {
+                    "Successfully pushed all changes and photos to GitHub!"
+                }
+            } else {
+                $pushOutStr
+            }
             
             $result = @{
                 success = $success
-                message = if ($success) { "Successfully pushed all changes and photos to GitHub!" } else { ($pushOut | Out-String).Trim() }
+                message = $msg
             } | ConvertTo-Json
             
             $buffer = [System.Text.Encoding]::UTF8.GetBytes($result)
