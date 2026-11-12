@@ -248,7 +248,13 @@ const INITIAL_DATABASE = {
       "dashCodes": "",
       "symptoms": [],
       "driverSteps": [
-        "If it's not bigger than a quarter coin you can apply windshield kit and prevent it from spreading"
+        "If it's not bigger than a quarter coin you can apply windshield kit and prevent it from spreading",
+        "",
+        "Shop to purchase:",
+        "AutoZone Auto Parts",
+        "",
+        "Instruction on how to apply it:",
+        "https://www.youtube.com/watch?v=3Guu88noOic"
       ],
       "images": [
         {
@@ -258,14 +264,14 @@ const INITIAL_DATABASE = {
           "type": "image"
         },
         {
-          "url": "uploads/img_e984041a_image.png",
-          "caption": "Repair Kit",
+          "url": "uploads/img_0f6155ed_image.png",
+          "caption": "Permatex",
           "name": "image.png",
           "type": "image"
         }
       ],
       "notes": "",
-      "updatedAt": "2026-11-12T16:37:56.849Z"
+      "updatedAt": "2026-11-12T17:01:49.535Z"
     },
     {
       "id": "issue-1794159726250",
