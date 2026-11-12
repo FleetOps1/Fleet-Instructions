@@ -67,10 +67,18 @@ function formatImageTitle(rawName) {
 function getAttachmentCaption(item) {
   if (!item) return '';
   if (typeof item === 'object' && item.caption && String(item.caption).trim()) {
-    return String(item.caption).trim();
+    const c = String(item.caption).trim();
+    if (c.toLowerCase() === 'image' || c.toLowerCase() === 'photo' || c.toLowerCase() === 'photo attachment') {
+      return '';
+    }
+    return c;
   }
   const raw = typeof item === 'object' ? (item.name || item.url || '') : item;
-  return formatImageTitle(raw);
+  const filename = decodeURIComponent(String(raw).split('?')[0].split('#')[0].split('/').pop() || '');
+  if (filename && KNOWN_CAPTIONS[filename]) {
+    return KNOWN_CAPTIONS[filename];
+  }
+  return '';
 }
 const getImageCaption = getAttachmentCaption;
 
@@ -145,12 +153,19 @@ function getAttachmentObj(item) {
     };
   }
   const name = item.name || getAttachmentName(item);
+  let cap = (item.caption && String(item.caption).trim()) ? String(item.caption).trim() : '';
+  if (cap.toLowerCase() === 'image' || cap.toLowerCase() === 'photo' || cap.toLowerCase() === 'photo attachment') {
+    cap = '';
+  }
+  if (!cap && KNOWN_CAPTIONS[name]) {
+    cap = KNOWN_CAPTIONS[name];
+  }
   return {
     url: item.url || '',
     name: name,
     size: item.size || 0,
     type: item.type || getFileType(item),
-    caption: (item.caption && String(item.caption).trim()) ? String(item.caption).trim() : getAttachmentCaption(item)
+    caption: cap
   };
 }
 const getImageObj = getAttachmentObj;
@@ -1243,15 +1258,18 @@ function openIssueDetail(issueId) {
             <div class="detail-photo-grid" style="margin-bottom: ${docAtts.length > 0 ? '14px' : '0'};">
               ${imgAtts.map((img, idx) => {
                 const url = img.url;
-                const caption = img.caption || getAttachmentCaption(img) || 'Photo Attachment';
+                const cap = (img.caption || '').trim();
+                const hasRealCaption = cap && cap.toLowerCase() !== 'image' && cap.toLowerCase() !== 'photo' && cap.toLowerCase() !== 'photo attachment';
                 return `
-                  <div class="detail-photo-card" onclick="openLightbox('${issue.id}', ${idx})" title="${escapeHtml(caption + ' (Click to enlarge)')}">
+                  <div class="detail-photo-card" onclick="openLightbox('${issue.id}', ${idx})" title="${escapeHtml(hasRealCaption ? cap + ' (Click to enlarge)' : 'Click to enlarge')}">
                     <div class="detail-photo-thumb">
-                      <img src="${url}" alt="${escapeHtml(caption)}" />
+                      <img src="${url}" alt="${escapeHtml(hasRealCaption ? cap : 'Photo')}" />
                     </div>
-                    <div class="detail-photo-caption">
-                      <span class="detail-caption-text">${escapeHtml(caption)}</span>
-                    </div>
+                    ${hasRealCaption ? `
+                      <div class="detail-photo-caption">
+                        <span class="detail-caption-text">${escapeHtml(cap)}</span>
+                      </div>
+                    ` : ''}
                   </div>
                 `;
               }).join('')}
@@ -1657,6 +1675,85 @@ function populateCategorySelect(selectedId) {
   `).join('');
 }
 
+function syncCurrentEditImageCaptionsFromInputs() {
+  currentEditImages.forEach((img, idx) => {
+    const input = document.getElementById(`imgCaptionInput_${idx}`);
+    if (input) {
+      const val = input.value.trim();
+      const cleanVal = (val.toLowerCase() === 'image' || val.toLowerCase() === 'photo' || val.toLowerCase() === 'photo attachment') ? '' : val;
+      if (typeof img === 'object') {
+        img.caption = cleanVal;
+      } else {
+        currentEditImages[idx] = {
+          url: img,
+          caption: cleanVal
+        };
+      }
+    }
+  });
+}
+
+function moveEditImage(fromIdx, delta) {
+  const toIdx = fromIdx + delta;
+  if (toIdx < 0 || toIdx >= currentEditImages.length) return;
+
+  syncCurrentEditImageCaptionsFromInputs();
+
+  const item = currentEditImages.splice(fromIdx, 1)[0];
+  currentEditImages.splice(toIdx, 0, item);
+
+  renderEditImagePreviews();
+}
+
+let draggedImageIdx = null;
+
+function handleImageDragStart(e, idx) {
+  draggedImageIdx = idx;
+  syncCurrentEditImageCaptionsFromInputs();
+  if (e.dataTransfer) {
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/plain', String(idx));
+  }
+  const card = e.currentTarget;
+  setTimeout(() => card.classList.add('is-dragging'), 0);
+}
+
+function handleImageDragOver(e, idx) {
+  e.preventDefault();
+  if (e.dataTransfer) {
+    e.dataTransfer.dropEffect = 'move';
+  }
+  const card = e.currentTarget;
+  if (!card.classList.contains('drag-over') && draggedImageIdx !== idx) {
+    card.classList.add('drag-over');
+  }
+}
+
+function handleImageDragLeave(e) {
+  e.currentTarget.classList.remove('drag-over');
+}
+
+function handleImageDrop(e, targetIdx) {
+  e.preventDefault();
+  e.currentTarget.classList.remove('drag-over');
+  if (draggedImageIdx === null || draggedImageIdx === targetIdx) return;
+
+  syncCurrentEditImageCaptionsFromInputs();
+
+  const item = currentEditImages.splice(draggedImageIdx, 1)[0];
+  currentEditImages.splice(targetIdx, 0, item);
+  draggedImageIdx = null;
+
+  renderEditImagePreviews();
+}
+
+function handleImageDragEnd(e) {
+  draggedImageIdx = null;
+  document.querySelectorAll('.image-preview-card, .file-preview-card').forEach(c => {
+    c.classList.remove('is-dragging', 'drag-over');
+  });
+}
+
 function renderEditImagePreviews() {
   const container = document.getElementById('editImagePreviewGrid');
   if (!container) return;
@@ -1666,18 +1763,44 @@ function renderEditImagePreviews() {
     return;
   }
 
+  const total = currentEditImages.length;
+
   container.innerHTML = currentEditImages.map((img, idx) => {
     const item = getAttachmentObj(img);
     const url = item.url;
-    const caption = item.caption;
+    let caption = (item.caption || '').trim();
+    if (caption.toLowerCase() === 'image' || caption.toLowerCase() === 'photo' || caption.toLowerCase() === 'photo attachment') {
+      caption = '';
+    }
     const isImg = isImageAttachment(item);
+
+    const reorderControls = total > 1 ? `
+      <div class="reorder-btns-wrap">
+        <button type="button" class="reorder-img-btn" onclick="moveEditImage(${idx}, -1)" title="Move left / earlier" ${idx === 0 ? 'disabled' : ''}>◀</button>
+        <button type="button" class="reorder-img-btn" onclick="moveEditImage(${idx}, 1)" title="Move right / later" ${idx === total - 1 ? 'disabled' : ''}>▶</button>
+      </div>
+    ` : '';
+
+    const orderBadge = total > 1 ? `
+      <span class="image-order-badge" title="Drag card to reorder">
+        <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="9" cy="5" r="1"/><circle cx="9" cy="12" r="1"/><circle cx="9" cy="19" r="1"/><circle cx="15" cy="5" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="15" cy="19" r="1"/></svg>
+        #${idx + 1}
+      </span>
+    ` : '';
 
     if (isImg) {
       return `
-        <div class="image-preview-card" data-idx="${idx}">
+        <div class="image-preview-card" data-idx="${idx}" draggable="${total > 1}" 
+             ondragstart="handleImageDragStart(event, ${idx})" 
+             ondragover="handleImageDragOver(event, ${idx})" 
+             ondragleave="handleImageDragLeave(event)" 
+             ondrop="handleImageDrop(event, ${idx})" 
+             ondragend="handleImageDragEnd(event)">
           <div class="image-preview-thumb-wrap">
+            ${orderBadge}
             <img src="${url}" alt="Preview" onclick="openLightbox(currentEditImages, ${idx})" title="Click to view large" />
             <button type="button" class="remove-img-btn" onclick="removeEditImage(${idx})" title="Remove image">×</button>
+            ${reorderControls}
           </div>
           <div class="image-preview-caption-wrap">
             <label class="image-preview-caption-label" for="imgCaptionInput_${idx}">
@@ -1687,10 +1810,10 @@ function renderEditImagePreviews() {
               type="text" 
               id="imgCaptionInput_${idx}"
               class="form-input form-input-sm image-caption-input" 
-              placeholder="e.g. Samsara RP1226 Cable" 
+              placeholder="Add description or leave empty..." 
               value="${escapeHtml(caption)}" 
               oninput="updateImageCaption(${idx}, this.value)"
-              title="What is depicted in this photo"
+              title="Add a description or leave empty"
             />
           </div>
         </div>
@@ -1699,7 +1822,13 @@ function renderEditImagePreviews() {
       const badge = getFileBadgeInfo(item.type);
       const sizeText = formatFileSize(item.size);
       return `
-        <div class="file-preview-card" data-idx="${idx}">
+        <div class="file-preview-card" data-idx="${idx}" draggable="${total > 1}" 
+             ondragstart="handleImageDragStart(event, ${idx})" 
+             ondragover="handleImageDragOver(event, ${idx})" 
+             ondragleave="handleImageDragLeave(event)" 
+             ondrop="handleImageDrop(event, ${idx})" 
+             ondragend="handleImageDragEnd(event)">
+          ${orderBadge}
           <button type="button" class="remove-img-btn" onclick="removeEditImage(${idx})" title="Remove file">×</button>
           <div class="file-card-main" onclick="openAttachmentFile('${url}')" title="Click to open / view file (new tab)">
             <div class="file-card-icon-badge ${badge.colorClass}">
@@ -1711,6 +1840,7 @@ function renderEditImagePreviews() {
               <div class="file-card-filesize">${sizeText ? sizeText : badge.label + ' File'}</div>
             </div>
           </div>
+          ${reorderControls}
           <div class="image-preview-caption-wrap">
             <label class="image-preview-caption-label" for="imgCaptionInput_${idx}">
               Caption:
@@ -1719,7 +1849,7 @@ function renderEditImagePreviews() {
               type="text" 
               id="imgCaptionInput_${idx}"
               class="form-input form-input-sm image-caption-input" 
-              placeholder="e.g. Factory Service Manual / Wiring Diagram" 
+              placeholder="Add description or leave empty..." 
               value="${escapeHtml(caption)}" 
               oninput="updateImageCaption(${idx}, this.value)"
               title="Description / purpose of this document"
@@ -1733,11 +1863,21 @@ function renderEditImagePreviews() {
 
 function updateImageCaption(idx, value) {
   if (currentEditImages[idx]) {
-    currentEditImages[idx].caption = value;
+    const val = value.trim();
+    const cleanVal = (val.toLowerCase() === 'image' || val.toLowerCase() === 'photo' || val.toLowerCase() === 'photo attachment') ? '' : val;
+    if (typeof currentEditImages[idx] === 'object') {
+      currentEditImages[idx].caption = cleanVal;
+    } else {
+      currentEditImages[idx] = {
+        url: currentEditImages[idx],
+        caption: cleanVal
+      };
+    }
   }
 }
 
 function removeEditImage(idx) {
+  syncCurrentEditImageCaptionsFromInputs();
   currentEditImages.splice(idx, 1);
   renderEditImagePreviews();
 }
@@ -2028,22 +2168,24 @@ async function handleSaveIssue(e) {
   const rawDriverSteps = activeFormFields.has('driverSteps') ? document.getElementById('editDriverSteps').value.trim() : '';
   const driverSteps = rawDriverSteps ? rawDriverSteps.split(/\r?\n/) : [];
   const symptoms = activeFormFields.has('symptoms') ? document.getElementById('editSymptoms').value.split('\n').map(s => s.trim()).filter(Boolean) : [];
+  syncCurrentEditImageCaptionsFromInputs();
   const images = activeFormFields.has('images') 
     ? currentEditImages.map(img => {
         const item = getAttachmentObj(img);
         const u = item.url;
         const c = (item.caption || '').trim();
+        const cleanCaption = (c.toLowerCase() === 'image' || c.toLowerCase() === 'photo' || c.toLowerCase() === 'photo attachment') ? '' : c;
         const n = item.name || '';
         const s = item.size || 0;
         const t = item.type || getFileType(item);
         
         // If it's a document/file (PDF, doc, sheet, zip, etc.), preserve full metadata
         if (t !== 'image') {
-          return { url: u, name: n, size: s, type: t, caption: c };
+          return { url: u, name: n, size: s, type: t, caption: cleanCaption };
         }
-        // For images: preserve caption if present
-        if (c) {
-          return { url: u, caption: c, name: n, type: 'image' };
+        // For images: preserve caption only if present and non-empty
+        if (cleanCaption) {
+          return { url: u, caption: cleanCaption, name: n, type: 'image' };
         }
         return u;
       })
@@ -2441,14 +2583,20 @@ function updateLightboxView() {
   const currentItem = lightboxImages[lightboxCurrentIndex];
   currentLightboxItem = getAttachmentObj(currentItem);
   const currentUrl = getSafeFileUrl(currentLightboxItem.url, 'image/png');
-  const currentCaption = currentLightboxItem.caption || getAttachmentCaption(currentLightboxItem) || currentLightboxItem.name || 'Photo';
+  const cap = (currentLightboxItem.caption || '').trim();
+  const hasRealCap = cap && cap.toLowerCase() !== 'image' && cap.toLowerCase() !== 'photo' && cap.toLowerCase() !== 'photo attachment';
 
   img.src = currentUrl;
-  img.alt = currentCaption;
+  img.alt = hasRealCap ? cap : (currentLightboxItem.name || 'Photo');
 
   if (captionEl) {
-    captionEl.textContent = currentCaption;
-    captionEl.style.display = 'inline-flex';
+    if (hasRealCap) {
+      captionEl.textContent = cap;
+      captionEl.style.display = 'inline-flex';
+    } else {
+      captionEl.style.display = 'none';
+      captionEl.textContent = '';
+    }
   }
 
   const total = lightboxImages.length;
@@ -2936,6 +3084,12 @@ function toggleEmojiPack(e, targetId) {
 window.insertEmojiTemplate = insertEmojiTemplate;
 window.insertEmojiChar = insertEmojiChar;
 window.toggleEmojiPack = toggleEmojiPack;
+window.moveEditImage = moveEditImage;
+window.handleImageDragStart = handleImageDragStart;
+window.handleImageDragOver = handleImageDragOver;
+window.handleImageDragLeave = handleImageDragLeave;
+window.handleImageDrop = handleImageDrop;
+window.handleImageDragEnd = handleImageDragEnd;
 
 // ==========================================================================
 // YouTube & Rich Media Link & Preview Formatter

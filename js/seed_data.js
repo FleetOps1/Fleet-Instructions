@@ -121,7 +121,7 @@ const INITIAL_DATABASE = {
       "images": [
         {
           "url": "uploads/img_064e392c_image.png",
-          "caption": "Image",
+          "caption": "",
           "name": "image.png",
           "type": "image"
         }
@@ -175,7 +175,7 @@ const INITIAL_DATABASE = {
         },
         {
           "url": "uploads/img_199f1a51_image.png",
-          "caption": "Image",
+          "caption": "",
           "name": "image.png",
           "type": "image"
         }
@@ -259,7 +259,7 @@ const INITIAL_DATABASE = {
       "images": [
         {
           "url": "uploads/img_66410183_image.png",
-          "caption": "Image",
+          "caption": "",
           "name": "image.png",
           "type": "image"
         },
@@ -271,13 +271,13 @@ const INITIAL_DATABASE = {
         },
         {
           "url": "uploads/img_cf73fa8a_image.png",
-          "caption": "Image",
+          "caption": "",
           "name": "image.png",
           "type": "image"
         }
       ],
       "notes": "",
-      "updatedAt": "2026-11-12T17:05:22.589Z"
+      "updatedAt": "2026-11-12T17:08:12.480Z"
     },
     {
       "id": "issue-1794159726250",
