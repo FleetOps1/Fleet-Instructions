@@ -419,7 +419,10 @@ const INITIAL_DATABASE = {
         "5. Trailer doors and landing gears",
         "6. Truck and trailer pictures from all sides",
         "7. Truck and trailer brake pads",
-        "8. Tires with air pressure gauge showing PSI"
+        "8. Tires with air pressure gauge showing PSI",
+        "",
+        "here's how to remove the wheel covers on drive tires:",
+        "https://www.youtube.com/shorts/TPPX19PIUNc"
       ],
       "images": [
         {
@@ -435,7 +438,7 @@ const INITIAL_DATABASE = {
           "type": "image"
         }
       ],
-      "updatedAt": "2026-11-11T14:18:17.278Z",
+      "updatedAt": "2026-11-15T12:37:29.946Z",
       "shopUrgency": "routine_sop",
       "notes": "RECOMMENDED COLD TIRE PRESSURES (Class 8 / 295/75R22.5):\n\nSteer Axle Tires: 115 PSI (Cold) [Acceptable range: 110 - 120 PSI]\nDrive Tandem Duals: 100 PSI (Cold) [Acceptable range: 95 - 105 PSI]\nTrailer Tandem Duals: 100 PSI (Cold) [Acceptable range: 95 - 105 PSI]"
     },
