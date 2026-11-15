@@ -94,6 +94,22 @@
   ],
   "issues": [
     {
+      "id": "issue-1794756150721",
+      "categoryId": "engine",
+      "title": "Check Engine",
+      "shopUrgency": "",
+      "dashCodes": "",
+      "symptoms": [],
+      "driverSteps": [
+        "turn off the truck and wait for 5-10 min then start the engine and let me know if it appear again"
+      ],
+      "images": [
+        "uploads/img_0b62933b_image.png"
+      ],
+      "notes": "",
+      "updatedAt": "2026-11-15T15:22:30.721Z"
+    },
+    {
       "id": "issue-1794743191220",
       "categoryId": "engine",
       "title": "Engine Protection Performing Shutdown / Coolant Sensor",
