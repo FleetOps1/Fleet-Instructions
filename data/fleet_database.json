@@ -94,6 +94,24 @@
   ],
   "issues": [
     {
+      "id": "issue-1794758613670",
+      "categoryId": "trailer",
+      "title": "Trailer Hub Seal Leak Gasket",
+      "shopUrgency": "",
+      "dashCodes": "",
+      "symptoms": [],
+      "driverSteps": [
+        "Need to replace the outer hub gasket",
+        "TA Truck Service $99"
+      ],
+      "images": [
+        "uploads/img_ac3e78cb_image.png",
+        "uploads/img_b5040ea5_image.png"
+      ],
+      "notes": "",
+      "updatedAt": "2026-11-15T16:03:33.670Z"
+    },
+    {
       "id": "issue-1794756150721",
       "categoryId": "engine",
       "title": "Check Engine",
