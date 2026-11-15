@@ -125,8 +125,17 @@ while ($listener.IsListening) {
         }
 
         if ($rawUrl -eq "/api/git-push" -and $request.HttpMethod -eq "POST") {
-            $gitPath = "C:\Users\user\AppData\Local\Programs\Git\cmd;C:\Users\user\AppData\Local\Programs\Git\ucrt64\bin;"
-            $env:Path = $gitPath + $env:Path
+            $possibleGitPaths = @(
+                "C:\Program Files\Git\cmd",
+                "C:\Program Files\GitHub CLI",
+                "$env:LOCALAPPDATA\Programs\Git\cmd",
+                "C:\Program Files (x86)\Git\cmd"
+            )
+            foreach ($p in $possibleGitPaths) {
+                if ((Test-Path $p) -and ($env:Path -notlike "*$p*")) {
+                    $env:Path = "$p;$env:Path"
+                }
+            }
             
             try {
                 git add .

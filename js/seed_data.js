@@ -95,6 +95,23 @@ const INITIAL_DATABASE = {
   ],
   "issues": [
     {
+      "id": "issue-1794743191220",
+      "categoryId": "engine",
+      "title": "Engine Protection Performing Shutdown / Coolant Sensor",
+      "shopUrgency": "",
+      "dashCodes": "Engine Protection Performing Shutdown / Coolant Sensor",
+      "symptoms": [],
+      "driverSteps": [
+        "pull over on the side of the road and turn of the engine asap",
+        "check pls under the truck if there is coolant leakage"
+      ],
+      "images": [
+        "uploads/img_4ec7d439_image.png"
+      ],
+      "notes": "",
+      "updatedAt": "2026-11-15T11:46:31.221Z"
+    },
+    {
       "id": "issue-1794507888582",
       "categoryId": "engine",
       "title": "Coolant leak",
