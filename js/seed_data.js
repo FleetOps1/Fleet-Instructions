@@ -95,9 +95,23 @@ const INITIAL_DATABASE = {
   ],
   "issues": [
     {
+      "id": "issue-1794844373367",
+      "categoryId": "engine",
+      "title": "Jumpstart",
+      "shopUrgency": "",
+      "dashCodes": "",
+      "symptoms": [],
+      "driverSteps": [
+        "Don't turn off the truck"
+      ],
+      "images": [],
+      "notes": "",
+      "updatedAt": "2026-11-16T15:52:53.367Z"
+    },
+    {
       "id": "issue-1794837180707",
       "categoryId": "tires",
-      "title": "Typer Wear Patterns",
+      "title": "Tires Type Wear Patterns",
       "shopUrgency": "",
       "dashCodes": "",
       "symptoms": [],
@@ -106,7 +120,7 @@ const INITIAL_DATABASE = {
         "uploads/img_c3bd2c8a_image.png"
       ],
       "notes": "",
-      "updatedAt": "2026-11-16T13:53:00.707Z"
+      "updatedAt": "2026-11-16T13:53:43.221Z"
     },
     {
       "id": "issue-1794507888582",
