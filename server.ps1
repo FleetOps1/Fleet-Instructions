@@ -143,6 +143,11 @@ while ($listener.IsListening) {
                 git commit -m $commitMsg 2>&1 | Out-Null
             } catch {}
             
+            # Auto-sync remote changes first to prevent push rejections
+            try {
+                git pull --rebase origin main 2>&1 | Out-Null
+            } catch {}
+            
             $pushOut = git push origin main 2>&1
             $pushOutStr = ($pushOut | Out-String).Trim()
             $success = ($LASTEXITCODE -eq 0)
