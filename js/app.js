@@ -294,6 +294,12 @@ async function checkServerAndLoadData() {
       if (data.mode === 'local_server') {
         AppState.serverMode = true;
         updateConnectionStatus('server', 'Auto-Sync Active', 'Local Server Active: All edits, categories & files auto-saved to project folder');
+        // Auto-pull latest changes from GitHub before loading data
+        try {
+          await fetch('/api/git-pull', { method: 'POST' });
+        } catch (pullErr) {
+          console.warn('Auto-pull skipped or failed:', pullErr);
+        }
         await loadFromServer();
         await runDatabaseMigrations();
         return;
