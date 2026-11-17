@@ -110,10 +110,16 @@ const INITIAL_DATABASE = {
           "caption": "Trailer side marker light",
           "name": "image.png",
           "type": "image"
+        },
+        {
+          "url": "uploads/img_0935585a_image.png",
+          "caption": "example",
+          "name": "image.png",
+          "type": "image"
         }
       ],
       "notes": "",
-      "updatedAt": "2026-11-17T14:02:15.121Z"
+      "updatedAt": "2026-11-17T14:02:54.390Z"
     },
     {
       "id": "issue-1794844373367",
