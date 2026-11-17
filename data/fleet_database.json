@@ -94,6 +94,23 @@
   ],
   "issues": [
     {
+      "id": "issue-1794949940526",
+      "categoryId": "truck_anatomy",
+      "title": "Axle Oil Temperature Critical",
+      "shopUrgency": "",
+      "dashCodes": "Axle Oil Temperature Critical",
+      "symptoms": [],
+      "driverSteps": [
+        "please check rear axle is there oil leak"
+      ],
+      "images": [
+        "uploads/img_269e0dd1_image.png",
+        "uploads/img_fa28871a_image.png"
+      ],
+      "notes": "",
+      "updatedAt": "2026-11-17T21:12:20.527Z"
+    },
+    {
       "id": "issue-1794924135120",
       "categoryId": "trailer",
       "title": "Trailer Side Marker Light Broken",
