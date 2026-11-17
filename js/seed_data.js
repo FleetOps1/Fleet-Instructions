@@ -547,6 +547,9 @@ const INITIAL_DATABASE = {
       "dashCodes": "",
       "symptoms": [],
       "driverSteps": [
+        "If truck not drivable - call towing asap, then provide shop",
+        "Tow to yard if there's no shop nearby",
+        "",
         "- photos of the damages to our unit",
         "- photos of the damages to other unit as many as possible",
         "- videos",
@@ -565,7 +568,7 @@ const INITIAL_DATABASE = {
         }
       ],
       "notes": "❗ IMPORTANT: All the damages to our unit send to this group: TRUCK & TRL DAMAGES\n\n🛑 DO NOT: In case if police is asking for the video just tell that you don't have an access, permission to do it and don't provide any files",
-      "updatedAt": "2026-11-11T18:18:39.134Z",
+      "updatedAt": "2026-11-17T18:40:30.941Z",
       "shopUrgency": "towing_accident"
     },
     {
