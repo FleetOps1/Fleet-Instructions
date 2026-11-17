@@ -95,6 +95,27 @@ const INITIAL_DATABASE = {
   ],
   "issues": [
     {
+      "id": "issue-1794924135120",
+      "categoryId": "trailer",
+      "title": "Trailer Side Marker Light Broken",
+      "shopUrgency": "",
+      "dashCodes": "",
+      "symptoms": [],
+      "driverSteps": [
+        "Can you put everything today and secure it with zip ties?"
+      ],
+      "images": [
+        {
+          "url": "uploads/img_2d9371b4_image.png",
+          "caption": "Trailer side marker light",
+          "name": "image.png",
+          "type": "image"
+        }
+      ],
+      "notes": "",
+      "updatedAt": "2026-11-17T14:02:15.121Z"
+    },
+    {
       "id": "issue-1794844373367",
       "categoryId": "engine",
       "title": "Jumpstart",
