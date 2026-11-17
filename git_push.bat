@@ -57,6 +57,9 @@ git add .
 echo [2/3] Committing changes...
 git commit -m "%COMMIT_MSG%"
 
+echo Auto-syncing remote changes from GitHub...
+git pull --rebase origin main
+
 echo [3/3] Pushing to GitHub...
 git push -u origin main
 

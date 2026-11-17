@@ -302,6 +302,7 @@ async function checkServerAndLoadData() {
         }
         await loadFromServer();
         await runDatabaseMigrations();
+        startServerHeartbeat();
         return;
       }
     }
@@ -311,19 +312,78 @@ async function checkServerAndLoadData() {
 
   // Fallback to IndexedDB / localStorage
   AppState.serverMode = false;
-  updateConnectionStatus('offline', 'Standalone', 'Standalone Mode: Launch open_app.bat to auto-sync changes to project folder');
+  updateConnectionStatus('server-error', 'Server Offline', 'Local server is closed. Double-click start_server.bat on Desktop to reconnect.');
   await loadFromLocal();
   await runDatabaseMigrations();
+  startServerHeartbeat();
 }
 
 function updateConnectionStatus(type, text, tooltip) {
   const badge = document.getElementById('connectionStatus');
   if (!badge) return;
-  badge.className = 'connection-status ' + (type === 'server' ? '' : 'offline-mode');
+  
+  let cls = 'connection-status';
+  if (type === 'server-error' || type === 'error') {
+    cls += ' server-error';
+  } else if (type === 'offline' || type === 'checking') {
+    cls += ' offline-mode';
+  }
+  badge.className = cls;
+  
   if (tooltip) {
     badge.title = tooltip;
   }
   badge.innerHTML = `<span class="status-dot"></span><span>${text}</span>`;
+  badge.onclick = () => manualReconnectServer();
+}
+
+function startServerHeartbeat() {
+  if (window._serverHeartbeatInterval) return;
+  window._serverHeartbeatInterval = setInterval(async () => {
+    try {
+      const res = await fetch('/api/status', { cache: 'no-store' });
+      if (res.ok) {
+        const data = await res.json();
+        if (data.mode === 'local_server') {
+          if (!AppState.serverMode) {
+            AppState.serverMode = true;
+            updateConnectionStatus('server', 'Auto-Sync Active', 'Local Server Active: All edits, categories & files auto-saved to project folder');
+            // Auto-persist any offline changes saved while server was offline
+            try {
+              await persistDatabase(true);
+            } catch (err) {}
+          }
+          return;
+        }
+      }
+    } catch (e) {}
+
+    if (AppState.serverMode) {
+      AppState.serverMode = false;
+      updateConnectionStatus('server-error', 'Server Offline', 'Local server was closed. Double-click start_server.bat on Desktop to reconnect.');
+    }
+  }, 10000);
+}
+
+async function manualReconnectServer() {
+  updateConnectionStatus('checking', 'Checking...', 'Pinging local server at http://localhost:8080...');
+  try {
+    const res = await fetch('/api/status', { cache: 'no-store' });
+    if (res.ok) {
+      const data = await res.json();
+      if (data.mode === 'local_server') {
+        AppState.serverMode = true;
+        updateConnectionStatus('server', 'Auto-Sync Active', 'Connected! All edits & photos save directly to project folder');
+        showToast('✓ Connected to Local FleetOps Server!', 'success');
+        await persistDatabase(true);
+        return;
+      }
+    }
+  } catch (e) {}
+  
+  AppState.serverMode = false;
+  updateConnectionStatus('server-error', 'Server Offline', 'Local server is closed. Double-click start_server.bat on Desktop to start.');
+  showToast('Local server is closed. Double-click start_server.bat on your Desktop to start it.', 'warning');
 }
 
 // Merge offline cached data from browser IndexedDB into server DB
@@ -667,7 +727,7 @@ async function runDatabaseMigrations() {
 }
 
 // Save Database
-async function persistDatabase() {
+async function persistDatabase(silent = false) {
   saveToIndexedDB(AppState.db);
 
   if (AppState.serverMode) {
@@ -678,14 +738,17 @@ async function persistDatabase() {
         body: JSON.stringify(AppState.db, null, 2)
       });
       if (res.ok) {
-        showToast('Saved to data/fleet_database.json', 'success');
-        return;
+        if (!silent) showToast('Saved to data/fleet_database.json', 'success');
+        return true;
       }
     } catch (err) {
       console.error('Server save error', err);
+      AppState.serverMode = false;
+      updateConnectionStatus('server-error', 'Server Offline', 'Local server unreachable. Edits saved in browser storage.');
     }
   }
-  showToast('Saved to local storage', 'success');
+  if (!silent) showToast('Saved to local storage', 'success');
+  return false;
 }
 
 // IndexedDB Helper
@@ -2466,8 +2529,23 @@ async function triggerWebGitPush() {
   const btn = document.getElementById('btnGitPush');
   const originalHtml = btn ? btn.innerHTML : '';
 
-  if (!AppState.serverMode) {
-    showToast('In Standalone Mode. Launch open_app.bat or run git_push.bat to push to GitHub.', 'warning');
+  // Quick check if server is reachable before attempting push
+  let serverAlive = false;
+  try {
+    const statusRes = await fetch('/api/status', { cache: 'no-store' });
+    if (statusRes.ok) {
+      serverAlive = true;
+      AppState.serverMode = true;
+      updateConnectionStatus('server', 'Auto-Sync Active', 'Local Server Active: All edits, categories & files auto-saved to project folder');
+    }
+  } catch (e) {
+    serverAlive = false;
+  }
+
+  if (!serverAlive) {
+    AppState.serverMode = false;
+    updateConnectionStatus('server-error', 'Server Offline', 'Local server was closed. Double-click start_server.bat on Desktop to reconnect.');
+    showToast('Local server is closed! Double-click start_server.bat on Desktop to start it, or run git_push.bat to push directly.', 'error');
     return;
   }
 
@@ -2478,8 +2556,8 @@ async function triggerWebGitPush() {
     }
     showToast('Pushing latest edits and photos to GitHub...', 'info');
 
-    // First ensure database and offline cache are cleanly persisted to disk
-    await persistDatabase();
+    // First ensure database and offline cache are cleanly persisted to disk silently
+    await persistDatabase(true);
 
     const res = await fetch('/api/git-push', { method: 'POST' });
     if (res.ok) {
@@ -2490,11 +2568,11 @@ async function triggerWebGitPush() {
         showToast('Git push: ' + (data.message || 'Check terminal / token'), 'warning');
       }
     } else {
-      showToast('Could not reach push server. Double-click git_push.bat to push.', 'error');
+      showToast('Could not reach push server (HTTP ' + res.status + '). Double-click git_push.bat to push.', 'error');
     }
   } catch (err) {
     console.error('Git push error:', err);
-    showToast('Push error. Double-click git_push.bat to push manually.', 'error');
+    showToast('Push connection error. Double-click start_server.bat on your Desktop.', 'error');
   } finally {
     if (btn) {
       btn.disabled = false;
