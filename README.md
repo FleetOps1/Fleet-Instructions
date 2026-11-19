@@ -21,6 +21,38 @@ You can also open **`index.html`** directly in Chrome, Edge, or Firefox.
 
 ---
 
+## 📚 Live Knowledge Base Catalog & Active Guides
+
+| Category | Guide / SOP Title | Status / Urgency |
+|:---|:---|:---|
+| **🛞 Tires & Wheels** | **How to put snow chains** *(step-by-step video instruction)* | ✅ Live • Added Nov 19 |
+| **⚙️ Transmission** | **Transmission Will Not Shift** *(dealership dispatch & stopped protocol)* | 🚨 Urgent • Added Nov 19 |
+| **🔧 Engine & Mechanical** | **Jumpstart Protocol** *(don't turn off truck, local roadside)* | 🚨 Urgent • Updated Nov 19 |
+| **📐 Truck Anatomy** | **Axle Oil Temperature Critical** *(rear axle oil leak check)* | 🚨 Urgent • Added Nov 17 |
+| **🚚 Trailer** | **Trailer Side Marker Light Broken** *(zip tie temporary fix)* | ⚠️ Schedule • Added Nov 17 |
+| **🔧 Engine & Mechanical** | **Check Engine** *(5-10 min reboot protocol & dash check)* | ⚠️ Attention • Added Nov 15 |
+| **🚚 Trailer** | **Trailer Hub Seal Leak Gasket** *(TA Truck Service outer gasket)* | 🚨 Urgent • Added Nov 15 |
+| **🛞 Tires & Wheels** | **Tires Type Wear Patterns** *(tread wear chart & analysis)* | 📋 Reference • Added Nov 16 |
+| **🔧 Engine & Mechanical** | **Coolant Leak** *(Love's warranty repair protocol)* | 🚨 Urgent Shop |
+| **🔧 Engine & Mechanical** | **WATER IN THE FUEL** *(Davco water separator drain procedure)* | 🚨 Urgent Shop |
+| **🪟 Cab & Safety** | **Windshield Crack** *(quarter-size rule, Permatex AutoZone kit)* | 🔧 Roadside Fix |
+| **📋 Fleet Instructions** | **Pre-Trip Inspection (PTI)** *(DOT 49 CFR § 396.13 SOP & tread tool)* | 📋 Fleet SOP |
+| **📋 Fleet Instructions** | **Ryder / Penske Unit Swap Procedure** *(360° damage check)* | 📋 Fleet SOP |
+| **🚨 Accidents** | **Accident & Crash Emergency Response SOP** | 🚨 Emergency SOP |
+| **🛑 Brakes & Air** | **Air Dryer Purge Stuck Open / Continuous Hiss** | 🚨 Urgent Shop |
+| **🛑 Brakes & Air** | **Gladhand Rubber Seal Air Leak** | 🔧 Driver Roadside Fix |
+| **🛑 Brakes & Air** | **Frozen Air Lines & Trailer Brakes in Winter** | 🔧 Driver Roadside Fix |
+| **💨 Emissions** | **DPF Soot Level High / Parked Regen Procedure** | 🔧 Driver Roadside Fix |
+| **💨 Emissions** | **DEF Low / 5 MPH Speed Derate Warning** | 🚨 Urgent Shop |
+| **⚙️ Transmission** | **Freightliner DT12 Fault / Won't Engage Gear** | 🚨 Urgent Shop |
+| **❄️ HVAC & Cab** | **How to Reset / Calibrate AC & HVAC Control Panel** | 🔧 Driver Roadside Fix |
+| **❄️ HVAC & Cab** | **Bunk Heater (Webasto / Espar) Won't Start** | ⚠️ Schedule Visit |
+| **📐 Truck Anatomy** | **Freightliner Engine Oil (Shell Rotella T5 10W-30)** | 📋 Fleet Reference |
+| **📐 Truck Anatomy** | **Freightliner Coolant (ELC OAT Red/Pink 50/50)** | 📋 Fleet Reference |
+| **📐 Truck Anatomy** | **Freightliner Cascadia Parts & Component Anatomy** | 📋 Diagrams |
+
+---
+
 ## 🚛 Pre-Loaded Truck Systems & Categories:
 
 1. **📐 Truck Anatomy (Dedicated Category):**

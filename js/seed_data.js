@@ -111,7 +111,7 @@ const INITIAL_DATABASE = {
     },
     {
       "id": "issue-1795096384592",
-      "categoryId": "engine",
+      "categoryId": "transmission",
       "title": "Transmission Will Not Shift",
       "shopUrgency": "",
       "dashCodes": "",

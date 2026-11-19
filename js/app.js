@@ -2581,6 +2581,44 @@ async function triggerWebGitPush() {
   }
 }
 
+// 1-Click Pull from GitHub to sync changes from other computers
+async function triggerWebGitPull() {
+  const btn = document.getElementById('btnGitPull');
+  const originalHtml = btn ? btn.innerHTML : '';
+
+  try {
+    if (btn) {
+      btn.disabled = true;
+      btn.innerHTML = `<span class="status-dot" style="background:#38bdf8;animation:pulse 1s infinite;display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;"></span> Pulling...`;
+    }
+    showToast('Checking GitHub for latest updates...', 'info');
+
+    const res = await fetch('/api/git-pull', { method: 'POST' });
+    if (res.ok) {
+      const data = await res.json();
+      if (data.success) {
+        await loadFromServer();
+        renderCategoryCards();
+        renderUrgencyPills();
+        renderIssuesList();
+        showToast('✓ Successfully synced & pulled latest updates from GitHub!', 'success');
+      } else {
+        showToast('Git pull notice: ' + (data.message || 'Already up to date'), 'info');
+      }
+    } else {
+      showToast('Could not reach server (HTTP ' + res.status + '). Make sure server is running.', 'error');
+    }
+  } catch (err) {
+    console.error('Git pull error:', err);
+    showToast('Pull error. Make sure local server is running.', 'error');
+  } finally {
+    if (btn) {
+      btn.disabled = false;
+      btn.innerHTML = originalHtml;
+    }
+  }
+}
+
 function importDatabaseJSON(file) {
   if (!file) return;
   const reader = new FileReader();
