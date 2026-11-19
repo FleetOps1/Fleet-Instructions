@@ -94,6 +94,21 @@
   ],
   "issues": [
     {
+      "id": "issue-1795100544355",
+      "categoryId": "fleet_instructions",
+      "title": "Accounts Love's / Southern Tire Mart /",
+      "shopUrgency": "",
+      "dashCodes": "",
+      "symptoms": [],
+      "driverSteps": [
+        "Pilot / Southern Tire Mart Account Number 32933",
+        "Love’s account number 3741370"
+      ],
+      "images": [],
+      "notes": "",
+      "updatedAt": "2026-11-19T15:02:24.355Z"
+    },
+    {
       "id": "issue-1795098043938",
       "categoryId": "tires",
       "title": "How to put snow chains",
@@ -110,7 +125,7 @@
     },
     {
       "id": "issue-1795096384592",
-      "categoryId": "transmission",
+      "categoryId": "engine",
       "title": "Transmission Will Not Shift",
       "shopUrgency": "",
       "dashCodes": "",
