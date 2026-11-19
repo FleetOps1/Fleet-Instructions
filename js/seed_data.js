@@ -95,6 +95,45 @@ const INITIAL_DATABASE = {
   ],
   "issues": [
     {
+      "id": "issue-1795098043938",
+      "categoryId": "tires",
+      "title": "How to put snow chains",
+      "shopUrgency": "",
+      "dashCodes": "",
+      "symptoms": [],
+      "driverSteps": [
+        "Here's the instruction on how to put snow chains:",
+        "https://www.youtube.com/watch?v=upVg9wERKWg"
+      ],
+      "images": [],
+      "notes": "",
+      "updatedAt": "2026-11-19T14:20:43.938Z"
+    },
+    {
+      "id": "issue-1795096384592",
+      "categoryId": "engine",
+      "title": "Transmission Will Not Shift",
+      "shopUrgency": "",
+      "dashCodes": "",
+      "symptoms": [],
+      "driverSteps": [
+        "❗ IMPORTANT:  If driver has issues with transmission, need to stop and try to get any details on what's going on with the unit while driving and then send to dealrship, never local shop"
+      ],
+      "images": [
+        "uploads/img_28ffbf9c_image.png",
+        {
+          "url": "uploads/img_583cca88_image.png",
+          "caption": "transmission issue",
+          "name": "image.png",
+          "type": "image"
+        },
+        "uploads/img_b78c5953_image.png",
+        "uploads/img_f769b07f_image.png"
+      ],
+      "notes": "",
+      "updatedAt": "2026-11-19T13:53:22.994Z"
+    },
+    {
       "id": "issue-1794949940526",
       "categoryId": "truck_anatomy",
       "title": "Axle Oil Temperature Critical",
