@@ -546,9 +546,9 @@ const INITIAL_DATABASE = {
           "type": "image"
         }
       ],
-      "updatedAt": "2026-11-17T14:49:02.052Z",
+      "updatedAt": "2026-11-19T15:56:07.906Z",
       "shopUrgency": "routine_sop",
-      "notes": "RECOMMENDED COLD TIRE PRESSURES (Class 8 / 295/75R22.5):\n\nSteer Axle Tires: 115 PSI (Cold) [Acceptable range: 110 - 120 PSI]\nDrive Tandem Duals: 100 PSI (Cold) [Acceptable range: 95 - 105 PSI]\nTrailer Tandem Duals: 100 PSI (Cold) [Acceptable range: 95 - 105 PSI]\n\nTire Thread Measuring tool\nVideo: https://www.youtube.com/shorts/rJGWEiNZmoc\n\nMinimum Depth: Drive tires (as well as trailer tires) must have a tread groove pattern depth of at least 2/32 of an inch. (Note: Steer tires require a minimum of 4/32 of an inch"
+      "notes": "RECOMMENDED COLD TIRE PRESSURES (Class 8 / 295/75R22.5):\n\nSteer Axle Tires: 115 PSI (Cold) [Acceptable range: 110 - 120 PSI]\nDrive Tandem Duals: 100 PSI (Cold) [Acceptable range: 95 - 105 PSI]\nTrailer Tandem Duals: 100 PSI (Cold) [Acceptable range: 95 - 105 PSI]\n\nHere's how to remove the wheel covers\nhttps://www.youtube.com/shorts/TPPX19PIUNc\n\nTire Thread Measuring tool\nVideo: https://www.youtube.com/shorts/rJGWEiNZmoc\n\nMinimum Depth: Drive tires (as well as trailer tires) must have a tread groove pattern depth of at least 2/32 of an inch. (Note: Steer tires require a minimum of 4/32 of an inch"
     },
     {
       "id": "sop-ryder-swap",
