@@ -887,6 +887,36 @@ function initIcons() {
   });
 }
 
+// Check if an issue matches search query across all searchable fields
+function issueMatchesSearch(issue, rawQuery) {
+  if (!issue || !rawQuery || !rawQuery.trim()) return true;
+  const q = rawQuery.toLowerCase().trim();
+  const terms = q.split(/\s+/).filter(t => t.length > 0);
+
+  const urg = URGENCY_CONFIG[issue.shopUrgency];
+  const urgKeywords = urg ? `${urg.label} ${urg.title} ${urg.key}`.toLowerCase() : '';
+  const stepsText = hasInstructions(issue.driverSteps) ? getInstructionsText(issue.driverSteps).toLowerCase() : '';
+  const symptomsText = (issue.symptoms || []).join(' ').toLowerCase();
+  const notesText = (issue.notes || '').toLowerCase();
+  const titleText = (issue.title || '').toLowerCase();
+  const dashText = (issue.dashCodes || '').toLowerCase();
+
+  let imgText = '';
+  if (issue.images && Array.isArray(issue.images)) {
+    imgText = issue.images.map(img => `${getImageCaption(img)} ${getAttachmentName(img)}`).join(' ').toLowerCase();
+  }
+
+  const allText = `${titleText} ${dashText} ${symptomsText} ${stepsText} ${notesText} ${imgText} ${urgKeywords}`;
+
+  // Direct match on full phrase
+  if (allText.includes(q)) return true;
+
+  // Match all tokens if multi-word
+  if (terms.length > 1 && terms.every(t => allText.includes(t))) return true;
+
+  return false;
+}
+
 // Render Quick Urgency Filter Pills Bar
 function renderUrgencyPills() {
   const bar = document.getElementById('urgencyFilterBar');
@@ -898,24 +928,7 @@ function renderUrgencyPills() {
     baseList = baseList.filter(i => issueMatchesCategory(i, AppState.selectedCategory));
   }
   if (AppState.searchQuery.trim()) {
-    const q = AppState.searchQuery.toLowerCase().trim();
-    baseList = baseList.filter(i => {
-      const urg = URGENCY_CONFIG[i.shopUrgency];
-      const urgKeywords = urg ? `${urg.label} ${urg.title} ${urg.key}`.toLowerCase() : '';
-      return (
-        (i.title && i.title.toLowerCase().includes(q)) ||
-        (i.dashCodes && i.dashCodes.toLowerCase().includes(q)) ||
-        (i.symptoms && i.symptoms.some(s => s.toLowerCase().includes(q))) ||
-        (i.driverSteps && i.driverSteps.some(st => st.toLowerCase().includes(q))) ||
-        (i.notes && i.notes.toLowerCase().includes(q)) ||
-        (i.images && i.images.some(img => {
-          const c = getImageCaption(img).toLowerCase();
-          const n = getAttachmentName(img).toLowerCase();
-          return c.includes(q) || n.includes(q);
-        })) ||
-        urgKeywords.includes(q)
-      );
-    });
+    baseList = baseList.filter(i => issueMatchesSearch(i, AppState.searchQuery));
   }
 
   const counts = {
@@ -1003,6 +1016,184 @@ function selectCategory(catId) {
   }
 }
 
+function escapeRegex(s) {
+  return String(s).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+// Highlight matching search terms safely
+function highlightSearchTerms(rawText, query) {
+  if (!rawText || !query || !query.trim()) return escapeHtml(rawText || '');
+  const cleanQ = query.trim();
+  const tokens = cleanQ.split(/\s+/).filter(t => t.length > 0);
+  if (tokens.length === 0) return escapeHtml(rawText);
+
+  // Match full query phrase first, then individual word tokens of length >= 2
+  const allTerms = Array.from(new Set([cleanQ, ...tokens]))
+    .filter(t => t.length > 1 || tokens.length === 1)
+    .sort((a, b) => b.length - a.length);
+
+  if (allTerms.length === 0) return escapeHtml(rawText);
+
+  const pattern = new RegExp(`(${allTerms.map(escapeRegex).join('|')})`, 'gi');
+  const exactPattern = new RegExp(`^(${allTerms.map(escapeRegex).join('|')})$`, 'i');
+
+  return String(rawText).split(pattern).map(part => {
+    if (exactPattern.test(part)) {
+      return `<mark class="search-match-highlight">${escapeHtml(part)}</mark>`;
+    }
+    return escapeHtml(part);
+  }).join('');
+}
+
+// Find all locations inside an issue where search query matches
+function findSearchMatchInfo(issue, query) {
+  if (!issue || !query || !query.trim()) return [];
+  const q = query.toLowerCase().trim();
+  const terms = q.split(/\s+/).filter(t => t.length > 0);
+  if (terms.length === 0) return [];
+
+  const matches = [];
+
+  const hasMatch = (txt) => {
+    if (!txt) return false;
+    const lower = String(txt).toLowerCase();
+    return lower.includes(q) || terms.some(t => lower.includes(t));
+  };
+
+  const getLineSnippet = (fullText, maxLen = 140) => {
+    if (!fullText) return '';
+    const lines = String(fullText).split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+    const matchedLine = lines.find(l => hasMatch(l));
+    const target = matchedLine || String(fullText).replace(/\r?\n/g, ' ').trim();
+    if (target.length <= maxLen) return target;
+
+    const lower = target.toLowerCase();
+    let idx = lower.indexOf(q);
+    if (idx === -1) {
+      for (const t of terms) {
+        idx = lower.indexOf(t);
+        if (idx !== -1) break;
+      }
+    }
+    if (idx === -1) idx = 0;
+
+    const start = Math.max(0, idx - 25);
+    const end = Math.min(target.length, start + maxLen);
+    let snip = target.substring(start, end).trim();
+    if (start > 0) snip = '...' + snip;
+    if (end < target.length) snip = snip + '...';
+    return snip;
+  };
+
+  // 1. Check Additional Notes & Specs (e.g. wheel covers, part specs, links)
+  if (issue.notes && hasMatch(issue.notes)) {
+    const snippet = getLineSnippet(issue.notes);
+    matches.push({
+      field: 'notes',
+      location: 'Additional Notes & Specs',
+      icon: '📝',
+      snippet: snippet,
+      highlighted: highlightSearchTerms(snippet, query)
+    });
+  }
+
+  // 2. Check Driver Instructions
+  if (hasInstructions(issue.driverSteps)) {
+    const rawSteps = getInstructionsText(issue.driverSteps);
+    if (hasMatch(rawSteps)) {
+      const lines = rawSteps.split(/\r?\n/).map(l => cleanInstructionLine(l)).filter(Boolean);
+      const stepIdx = lines.findIndex(l => hasMatch(l));
+      const stepText = stepIdx !== -1 ? lines[stepIdx] : rawSteps;
+      const snippet = getLineSnippet(stepText);
+      matches.push({
+        field: 'driverSteps',
+        location: stepIdx !== -1 ? `Driver Instructions (Step ${stepIdx + 1})` : 'Driver Instructions',
+        icon: '📋',
+        snippet: snippet,
+        highlighted: highlightSearchTerms(snippet, query)
+      });
+    }
+  }
+
+  // 3. Check Dashboard Fault Code
+  if (issue.dashCodes && hasMatch(issue.dashCodes)) {
+    matches.push({
+      field: 'dashCodes',
+      location: 'Dashboard Fault Code',
+      icon: '⚠️',
+      snippet: issue.dashCodes,
+      highlighted: highlightSearchTerms(issue.dashCodes, query)
+    });
+  }
+
+  // 4. Check Observed Symptoms
+  if (issue.symptoms && issue.symptoms.length > 0) {
+    const sym = issue.symptoms.find(s => hasMatch(s));
+    if (sym) {
+      matches.push({
+        field: 'symptoms',
+        location: 'Observed Symptoms',
+        icon: '🔍',
+        snippet: sym,
+        highlighted: highlightSearchTerms(sym, query)
+      });
+    }
+  }
+
+  // 5. Check Photos & Files (captions/names)
+  if (issue.images && issue.images.length > 0) {
+    for (const img of issue.images) {
+      const cap = getImageCaption(img);
+      const name = getAttachmentName(img);
+      if (cap && hasMatch(cap)) {
+        matches.push({
+          field: 'images',
+          location: 'Photo Caption',
+          icon: '🖼️',
+          snippet: cap,
+          highlighted: highlightSearchTerms(cap, query)
+        });
+        break;
+      } else if (name && hasMatch(name)) {
+        matches.push({
+          field: 'images',
+          location: 'Attached File',
+          icon: '📎',
+          snippet: name,
+          highlighted: highlightSearchTerms(name, query)
+        });
+        break;
+      }
+    }
+  }
+
+  // 6. Check Title
+  if (issue.title && hasMatch(issue.title)) {
+    matches.push({
+      field: 'title',
+      location: 'Issue Title',
+      icon: '📌',
+      snippet: issue.title,
+      highlighted: highlightSearchTerms(issue.title, query)
+    });
+  }
+
+  return matches;
+}
+
+function jumpToFirstSearchMatch(event) {
+  if (event) event.stopPropagation();
+  const modalContent = document.getElementById('detailModalContent');
+  if (!modalContent) return;
+  const firstMark = modalContent.querySelector('mark.search-match-highlight');
+  if (firstMark) {
+    firstMark.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    firstMark.classList.remove('pulse-focus');
+    void firstMark.offsetWidth;
+    firstMark.classList.add('pulse-focus');
+  }
+}
+
 // Filter and Render Issues
 function renderIssuesList() {
   const container = document.getElementById('issuesGrid');
@@ -1032,24 +1223,7 @@ function renderIssuesList() {
 
   // Search query filter
   if (AppState.searchQuery.trim()) {
-    const q = AppState.searchQuery.toLowerCase().trim();
-    filtered = filtered.filter(i => {
-      const urg = URGENCY_CONFIG[i.shopUrgency];
-      const urgKeywords = urg ? `${urg.label} ${urg.title} ${urg.key}`.toLowerCase() : '';
-      return (
-        (i.title && i.title.toLowerCase().includes(q)) ||
-        (i.dashCodes && i.dashCodes.toLowerCase().includes(q)) ||
-        (i.symptoms && i.symptoms.some(s => s.toLowerCase().includes(q))) ||
-        (i.driverSteps && i.driverSteps.some(st => st.toLowerCase().includes(q))) ||
-        (i.notes && i.notes.toLowerCase().includes(q)) ||
-        (i.images && i.images.some(img => {
-          const c = getImageCaption(img).toLowerCase();
-          const n = getAttachmentName(img).toLowerCase();
-          return c.includes(q) || n.includes(q);
-        })) ||
-        urgKeywords.includes(q)
-      );
-    });
+    filtered = filtered.filter(i => issueMatchesSearch(i, AppState.searchQuery));
   }
 
   // Urgency filter
@@ -1078,6 +1252,28 @@ function renderIssuesList() {
 
   container.innerHTML = filtered.map(issue => {
     const category = AppState.db.categories.find(c => c.id === issue.categoryId) || { name: 'General', color: 'blue' };
+
+    const searchMatches = isSearching ? findSearchMatchInfo(issue, AppState.searchQuery) : [];
+    const nonTitleMatch = searchMatches ? searchMatches.find(m => m.field !== 'title') : null;
+
+    let searchMatchCallout = '';
+    if (isSearching && nonTitleMatch) {
+      searchMatchCallout = `
+        <div class="card-search-match-callout" title="Search matched in: ${escapeHtml(nonTitleMatch.location)}">
+          <div class="search-match-badge-loc">
+            <span class="search-match-icon">${nonTitleMatch.icon}</span>
+            <span>Matched in: <strong>${escapeHtml(nonTitleMatch.location)}</strong></span>
+          </div>
+          <div class="search-match-text-snippet">
+            "${nonTitleMatch.highlighted}"
+          </div>
+        </div>
+      `;
+    }
+
+    const renderedTitle = isSearching 
+      ? highlightSearchTerms(issue.title, AppState.searchQuery)
+      : escapeHtml(issue.title);
 
     let thumbHtml = '';
     if (issue.images && issue.images.length > 0) {
@@ -1129,7 +1325,7 @@ function renderIssuesList() {
             ${issue.symptoms.slice(0, 2).map(s => `
               <li style="display: flex; gap: 6px; margin-bottom: 4px; font-size: 0.86rem; color: var(--text-muted); line-height: 1.45;">
                 <span style="color: #38bdf8; flex-shrink: 0;">•</span>
-                <span>${escapeHtml(s)}</span>
+                <span>${isSearching ? highlightSearchTerms(s, AppState.searchQuery) : escapeHtml(s)}</span>
               </li>
             `).join('')}
           </ul>
@@ -1144,7 +1340,7 @@ function renderIssuesList() {
             ${lines.map(l => `
               <li style="display: flex; gap: 6px; margin-bottom: 4px; font-size: 0.86rem; color: var(--text-muted); line-height: 1.45;">
                 <span style="color: #38bdf8; flex-shrink: 0;">•</span>
-                <span style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">${escapeHtml(l)}</span>
+                <span style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">${isSearching ? highlightSearchTerms(l, AppState.searchQuery) : escapeHtml(l)}</span>
               </li>
             `).join('')}
           </ul>
@@ -1154,7 +1350,7 @@ function renderIssuesList() {
       highlightsHtml = `
         <div class="issue-highlights">
           <p style="margin: 0; font-size: 0.86rem; color: var(--text-muted); line-height: 1.45; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
-            ${escapeHtml(issue.notes.trim())}
+            ${isSearching ? highlightSearchTerms(issue.notes.trim(), AppState.searchQuery) : escapeHtml(issue.notes.trim())}
           </p>
         </div>
       `;
@@ -1170,10 +1366,12 @@ function renderIssuesList() {
           <span class="issue-cat-badge" style="color: var(--freightliner-${category.color || 'blue'});">
             ${escapeHtml(category.name)}
           </span>
-          ${issue.dashCodes ? `<span class="dash-code-tag">${escapeHtml(issue.dashCodes)}</span>` : ''}
+          ${issue.dashCodes ? `<span class="dash-code-tag">${isSearching ? highlightSearchTerms(issue.dashCodes, AppState.searchQuery) : escapeHtml(issue.dashCodes)}</span>` : ''}
         </div>
 
-        <h3 class="issue-title">${escapeHtml(issue.title)}</h3>
+        <h3 class="issue-title">${renderedTitle}</h3>
+
+        ${searchMatchCallout}
 
         ${highlightsHtml}
         ${thumbHtml}
@@ -1224,7 +1422,32 @@ function openIssueDetail(issueId) {
   const category = AppState.db.categories.find(c => c.id === issue.categoryId) || { name: 'General', color: 'blue' };
   const urg = (issue.shopUrgency && issue.shopUrgency !== 'not_mentioned') ? URGENCY_CONFIG[issue.shopUrgency] : null;
 
+  const searchQ = (AppState.searchQuery || '').trim();
+  const isSearching = Boolean(searchQ);
+  const searchMatches = isSearching ? findSearchMatchInfo(issue, searchQ) : [];
+
+  let searchBannerHtml = '';
+  if (isSearching && searchMatches.length > 0) {
+    const locNames = Array.from(new Set(searchMatches.map(m => m.location))).join(' • ');
+    searchBannerHtml = `
+      <div class="modal-search-match-banner">
+        <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+          <span style="font-size: 1.1rem;">🔍</span>
+          <span style="font-size: 0.85rem; color: var(--text-muted);">
+            Search &ldquo;<strong style="color: var(--text-main);">${escapeHtml(searchQ)}</strong>&rdquo; matched in:
+            <strong style="color: #f59e0b;">${escapeHtml(locNames)}</strong>
+          </span>
+        </div>
+        <button type="button" class="btn-jump-match" onclick="jumpToFirstSearchMatch(event)" title="Scroll directly to the highlighted match">
+          Jump to Highlight ↓
+        </button>
+      </div>
+    `;
+  }
+
   modalContent.innerHTML = `
+    ${searchBannerHtml}
+
     <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 4px;">
       <span style="font-size: 0.85rem; color: #94a3b8; font-weight: 600;">
         Category: <strong style="color: var(--freightliner-${category.color || 'blue'});">${escapeHtml(category.name)}</strong>
@@ -1232,7 +1455,7 @@ function openIssueDetail(issueId) {
     </div>
 
     <div>
-      <h1 style="font-size: 1.45rem; font-weight: 800; color: var(--text-main); margin-bottom: 4px;">${escapeHtml(issue.title)}</h1>
+      <h1 style="font-size: 1.45rem; font-weight: 800; color: var(--text-main); margin-bottom: 4px;">${isSearching ? highlightSearchTerms(issue.title, searchQ) : escapeHtml(issue.title)}</h1>
     </div>
 
     ${issue.dashCodes ? `
@@ -1240,7 +1463,7 @@ function openIssueDetail(issueId) {
         <span style="color: #f59e0b; font-size: 1.25rem;">⚠️</span>
         <div>
           <div style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Dashboard Fault Code / Warning Light:</div>
-          <div style="font-family: var(--font-mono); font-size: 0.95rem; color: #0284c7; font-weight: 600;">${escapeHtml(issue.dashCodes)}</div>
+          <div style="font-family: var(--font-mono); font-size: 0.95rem; color: #0284c7; font-weight: 600;">${isSearching ? highlightSearchTerms(issue.dashCodes, searchQ) : escapeHtml(issue.dashCodes)}</div>
         </div>
       </div>
     ` : ''}
@@ -1257,7 +1480,7 @@ function openIssueDetail(issueId) {
           </button>
         </div>
 
-        <div class="instructions-text-box">${renderRichTextWithMedia(getInstructionsText(issue.driverSteps))}</div>
+        <div class="instructions-text-box">${renderRichTextWithMedia(getInstructionsText(issue.driverSteps), isSearching ? searchQ : '')}</div>
       </div>
     ` : ''}
 
@@ -1268,7 +1491,7 @@ function openIssueDetail(issueId) {
           🔍 Observed Symptoms:
         </div>
         <ul style="padding-left: 18px; margin: 0; color: var(--text-main); font-size: 0.9rem; line-height: 1.6;">
-          ${issue.symptoms.map(s => `<li>${escapeHtml(s)}</li>`).join('')}
+          ${issue.symptoms.map(s => `<li>${isSearching ? highlightSearchTerms(s, searchQ) : escapeHtml(s)}</li>`).join('')}
         </ul>
       </div>
     ` : ''}
@@ -1284,7 +1507,7 @@ function openIssueDetail(issueId) {
             ${Icons.copy}
           </button>
         </div>
-        <div style="white-space: pre-wrap; color: var(--text-main); font-size: 0.92rem; line-height: 1.6;">${renderRichTextWithMedia(issue.notes)}</div>
+        <div style="white-space: pre-wrap; color: var(--text-main); font-size: 0.92rem; line-height: 1.6;">${renderRichTextWithMedia(issue.notes, isSearching ? searchQ : '')}</div>
       </div>
     ` : ''}
 
@@ -1336,7 +1559,7 @@ function openIssueDetail(issueId) {
                     </div>
                     ${hasRealCaption ? `
                       <div class="detail-photo-caption">
-                        <span class="detail-caption-text">${escapeHtml(cap)}</span>
+                        <span class="detail-caption-text">${isSearching ? highlightSearchTerms(cap, searchQ) : escapeHtml(cap)}</span>
                       </div>
                     ` : ''}
                   </div>
@@ -1360,8 +1583,8 @@ function openIssueDetail(issueId) {
                       <span class="file-ext-tag">${badge.ext}</span>
                     </div>
                     <div class="detail-file-info">
-                      <div class="detail-file-title" title="${escapeHtml(doc.name)}">${escapeHtml(doc.name)}</div>
-                      ${doc.caption ? `<div class="detail-file-caption">${escapeHtml(doc.caption)}</div>` : ''}
+                      <div class="detail-file-title" title="${escapeHtml(doc.name)}">${isSearching ? highlightSearchTerms(doc.name, searchQ) : escapeHtml(doc.name)}</div>
+                      ${doc.caption ? `<div class="detail-file-caption">${isSearching ? highlightSearchTerms(doc.caption, searchQ) : escapeHtml(doc.caption)}</div>` : ''}
                       <div class="detail-file-meta">${sizeText ? sizeText : (badge.label + ' File')}</div>
                     </div>
                     <div class="detail-file-actions">
@@ -1405,6 +1628,18 @@ function openIssueDetail(issueId) {
 
   openModal('detailModal');
   initDetailDropzone();
+
+  if (isSearching && searchMatches.length > 0) {
+    setTimeout(() => {
+      const firstMark = modalContent.querySelector('mark.search-match-highlight');
+      if (firstMark) {
+        firstMark.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        firstMark.classList.remove('pulse-focus');
+        void firstMark.offsetWidth;
+        firstMark.classList.add('pulse-focus');
+      }
+    }, 280);
+  }
 }
 
 function copyInstructions(issueId, btnEl = null) {
@@ -3223,7 +3458,7 @@ function extractYouTubeVideoId(url) {
   return match ? match[1] : null;
 }
 
-function renderRichTextWithMedia(text) {
+function renderRichTextWithMedia(text, highlightQuery = '') {
   if (!text) return '';
 
   const lines = String(text).split(/\r?\n/);
@@ -3240,7 +3475,8 @@ function renderRichTextWithMedia(text) {
       const fullMatch = match[0];
 
       if (matchIndex > lastIdx) {
-        lineHtml += escapeHtml(rawLine.substring(lastIdx, matchIndex));
+        const textSegment = rawLine.substring(lastIdx, matchIndex);
+        lineHtml += highlightQuery ? highlightSearchTerms(textSegment, highlightQuery) : escapeHtml(textSegment);
       }
 
       let cleanUrl = fullMatch;
@@ -3271,7 +3507,8 @@ function renderRichTextWithMedia(text) {
     }
 
     if (lastIdx < rawLine.length) {
-      lineHtml += escapeHtml(rawLine.substring(lastIdx));
+      const textSegment = rawLine.substring(lastIdx);
+      lineHtml += highlightQuery ? highlightSearchTerms(textSegment, highlightQuery) : escapeHtml(textSegment);
     }
 
     if (ytVideos.length > 0) {
