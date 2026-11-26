@@ -111,17 +111,17 @@ const INITIAL_DATABASE = {
     {
       "id": "issue-1795100544355",
       "categoryId": "fleet_instructions",
-      "title": "Accounts Love's / Southern Tire Mart /",
+      "title": "Accounts Love's / Southern Tire Mart / SRC",
       "shopUrgency": "",
       "dashCodes": "",
       "symptoms": [],
       "driverSteps": [
         "Pilot / Southern Tire Mart Account Number 32933",
-        "Love’s account number 3741370"
+        "Love’s SRC account number 3741370"
       ],
       "images": [],
       "notes": "",
-      "updatedAt": "2026-11-19T15:02:24.355Z"
+      "updatedAt": "2026-11-26T19:05:57.147Z"
     },
     {
       "id": "issue-1795098043938",
