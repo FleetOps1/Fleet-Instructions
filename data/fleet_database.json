@@ -94,6 +94,20 @@
   ],
   "issues": [
     {
+      "id": "issue-1795719397705",
+      "categoryId": "trailer",
+      "title": "Trailer Light indicating tire air leak",
+      "shopUrgency": "",
+      "dashCodes": "",
+      "symptoms": [],
+      "driverSteps": [],
+      "images": [
+        "uploads/img_a794da53_image.png"
+      ],
+      "notes": "",
+      "updatedAt": "2026-11-26T18:56:37.705Z"
+    },
+    {
       "id": "issue-1795100544355",
       "categoryId": "fleet_instructions",
       "title": "Accounts Love's / Southern Tire Mart /",
