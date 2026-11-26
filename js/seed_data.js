@@ -105,8 +105,8 @@ const INITIAL_DATABASE = {
       "images": [
         "uploads/img_a794da53_image.png"
       ],
-      "notes": "",
-      "updatedAt": "2026-11-26T18:56:37.705Z"
+      "notes": "That is the MTIS Indicator Light—short for Meritor Tire Inflation System (also commonly called an ATIS or Automatic Tire Inflation System light).",
+      "updatedAt": "2026-11-26T19:03:29.440Z"
     },
     {
       "id": "issue-1795100544355",
